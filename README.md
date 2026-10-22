@@ -4,7 +4,7 @@
 
 **Priority: real AGH assignments first.** Then build one Java/Spring Boot + PostgreSQL application and continue your current IBM Data Science unit.
 
-[**This week's tasks**](https://github.com/ivanshevchuk0/java-backend-roadmap/issues?q=is%3Aissue+milestone%3A%22Week+01%22) · [**Next weeks**](ROADMAP.md#all-weeks) · [AGH deadlines](https://github.com/ivanshevchuk0/java-backend-roadmap/issues?q=is%3Aissue+is%3Aopen+label%3A%22track%3Aagh%22)
+[**This week's tasks**](https://github.com/ivanshevchuk0/java-backend-roadmap/issues?q=is%3Aissue+milestone%3A%22Week+01%22) · [**Next weeks**](ROADMAP.md#all-weeks) · [AGH deadlines](https://github.com/ivanshevchuk0/java-backend-roadmap/issues/3#agh-brief)
 
 | Open a task and mark progress there | This week's focus | Budget |
 | --- | --- | --- |
