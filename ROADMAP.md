@@ -170,3 +170,41 @@ By Week 12, aim to demonstrate:
 - [ ] IBM notebook/lab progress recorded honestly, including unfinished certificate units.
 
 After this cycle, consider Google ML Crash Course within the I budget **instead of adding more weekly hours**, once Python functions/collections, NumPy/pandas basics, algebra/functions, basic linear algebra, and descriptive statistics are comfortable. Use the [official prerequisite checklist](https://developers.google.com/machine-learning/crash-course/prereqs-and-prework). If those foundations or AGH work are weak, continue them first. No AI component is needed in the Java application to make progress toward AI/ML engineering.
+
+<!-- roadmap-dependencies:start -->
+## Learning dependencies
+
+These dependencies apply to backend milestones. IBM Data Science and current AGH work run in parallel; AGH deadlines take priority. Verify checkpoint evidence before expanding backend scope.
+
+```mermaid
+flowchart LR
+  subgraph Backend["Java / Backend — 60%"]
+    W1["W01 · Foundation · G1"]
+    W2["W02 · First API · G2"]
+    W3["W03 · Persistence"]
+    W4["W04 · Data integrity"]
+    W5["W05 · Testing"]
+    W6["W06 · Query design"]
+    W7["W07 · Containers"]
+    W8["W08 · Continuous integration · G3"]
+    W9["W09 · Deployment"]
+    W10["W10 · Portfolio"]
+    W11["W11 · Interview readiness"]
+    W12["W12 · Release · G4"]
+    W1 --> W2 --> W3 --> W4 --> W5 --> W6 --> W7 --> W8 --> W9 --> W10 --> W11 --> W12
+  end
+  subgraph Parallel["Parallel learning"]
+    DS["IBM Data Science · 20% · current unit"]
+    AGH["AGH · 20% baseline · actual deadlines first"]
+    ML["Google ML · later · Python/data/math gate"]
+    DS -. "after foundations + capacity review" .-> ML
+  end
+  AGH -. "reallocate study time when required" .-> W1
+  classDef backend fill:#123d31,stroke:#5ee2b7,color:#e6fff6;
+  classDef data fill:#242147,stroke:#b7a2ff,color:#f0eaff;
+  classDef agh fill:#422e18,stroke:#edbc73,color:#fff2dd;
+  class W1,W2,W3,W4,W5,W6,W7,W8,W9,W10,W11,W12 backend;
+  class DS,ML data;
+  class AGH agh;
+```
+<!-- roadmap-dependencies:end -->

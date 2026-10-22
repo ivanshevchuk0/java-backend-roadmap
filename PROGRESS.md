@@ -2,6 +2,8 @@
 
 All tasks start unverified. Marking a checkbox requires evidence. Keep logs short; recording time is part of the task budget.
 
+The optional [visual dashboard](dashboard/README.md) starts with the same plan and saves its own progress in your browser. It does not edit this file, mark Markdown checkboxes, or sync through GitHub. Choose one daily progress log to avoid duplicate bookkeeping; use JSON export/import to back up or transfer dashboard progress. A task checkmark does not create logged hours or verify a milestone.
+
 ## Current configuration
 
 | Setting | Value |

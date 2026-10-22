@@ -13,8 +13,26 @@ Build Java backend skills while keeping AGH semester 3 coursework on track. The 
 | [RESOURCES.md](RESOURCES.md) | Selected course sections and official references, with stopping rules |
 | [weeks/week-01.md](weeks/week-01.md), [week-02.md](weeks/week-02.md) | Detailed daily tasks |
 | [weeks/week-03.md](weeks/week-03.md) through [week-12.md](weeks/week-12.md) | Daily outlines; refine only the next week during review |
+| [dashboard/](dashboard/README.md) | Interactive React dashboard: tasks, hours, checkpoints, course notes, and local JSON backups |
+| [scripts/sync-roadmap.mjs](scripts/sync-roadmap.mjs) | Generates structured dashboard data and the Mermaid dependency diagram from the weekly Markdown |
 
-This initial delivery contains learning documents only. Application code, Maven files, database scripts, containers, and complete exercise solutions will be created by you during the plan. Planned capabilities are not implemented features.
+The learning framework includes Markdown and a browser-local dashboard. The Study Task Tracker backend, Maven files, database scripts, containers, and exercise implementations are still work for you to create during the plan. The dashboard is a tool for learning; it is not a completed portfolio backend.
+
+## Open the visual dashboard
+
+[Open the private Learning OS dashboard](https://java-backend-learning-os.modestduck2.chatgpt.site), or run it locally below. Local and hosted URLs have separate browser storage; use JSON export/import to transfer progress.
+
+Use Node.js 22.12+ from the 22 LTS line, or a supported newer LTS release, and npm:
+
+```bash
+cd /home/ivan-shevchuk/Projects/java-backend-roadmap/dashboard
+npm ci
+npm run dev
+```
+
+Open the localhost URL printed in the terminal. In another clone, enter its `dashboard/` directory instead. See the [dashboard guide](dashboard/README.md) for production builds, tests, data updates, and backup behavior.
+
+Choose your current week, review “Next up”, and open a task for its completion criteria. Check it when done and log actual minutes separately. Use Plan settings to reserve AGH hours first. Export JSON regularly; import it to move progress between browsers or local/hosted URLs. Dashboard changes do not modify the Markdown tracker or sync through GitHub.
 
 ## Default week: 20 independent study hours
 
