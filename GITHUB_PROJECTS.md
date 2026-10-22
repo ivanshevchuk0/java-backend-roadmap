@@ -4,7 +4,7 @@ Markdown curriculum → issue checklists → one private Project. No application
 
 ## Ready versus still to configure
 
-[TASKS.md](TASKS.md) links to 36 weekly issues, one per week per track, with all 190 original task checklists and completion criteria. Twelve repository milestones, Week 01–Week 12, represent scheduled weeks. Dates remain unset until you choose a start and verify actual deadlines.
+[TASKS.md](TASKS.md) links to 36 weekly issues, one per week per track, with the 190 original daily checklist slots and updated completion criteria. Twelve repository milestones, Week 01–Week 12, represent scheduled weeks. One additional 0h readiness issue belongs to its own EPAM Java Readiness milestone; it indexes existing evidence. Dates remain unset until you choose a start and verify actual deadlines.
 
 Labels: `track:backend` green, `track:data` purple, `track:agh` amber, `learning-plan` for tracker issues, and `assignment` for real submissions.
 
@@ -18,7 +18,7 @@ GitHub Free includes Issues & Projects. Board/Table/Roadmap, Project custom fiel
 
 1. Sign in as `ivanshevchuk0`. Open [your Projects](https://github.com/users/ivanshevchuk0/projects) → **New project**.
 2. Choose **Table**, your personal account as owner, and name it **Java Backend — 12-week learning plan**.
-3. If offered **Import items from repository**, select `ivanshevchuk0/java-backend-roadmap`. Otherwise use **Add item from repository**, select this repository, filter `is:issue label:learning-plan`, select all matching issues, and add them. Include all pages; verify 36 initial items.
+3. If offered **Import items from repository**, select `ivanshevchuk0/java-backend-roadmap`. Otherwise use **Add item from repository**, select this repository, filter `is:issue label:learning-plan`, select all matching issues, and add them. Include all pages; verify the 36 weekly items plus the readiness tracker (37 plan items before any real assignment issues).
 4. In Project **Settings**, verify **Visibility: Private**. Repository and Project visibility are separate.
 5. Link it from the repository’s Projects tab if needed. Bookmark its actual URL and add it to README. No Project number is assumed here.
 
@@ -32,7 +32,7 @@ Show built-in **Title**, **Labels**, **Milestone**, and **Status**. Labels suppl
 | --- | --- | --- |
 | Status | Existing single select | Backlog, Ready, In progress, Blocked, Done |
 | Priority | Single select | P0 = university work/deadlines first; P1 = core; P2 = optional |
-| Estimate | Number, hours | Remaining effort; initially backend 12, data 4, AGH 4 per issue |
+| Estimate | Number, hours | Remaining effort; initially weekly backend 12, data 4, AGH 4; readiness evidence tracker 0 |
 | Start date | Date | Flexible planned start |
 | Target date | Date | Flexible planned finish; Roadmap bar end |
 | Deadline | Date | Verified academic/submission deadline; blank when unknown |
@@ -41,12 +41,12 @@ Optional: add **Actual hours**, Number, only if short time logs in issue comment
 
 Use **+ / New field** in Table and edit single-select options in settings. Rename default Todo to Ready and add Backlog/Blocked. These are **Project custom fields**, not organization-wide issue fields. [Single-select fields](https://docs.github.com/en/issues/planning-and-tracking-with-projects/understanding-fields/about-single-select-fields).
 
-Initialize in batches:
+For a **new, unconfigured Project only**, initialize in batches below. Skip completed/closed items when choosing an initial Status. If the Project already contains progress, keep its Status, priorities, remaining estimates and dates; add only missing issues.
 
-1. Filter `label:"track:backend"`: Estimate 12, Priority P1.
+1. Filter `label:"track:backend" -label:epam-readiness`: Estimate 12, Priority P1.
 2. Filter `label:"track:data"`: Estimate 4, Priority P1.
 3. Filter `label:"track:agh"`: Estimate 4, Priority P0. Actual due assignments outrank generic preparation.
-4. Set all Status values to Backlog. When beginning, filter `milestone:"Week 01"` and set those three issues to Ready.
+4. Filter `label:epam-readiness`: Estimate **0**, Priority P1. For untouched open weekly items only, set Status to Backlog; keep completed items Done. When beginning, filter `milestone:"Week 01"` and set the three open, unstarted issues to Ready.
 5. Set planned dates for the current/next week first. Future weeks can stay undated; real deadlines always come from briefs.
 
 For bulk edits, configure one cell, copy it, select matching cells in the same column with Ctrl-click/Shift-selection, and paste. GitHub offers undo for bulk changes. [Bulk editing](https://docs.github.com/en/issues/planning-and-tracking-with-projects/managing-items-in-your-project/editing-items-in-your-project).
@@ -85,7 +85,7 @@ Inspect undated assignments too; blank Deadline does not mean low priority. [Fil
 
 Keep the default workflow setting Status to Done when an issue closes. Use **Close issue** after meeting criteria; dragging to Done alone does not close an issue. Reopen and set Ready/In progress if evidence is invalid.
 
-Optionally enable **one** auto-add workflow for this repository using `is:issue label:learning-plan`. Reuse any workflow created during import. Auto-add does not backfill existing items, so add the initial 36 if not imported. These are native Project workflows, not Actions jobs. [Built-in workflows](https://docs.github.com/en/issues/planning-and-tracking-with-projects/automating-your-project/using-the-built-in-automations), [auto-add behavior](https://docs.github.com/en/issues/planning-and-tracking-with-projects/automating-your-project/adding-items-automatically).
+Optionally enable **one** auto-add workflow for this repository using `is:issue label:learning-plan`. Reuse any workflow created during import. Auto-add does not backfill existing items, so add missing weekly issues and the readiness tracker if not imported. These are native Project workflows, not Actions jobs. [Built-in workflows](https://docs.github.com/en/issues/planning-and-tracking-with-projects/automating-your-project/using-the-built-in-automations), [auto-add behavior](https://docs.github.com/en/issues/planning-and-tracking-with-projects/automating-your-project/adding-items-automatically).
 
 ## AGH assignments and capacity
 
@@ -105,6 +105,17 @@ Deadline is the real academic date; Target date is your flexible plan. Dragging 
 6. Set Ready, or Blocked with a next experiment. Keep at most two essential carryovers; demonstrate backend prerequisites before expanding scope.
 
 Close for completed work or an explicit scope change with linked follow-up work. Use “not planned” for deliberately dropped optional work, not “completed.” Milestone percentages count issues, not hours/mastery; assess progress with estimates, evidence, and prerequisite gates.
+
+## EPAM readiness in your existing Project
+
+1. Add [readiness issue #37](https://github.com/ivanshevchuk0/java-backend-roadmap/issues/37) using **Add item from repository** if it is missing. Reuse it; do not create a draft duplicate. Keep all existing Project values and completed work.
+2. Set only this new item's Estimate **0**, Priority **P1**, and Status according to evidence. Its milestone is **EPAM Java Readiness** ([link](https://github.com/ivanshevchuk0/java-backend-roadmap/milestone/13)); weekly issues retain their original/current scheduled milestones. No real deadline is assumed.
+3. Keep Board/Table/Roadmap views. For the Week 11 Board, use `repo:ivanshevchuk0/java-backend-roadmap milestone:"Week 11","EPAM Java Readiness"` to include both milestone groups. Comma-separated values on the same field are alternatives. Keep the existing P0-first sorting; inspect the cross-week AGH filter too. If work moves, change the weekly milestone filter accordingly.
+4. In the Table, group by Milestone and label-filter as before. The readiness group contributes 0 hours; the 36 weekly packages still total 240 planned hours. Estimate means remaining work, so a partially completed plan's sum should decrease.
+5. In the Roadmap, set the readiness item's flexible Start/Target dates to the planned assessment window only once the plan start is known. Its bar is a checkpoint window, not an extra study block; leave Deadline blank unless a real intake deadline is verified. Update its target if AGH work displaces assessment time.
+6. Link original attempts/results from W11 #31 and fresh retries from W12 #34. Close readiness only using [its rubric](EPAM_READINESS.md); then close its milestone. Milestone percentage alone does not establish skill mastery.
+
+The [Mermaid diagram](ROADMAP.md#learning-dependencies) supplies learning dependencies without a paid dependency tool or extra fields. Skill evidence stays in issue checklists. This update does not create/edit Project views or fields because the current CLI lacks Projects scope. Use these browser steps; CLI authorization remains optional below.
 
 ## Optional CLI authorization
 

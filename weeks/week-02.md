@@ -21,7 +21,7 @@
 
 ## Day 2 — Dependency injection and creation, 3h
 
-- [ ] **B · 20m: Spring bean/constructor injection reading.** Compare it with passing the repository to the service in Week 01. **Done:** explain who constructs the controller/service and why constructor injection helps testing.
+- [ ] **B · 20m: Spring bean/constructor injection reading.** Compare Spring constructor injection with Week 01; inspect one component annotation and distinguish metadata from an interface or an ordinary Java constructor. **Done:** explain who constructs controller/service, what the annotation signals, and how constructor injection supports a service unit test without Spring.
 - [ ] **B · 80m: POST and service wiring.** Add a small create request/response and wire controller → service → repository. **Done:** POST returns 201, a generated ID, and a Location header; a subsequent GET finds the created task. No persistence is claimed yet.
 - [ ] **B · 20m: keep service tests running.** Run old tests against the adapted service; add or adjust a creation test when necessary. **Done:** service behavior remains tested without starting the whole web application; record passing results.
 - [ ] **I · 60m: current certificate unit.** Continue its Python/data lab. **Done:** one completed small segment or reproducible intermediate artifact and a next step logged; use a function/list/dictionary exercise if basics still need repair.

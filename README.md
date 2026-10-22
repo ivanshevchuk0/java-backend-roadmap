@@ -10,10 +10,11 @@ Start with [Week 01](weeks/week-01.md), the [weekly issue index](TASKS.md), and 
 | --- | --- |
 | [ROADMAP.md](ROADMAP.md) | Full plan, prerequisites, checkpoints, and Mermaid dependencies |
 | [weeks/](weeks/) | Detailed daily tasks for weeks 01–02 and daily outlines for weeks 03–12 |
-| [TASKS.md](TASKS.md) | Links to 36 weekly issues and 12 repository milestones |
+| [TASKS.md](TASKS.md) | Links to 36 weekly issues, 12 weekly milestones, and the EPAM readiness tracker |
 | [GitHub Issues](https://github.com/ivanshevchuk0/java-backend-roadmap/issues?q=is%3Aissue+is%3Aopen+label%3Alearning-plan) | Live checklists, evidence, blockers, and assignment details |
 | [GITHUB_PROJECTS.md](GITHUB_PROJECTS.md) | Board, Table, Roadmap, fields, authorization, and rescheduling |
 | [PROGRESS.md](PROGRESS.md) | Capacity and weekly review template |
+| [EPAM_READINESS.md](EPAM_READINESS.md) | Official-source gap map, assessments, rubric and time substitutions |
 | [RESOURCES.md](RESOURCES.md) | Selected materials, free alternatives, and stopping rules |
 
 The repository is private. Set the Project to private too. The CLI can manage repository issues but currently lacks Projects permission, so Project creation, membership, fields, and saved views still need owner setup. Use the browser instructions without changing CLI access, or explicitly authorize the CLI yourself.
@@ -57,3 +58,7 @@ Day 7 includes a 60-minute backend review. Demonstrate the checkpoint, check upc
 Reuse unfinished issues: change milestone/planned dates, reduce estimates to remaining effort, and preserve academic deadlines. Remove optional scope to make room. Carry at most two essential items. After two weeks below 80% core completion, reduce scope about 25%.
 
 Spring starts around week 2 after G1; PostgreSQL follows in week 3. The evolving Study Task Tracker is still your Java portfolio exercise to implement. AGH Flask assignments stay in Flask and follow the lecturer’s tooling.
+
+## EPAM preparation
+
+Core Java/OOP precedes explicit collections/generics, lambdas, streams, I/O and algorithm practice in the existing Java hours. [EPAM Java Readiness](EPAM_READINESS.md) replaces Week 11 interview practice with two assessments and reserves the existing Week 12 mock hour for a retry. Update the [live readiness issue](https://github.com/ivanshevchuk0/java-backend-roadmap/issues/37) from evidence, without adding study hours. Existing progress and weekly issue schedules stay intact. The benchmark is ours; verify the actual EPAM intake's requirements before applying.

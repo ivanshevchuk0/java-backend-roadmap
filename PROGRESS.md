@@ -13,6 +13,7 @@
 | Current IBM unit / assessment | Record in the Data Science issue; free references if access requires payment |
 | Java / Maven / Spring Boot / PostgreSQL versions | TODO when the learning tasks reach setup |
 | Backend code location | TODO; no backend scaffold generated |
+| EPAM readiness | [Live evidence issue](https://github.com/ivanshevchuk0/java-backend-roadmap/issues/37); assessed in W11, retry in W12; no automatic pass |
 | Next action | Open Week 01 AGH, verify deadlines, then choose the next Java item |
 
 Reserve mandatory AGH hours first; split the remainder backend:data about 3:1. At 20h capacity with 10h AGH work, use B7.5/I2.5/A10. Defer optional scope rather than creating catch-up debt.
@@ -45,6 +46,7 @@ Day 7’s 60-minute B block includes demo, recall, and planning. Copy this to on
 - Planned B/I/A hours: __ / __ / __. Actual: __ / __ / __.
 - Active practice versus passive material: __. What explanation/video will I cut? __.
 - Backend checkpoint: passed / partial / failed; evidence and independent explanation: __.
+- EPAM skill evidence added / weakest gap / existing repair slot: __. In W11–12: original A/B result, correction versus independent retry, readiness issue link: __.
 - AGH deadlines within 14 days, sources/rubrics, hours, and submission receipts: __.
 - IBM/free-reference unit, lab evidence, next step: __.
 - Biggest blocker and smallest experiment: __.
@@ -59,3 +61,7 @@ Deadline risk → reallocate; failed prerequisite → repair; two weeks below 80
 ## Course and internship evidence
 
 Use weekly Data Science/backend issues for unit notes, coding/SQL attempts, CV revisions, and live role links. Record assessments/applications honestly. Planned features are not completed CV achievements; elapsed weeks do not establish readiness.
+
+## Preserve progress during EPAM alignment
+
+Keep completed weekly checkboxes, closed issues, comments and actual time logs. Updated curriculum criteria are prospective; an old completion is not silently reassessed or awarded a new skill. Link existing evidence to the readiness issue where it matches; otherwise place the smallest missing part in a future repair slot. Do not create a second full exercise. Project Status, priority, remaining Estimate and dates remain your current values. The readiness issue stays at Estimate 0 because its work is already counted in backend tasks.

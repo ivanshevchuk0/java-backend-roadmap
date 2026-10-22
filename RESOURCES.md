@@ -2,6 +2,12 @@
 
 Use this as a lookup table, not a reading backlog. Choose the smallest section that unblocks today's task, then close it and produce the listed evidence. Public course pages and core reference pages were checked on **2026-10-22**. Your enrolled syllabus, access terms, and current unit still need checking; module order and versions can change.
 
+## EPAM alignment references — no additional course
+
+[EPAM Java roadmap](https://campus.epam.com/en/skills-roadmap/Java) was checked on 2026-10-22, including its public curriculum data loaded by the page. Use it as a skills reference, not a requirement to finish every specialization. [EPAM_READINESS.md](EPAM_READINESS.md) maps selected gaps to the same 12-week budget and distinguishes our practice rubric from official intake rules. Examples: [Hungary Fundamentals](https://campus.epam.com/en/training/6040), [Uzbekistan Java Web Development](https://campus.epam.com/en/training/5966); both currently show registration closed and have location-specific rules. Check your actual intake before applying.
+
+For W03–06 use the matching collections/generics/lambda/stream/I/O sections of [Dev.java](https://dev.java/learn/), then close the reference and attempt the week's fixture. Reuse the existing Amazon course if it addresses a gap; do not enroll in another complete course. Arrays/maps and their official Java API descriptions are enough for the planned small algorithm exercises; no extra algorithm platform subscription is needed.
+
 ## Course selection
 
 The time boxes below are this plan's allocation for selected material, not provider estimates or promises of full course completion. All reading, videos, quizzes, and labs consume the track's existing hours.
@@ -22,7 +28,7 @@ The course pages support the subjects listed; the schedule and project mapping a
 
 | Need | Reference | Practical use / stopping point |
 | --- | --- | --- |
-| Java language/OOP/collections/exceptions | [Dev.java learning](https://dev.java/learn/) | Read one matching topic; explain it using your own class and run an example |
+| Java language/OOP/collections/generics/lambdas/streams/I/O | [Dev.java learning](https://dev.java/learn/) | Read one matching topic; explain it using your own class and run an example |
 | Git basics and branching | [Pro Git](https://git-scm.com/book/en/v2) | Stage/review/commit one change, then later practice a small branch/merge |
 | Maven layout, dependencies, lifecycle | [Maven getting started](https://maven.apache.org/guides/getting-started/) | Explain `pom.xml`, dependency, test phase, and wrapper command |
 | Tests and assertions | [JUnit documentation](https://docs.junit.org/current/user-guide/) | Use Jupiter tests/assertions matching your dependency version; no manual major-version upgrade just to follow latest docs |

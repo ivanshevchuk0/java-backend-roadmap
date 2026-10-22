@@ -82,9 +82,18 @@ These are learning-plan choices. Current capabilities and version requirements c
 | G1: Spring entry, Week 01 end | Create/use a class and constructor; implement an interface; use `List<StudyTask>` and a map or equivalent lookup; handle missing/invalid data; run at least 4 meaningful JUnit tests; explain a Maven dependency and one GET/POST example | Spend Week 02 Day 1's first 30 minutes rechecking; if still blocked, replace its first 2h backend block with targeted Java repair, then reassess. Shift Spring by one or two sessions. Delay SQL/previews before skipping the gate |
 | G2: persistence, Week 02 end | Demonstrate create/read/status HTTP flow; explain controller → service → repository; explain PK/FK, parameterized SQL, and one join | Repair the failing slice before adding JPA relationships |
 | G3: reproducible backend, Week 08 end | Verify tests against PostgreSQL and start app+DB with documented commands; CI must actually run database integration tests | Fix reproducibility before deployment or additional features |
+| EPAM Java Readiness, target Week 11 | Independent assessment A/B evidence for Java, collections/generics, functional Java, I/O, algorithms, Maven/JUnit, SQL and Spring; follow [rubric](EPAM_READINESS.md) | Use W12 D5 retry or defer the checkpoint; never override AGH deadlines or reset completed work |
 | G4: portfolio, Week 12 | Fresh checkout works, demo succeeds, limitations are documented, and you can explain design/test choices | Report remaining gaps and plan another focused iteration |
 
-No mastery of every Java feature is required before Spring. Learn streams, generics details, concurrency, and framework internals as concrete tasks need them.
+No mastery of every Java feature is required before Spring. Keep the G1 entry gate and Week 02 start; explicit generics, lambda, stream, I/O and algorithm practice follows in the existing backend slots. Framework internals and advanced concurrency remain later topics.
+
+## EPAM alignment inside the same hours
+
+[EPAM Java Readiness](EPAM_READINESS.md) maps the official guidance to this curriculum, names the gaps, and defines practical assessments. Strengthen Core Java/OOP first, then make collections/generics (W03), lambdas (W04), streams (W05), I/O (W06), and algorithms (W07–08) explicit. Maven/JUnit, SQL and Spring stay integrated with the same evolving application. Use the current Java course and official references only for demonstrated gaps; no extra course is added.
+
+The assessment replaces W11 D3–4 interview/walkthrough slots; W12 D5's existing mock hour becomes a targeted retry. The [substitution ledger](EPAM_READINESS.md#workload-substitutions) explains each exchange. Weekly totals remain B12/I4/A4, subject to mandatory AGH work. Earlier completed tasks stay completed; new gaps use future repair time. The readiness tracker is an evidence index with Estimate 0h.
+
+EPAM's roadmap is broader than an entrance-test syllabus, and its curriculum varies by location/course. These assessments are our benchmark, not official questions or a published EPAM pass score. Verify your actual intake and eligibility before applying. Later enterprise/cloud/AI specializations are deferred.
 
 ## Twelve-week map
 
@@ -92,18 +101,18 @@ Each linked file follows the daily budget above. Its daily rows are the task out
 
 | Week | Backend outcome / checkpoint | IBM Data Science direction, 4h | AGH default preparation, 4h |
 | --- | --- | --- | --- |
-| [01](weeks/week-01.md) | Java model, collection operations, at least 4 tests, G1 | Current unit baseline; Python/notebook fundamentals as needed | Inventory live briefs; Bash, current OOP exercise, HTML/CSS, database joins |
-| [02](weeks/week-02.md) | In-memory Spring API; create/read/status demo, G2 | Python collections/files and a small reproducible data exercise | Processes, OOP, JS/forms, SQL |
-| [03](weeks/week-03.md) | PostgreSQL + migration + JPA; data survives app restart | pandas loading/filtering and summary statistics | Threads and shared state; OOP collections; Flask routing; keys/normalization |
-| [04](weeks/week-04.md) | Course relationship, validation, 400/404 contract, delete | Missing values, cleaning, and SQL overlap | IPC; OOP exceptions; Flask requests/templates; joins/aggregates |
-| [05](weeks/week-05.md) | Unit tests with Mockito; PostgreSQL integration and rollback evidence | SQL/data-access lab or current certificate unit | Synchronization; OOP interfaces/equality; Flask tests; transactions |
-| [06](weeks/week-06.md) | Filters, stable pagination, transaction boundary, query inspection | Visualization with a concrete question | Deadlocks; OOP review; Flask REST; indexes/query plans |
-| [07](weeks/week-07.md) | App + PostgreSQL Compose; startup and persistence checks | Descriptive statistics and exploratory analysis | Memory; Java review; responsive JS UI; schema exercise |
-| [08](weeks/week-08.md) | CI runs unit and real PostgreSQL integration checks, G3 | Data leakage/split concepts if ready; otherwise current unit | Virtual memory; OOP exam practice; Flask/cloud requirements; SQL mock |
-| [09](weeks/week-09.md) | Local deployment rehearsal, logs/health, backup and restore | Evaluation or current certificate lab | Filesystems; Java mock; actual Flask deployment assignment; database recovery concepts |
-| [10](weeks/week-10.md) | Security basics, API documentation, reproducible demo | Analyze a small synthetic app export with pandas | Sockets; OOP weak area; Flask/REST weak area; database weak area |
-| [11](weeks/week-11.md) | Freeze features, fix review findings, interview practice, CV | Reproducible notebook and honest conclusions | OS security; actual exam/lab priorities for other subjects |
-| [12](weeks/week-12.md) | Clean-checkout release/demo, G4, internship evidence | Consolidation and next certificate milestone | Mixed retrieval/mock assessment and remaining submission checks |
+| [01](weeks/week-01.md) | Core Java/OOP diagnostic, typed collections, Maven, at least 4 tests, G1 | Current unit baseline; Python/notebook fundamentals as needed | Inventory live briefs; Bash, current OOP exercise, HTML/CSS, database joins |
+| [02](weeks/week-02.md) | In-memory Spring API, DI/annotations and SQL; create/read/status demo, G2 | Python collections/files and a small reproducible data exercise | Processes, OOP, JS/forms, SQL |
+| [03](weeks/week-03.md) | PostgreSQL + migration + JPA; collections/equality and generics | pandas loading/filtering and summary statistics | Threads and shared state; OOP collections; Flask routing; keys/normalization |
+| [04](weeks/week-04.md) | Relationship, validation, 400/404 contract, delete; functional interfaces/lambdas | Missing values, cleaning, and SQL overlap | IPC; OOP exceptions; Flask requests/templates; joins/aggregates |
+| [05](weeks/week-05.md) | Mockito, PostgreSQL integration/rollback; streams versus loops | SQL/data-access lab or current certificate unit | Synchronization; OOP interfaces/equality; Flask tests; transactions |
+| [06](weeks/week-06.md) | Filters/pagination, transactions/query inspection; UTF-8 I/O/resources | Visualization with a concrete question | Deadlocks; OOP review; Flask REST; indexes/query plans |
+| [07](weeks/week-07.md) | App + PostgreSQL Compose; algorithm/complexity and Java gap repair | Descriptive statistics and exploratory analysis | Memory; Java review; responsive JS UI; schema exercise |
+| [08](weeks/week-08.md) | CI with real PostgreSQL tests, G3; algorithm and bounded thread review | Data leakage/split concepts if ready; otherwise current unit | Virtual memory; OOP exam practice; Flask/cloud requirements; SQL mock |
+| [09](weeks/week-09.md) | Deployment/logs/restore rehearsal; Core Java diagnostic and CV | Evaluation or current certificate lab | Filesystems; Java mock; actual Flask deployment assignment; database recovery concepts |
+| [10](weeks/week-10.md) | Security/API docs/demo; targeted Java repair and project explanation | Analyze a small synthetic app export with pandas | Sockets; OOP weak area; Flask/REST weak area; database weak area |
+| [11](weeks/week-11.md) | Feature freeze/fixes/CV; **EPAM Java Readiness A/B**, evidence review | Reproducible notebook and honest conclusions | OS security; actual exam/lab priorities for other subjects |
+| [12](weeks/week-12.md) | Clean-checkout release/demo, G4; targeted readiness retry if needed | Consolidation and next certificate milestone | Mixed retrieval/mock assessment and remaining submission checks |
 
 ## Keep AGH aligned with reality
 
@@ -150,9 +159,9 @@ At 48 scheduled IBM hours, target a documented baseline and consistent lab progr
 
 - Weeks 01–02: explain your code aloud, use small commits, identify one strengths/gaps list.
 - Weeks 03–06: one small Java data-structure problem and one SQL question per week, time-boxed in the daily plan. Explain edge cases and time/space cost.
-- Weeks 07–08: practice a short project walkthrough and review 3 live internship postings to record recurring requirements. This is a future research task, not a claim about today's market.
+- Weeks 07–08: use small algorithm attempts and the short project walkthrough; retain live role research in Week 11 rather than repeat it here.
 - Weeks 09–10: draft a one-page CV and describe one feature with evidence: what it does, how it is tested, and what you learned.
-- Weeks 11–12: practice Java/OOP, collections, exceptions, HTTP, dependency injection, SQL joins/indexes/transactions, tests, Git, and basic OS questions. Prepare two short stories about debugging and tradeoffs. Apply to a small number of suitable live openings; log them and verify eligibility/deadlines. Application and publication actions remain yours to perform.
+- Weeks 11–12: complete the bounded [EPAM readiness assessments](EPAM_READINESS.md#practical-assessments) and retry gaps; cover Java/OOP, collections/generics, lambdas/streams, I/O, algorithms, HTTP/DI, SQL, Maven and tests. Prepare two short stories about debugging and tradeoffs. Apply to a small number of suitable live openings; log them and verify eligibility/deadlines. Application and publication actions remain yours to perform.
 
 ## Deployment and scope control
 
@@ -174,6 +183,7 @@ By Week 12, aim to demonstrate:
 - [ ] Docker/local deployment works from a clean checkout; persistence and restore checks recorded.
 - [ ] A five-minute demo, clear README, one-page CV, interview practice, and a small application log.
 - [ ] IBM notebook/lab progress recorded honestly, including unfinished certificate units.
+- [ ] EPAM readiness assessed with original attempts and evidence; unresolved skill gaps remain visible and scheduled.
 
 After this cycle, consider Google ML Crash Course within the I budget **instead of adding more weekly hours**, once Python functions/collections, NumPy/pandas basics, algebra/functions, basic linear algebra, and descriptive statistics are comfortable. Use the [official prerequisite checklist](https://developers.google.com/machine-learning/crash-course/prereqs-and-prework). If those foundations or AGH work are weak, continue them first. No AI component is needed in the Java application to make progress toward AI/ML engineering.
 
@@ -184,19 +194,45 @@ These dependencies apply to backend milestones. IBM Data Science and current AGH
 ```mermaid
 flowchart LR
   subgraph Backend["Java / Backend — 60%"]
-    W1["W01 · Foundation · G1"]
-    W2["W02 · First API · G2"]
-    W3["W03 · Persistence"]
-    W4["W04 · Data integrity"]
-    W5["W05 · Testing"]
-    W6["W06 · Query design"]
-    W7["W07 · Containers"]
-    W8["W08 · Continuous integration · G3"]
-    W9["W09 · Deployment"]
-    W10["W10 · Portfolio"]
-    W11["W11 · Interview readiness"]
-    W12["W12 · Release · G4"]
+    W1["W01 · Core Java + OOP · G1"]
+    W2["W02 · Spring API + SQL · G2"]
+    W3["W03 · Persistence + generics"]
+    W4["W04 · Validation + lambdas"]
+    W5["W05 · Tests + streams"]
+    W6["W06 · Queries + I/O"]
+    W7["W07 · Docker + algorithms"]
+    W8["W08 · CI + algorithms/threads · G3"]
+    W9["W09 · Deployment + Java diagnostic"]
+    W10["W10 · Portfolio + gap repair"]
+    W11["W11 · Readiness A/B + review"]
+    W12["W12 · Release + targeted retry · G4"]
     W1 --> W2 --> W3 --> W4 --> W5 --> W6 --> W7 --> W8 --> W9 --> W10 --> W11 --> W12
+  end
+  subgraph Skills["Skill prerequisites — practise in the weekly slots"]
+    CORE["Core Java + OOP + exceptions"]
+    TYPES["Typed collections + generics"]
+    FN["Functional interfaces + lambdas"]
+    STREAM["Streams"]
+    IO["I/O + resource handling"]
+    ALG["Data structures + algorithms"]
+    TOOLS["Maven + JUnit"]
+    HTTP["HTTP + DI + Spring"]
+    SQL["SQL before persistence"]
+    READY["EPAM Java Readiness · evidence checkpoint · 0 extra hours"]
+    CORE --> TYPES --> FN --> STREAM
+    CORE --> IO
+    TYPES --> ALG
+    CORE --> TOOLS
+    CORE --> HTTP
+    SQL --> W3
+    STREAM --> READY
+    IO --> READY
+    ALG --> READY
+    TOOLS --> READY
+    HTTP --> READY
+    SQL --> READY
+    W11 --> READY
+    READY -. "if gaps remain: targeted retry" .-> W12
   end
   subgraph Parallel["Parallel learning"]
     DS["IBM Data Science · 20% · current unit"]
@@ -208,7 +244,9 @@ flowchart LR
   classDef backend fill:#123d31,stroke:#5ee2b7,color:#e6fff6;
   classDef data fill:#242147,stroke:#b7a2ff,color:#f0eaff;
   classDef agh fill:#422e18,stroke:#edbc73,color:#fff2dd;
-  class W1,W2,W3,W4,W5,W6,W7,W8,W9,W10,W11,W12 backend;
+  class W1,W2,W3,W4,W5,W6,W7,W8,W9,W10,W11,W12,CORE,TYPES,FN,STREAM,IO,ALG,TOOLS,HTTP,SQL,READY backend;
   class DS,ML data;
   class AGH agh;
 ```
+
+The week chain is the application sequence; the skill branches show prerequisites without delaying Spring until streams or I/O are mastered. The readiness node indexes existing assessment work, not another work package. See [live tracker](TASKS.md#epam-java-readiness) and [Projects scheduling](GITHUB_PROJECTS.md#epam-readiness-in-your-existing-project).

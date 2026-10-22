@@ -2,7 +2,7 @@
 
 Use these live GitHub issues for checklists, evidence, blockers, and execution changes. The detailed weekly Markdown remains the curriculum. [Configure GitHub Projects](GITHUB_PROJECTS.md) to see the same issues as a Board, Table, and Roadmap.
 
-All 36 initial issues are open and unverified. No start dates, academic deadlines, completed tasks, or assessment results have been invented. The initial 12/4/4 weekly estimates total 240 hours across 12 weeks.
+The original set contains 36 weekly issues and 190 daily checklist items. Live issue state/evidence is authoritative; this file does not reset or mirror progress. The initial 12/4/4 weekly estimates total 240 hours across 12 weeks. No dates or assessment results are inferred from the plan.
 
 The scheduled milestone is mutable. This index records each issue’s original curriculum week and initial milestone; GitHub has the current schedule. Milestone percentages count issues, not hours/mastery.
 
@@ -20,6 +20,14 @@ The scheduled milestone is mutable. This index records each issue’s original c
 | [Week 10](weeks/week-10.md) | [#28](https://github.com/ivanshevchuk0/java-backend-roadmap/issues/28) | [#29](https://github.com/ivanshevchuk0/java-backend-roadmap/issues/29) | [#30](https://github.com/ivanshevchuk0/java-backend-roadmap/issues/30) | [Week 10](https://github.com/ivanshevchuk0/java-backend-roadmap/milestone/10) |
 | [Week 11](weeks/week-11.md) | [#31](https://github.com/ivanshevchuk0/java-backend-roadmap/issues/31) | [#32](https://github.com/ivanshevchuk0/java-backend-roadmap/issues/32) | [#33](https://github.com/ivanshevchuk0/java-backend-roadmap/issues/33) | [Week 11](https://github.com/ivanshevchuk0/java-backend-roadmap/milestone/11) |
 | [Week 12](weeks/week-12.md) | [#34](https://github.com/ivanshevchuk0/java-backend-roadmap/issues/34) | [#35](https://github.com/ivanshevchuk0/java-backend-roadmap/issues/35) | [#36](https://github.com/ivanshevchuk0/java-backend-roadmap/issues/36) | [Week 12](https://github.com/ivanshevchuk0/java-backend-roadmap/milestone/12) |
+
+## EPAM Java Readiness
+
+[Evidence tracker #37](https://github.com/ivanshevchuk0/java-backend-roadmap/issues/37) · [Repository milestone](https://github.com/ivanshevchuk0/java-backend-roadmap/milestone/13) · [Assessment criteria](EPAM_READINESS.md)
+
+This is one additional **0h** coordination issue, separate from the 36 weekly work issues. Its checklist indexes demonstrated skills; it adds no study tasks or hours. Assessments occupy Week 11 backend Days 3–4; the targeted retry replaces Week 12 Day 5's mock hour. Keep the 12 original weekly milestone assignments and existing progress. AGH deadlines always override the assessment target.
+
+Add only this new issue to an existing Project; set Estimate 0 and P1 without bulk-resetting existing fields. See [Project update instructions](GITHUB_PROJECTS.md#epam-readiness-in-your-existing-project).
 
 ## Start or reschedule a week
 
