@@ -1,74 +1,59 @@
-# Java Backend: 12-week learning framework
+# Java Backend: 12-week learning roadmap
 
-Build Java backend skills while keeping AGH semester 3 coursework on track. The long-term AI/ML direction stays active through a small, steady data-science track.
+**Markdown is the curriculum. GitHub Issues hold checklists and evidence. GitHub Projects is the interactive planner.** Focus on Java and AGH coursework with a tracker that needs no application maintenance.
 
-**Start here:** [Week 01](weeks/week-01.md). Read the [roadmap](ROADMAP.md) once, then work from the weekly checklist and [progress tracker](PROGRESS.md).
+Start with [Week 01](weeks/week-01.md), the [weekly issue index](TASKS.md), and the [Projects setup guide](GITHUB_PROJECTS.md).
 
-## What this repository contains
+## What to open
 
-| File | Purpose |
+| Resource | Use |
 | --- | --- |
-| [ROADMAP.md](ROADMAP.md) | Scope, prerequisites, milestones, scheduling rules, and 12-week overview |
-| [PROGRESS.md](PROGRESS.md) | Capacity, real AGH deadlines, evidence, blockers, and weekly decisions |
-| [RESOURCES.md](RESOURCES.md) | Selected course sections and official references, with stopping rules |
-| [weeks/week-01.md](weeks/week-01.md), [week-02.md](weeks/week-02.md) | Detailed daily tasks |
-| [weeks/week-03.md](weeks/week-03.md) through [week-12.md](weeks/week-12.md) | Daily outlines; refine only the next week during review |
-| [dashboard/](dashboard/README.md) | Interactive React dashboard: tasks, hours, checkpoints, course notes, and local JSON backups |
-| [scripts/sync-roadmap.mjs](scripts/sync-roadmap.mjs) | Generates structured dashboard data and the Mermaid dependency diagram from the weekly Markdown |
+| [ROADMAP.md](ROADMAP.md) | Full plan, prerequisites, checkpoints, and Mermaid dependencies |
+| [weeks/](weeks/) | Detailed daily tasks for weeks 01–02 and daily outlines for weeks 03–12 |
+| [TASKS.md](TASKS.md) | Links to 36 weekly issues and 12 repository milestones |
+| [GitHub Issues](https://github.com/ivanshevchuk0/java-backend-roadmap/issues?q=is%3Aissue+is%3Aopen+label%3Alearning-plan) | Live checklists, evidence, blockers, and assignment details |
+| [GITHUB_PROJECTS.md](GITHUB_PROJECTS.md) | Board, Table, Roadmap, fields, authorization, and rescheduling |
+| [PROGRESS.md](PROGRESS.md) | Capacity and weekly review template |
+| [RESOURCES.md](RESOURCES.md) | Selected materials, free alternatives, and stopping rules |
 
-The learning framework includes Markdown and a browser-local dashboard. The Study Task Tracker backend, Maven files, database scripts, containers, and exercise implementations are still work for you to create during the plan. The dashboard is a tool for learning; it is not a completed portfolio backend.
+The repository is private. Set the Project to private too. The CLI can manage repository issues but currently lacks Projects permission, so Project creation, membership, fields, and saved views still need owner setup. Use the browser instructions without changing CLI access, or explicitly authorize the CLI yourself.
 
-## Open the visual dashboard
+## Free and easy to maintain
 
-[Open the private Learning OS dashboard](https://java-backend-learning-os.modestduck2.chatgpt.site), or run it locally below. Local and hosted URLs have separate browser storage; use JSON export/import to transfer progress.
+GitHub Free includes Issues and Projects. This tracker uses labels, milestones, checklists, Project fields/views, and optional built-in workflows. No paid plan, hosted app, database, Actions job, marketplace app, or subscription is needed. [GitHub pricing](https://github.com/pricing) lists Issues & Projects in the Free plan.
 
-Use Node.js 22.12+ from the 22 LTS line, or a supported newer LTS release, and npm:
+The React dashboard, dependency/build files, hosting manifest, and data-sync script have been removed from the current tree. The previous version remains in Git history. See [migration notes](GITHUB_PROJECTS.md#migration-from-the-old-dashboard) for old browser progress and the separate hosted preview.
 
-```bash
-cd /home/ivan-shevchuk/Projects/java-backend-roadmap/dashboard
-npm ci
-npm run dev
-```
+Course purchases are optional. If access requires payment, use the free official references in RESOURCES.md. Buying a certificate is not required.
 
-Open the localhost URL printed in the terminal. In another clone, enter its `dashboard/` directory instead. See the [dashboard guide](dashboard/README.md) for production builds, tests, data updates, and backup behavior.
+## Default independent study budget
 
-Choose your current week, review “Next up”, and open a task for its completion criteria. Check it when done and log actual minutes separately. Use Plan settings to reserve AGH hours first. Export JSON regularly; import it to move progress between browsers or local/hosted URLs. Dashboard changes do not modify the Markdown tracker or sync through GitHub.
+| Track / label | Share | Hours/week |
+| --- | ---: | ---: |
+| Java/Backend · `track:backend` | 60% | 12 |
+| Data Science · `track:data` | 20% | 4 |
+| AGH preparation · `track:agh` | 20% | 4 |
 
-## Default week: 20 independent study hours
+These 20 hours are outside scheduled classes. **Actual AGH assignments and deadlines override the ratio.** Reserve their time first, then split the remainder backend:data approximately 3:1. A 20h week with 10h AGH work leaves 7.5h backend and 2.5h data science.
 
-These hours are outside scheduled university classes. Required lab preparation and submissions use this budget first.
+Aim for at least 70% active practice. Courses support the work; completing every certificate is not a 12-week requirement.
 
-| Track | Share | Hours | Includes |
-| --- | ---: | ---: | --- |
-| B: Java/backend | 60% | 12 | Java, SQL, Spring Boot, tests, Git, project documentation, internship practice, weekly review |
-| I: IBM Data Science | 20% | 4 | Current certificate unit and its practical lab |
-| A: AGH preparation | 20% | 4 | Actual coursework; selected IBM Linux/Flask topics belong here |
+## Every day
 
-Change weekly capacity in [PROGRESS.md](PROGRESS.md). AGH deadlines override the ratio. Never count one hour in two tracks, even when the topic overlaps.
+1. Open the Project’s **This week** Board and check real AGH deadlines first. Until setup is complete, use TASKS.md and the current milestone.
+2. Choose one checklist item inside a weekly issue. Read its criteria and time box; keep one active coding task alongside necessary university work.
+3. Set its issue to **In progress**, then attempt the exercise yourself. Read only what unblocks it.
+4. Check the item after verifying the result. Add actual minutes, evidence, blocker, and next action to the issue. A checkmark does not log hours or prove a whole checkpoint.
+5. Close the issue after its remaining work and evidence are complete. The native closed-issue workflow can set Status to Done. Do not update a second set of daily progress checkboxes in Markdown.
 
-Aim for at least **70% active work**: writing/debugging code, tests, SQL, lab work, retrieval practice, and demos. Cap passive videos/reading at roughly 30%. No need to finish every listed course in 12 weeks.
+Use GitHub in a browser on Ubuntu, a phone, or another device. Progress lives on GitHub. Markdown remains the learning reference; execution changes belong in the live issue.
 
-## Use this system every day
+After 20 focused minutes stuck, ask for a hint with the command, exact error, expected result, and your attempt. Do not request complete exercise solutions by default.
 
-1. **Open the current week and PROGRESS.md.** Check deadlines within the next 7 days. Replace a planned task if a real lab needs the time.
-2. **Choose one small result.** For example: “one test proves an unknown task returns 404.” Read its completion criteria before starting.
-3. **Use a timer.** A 60-minute block can be 5 minutes recalling the last session, 10 minutes of targeted reading, 40 minutes doing the task, and 5 minutes recording evidence. Existing weekly estimates include these activities; do not add them on top.
-4. **Attempt the work before asking for help.** After 20 focused minutes stuck, record the command, exact error, expected behavior, and what you tried. Ask for a hint or review of your attempt.
-5. **Verify the result.** Run the relevant test, query, command, or lab check. Mark a checkbox only when its stated evidence exists. A watched video alone does not complete a coding task.
-6. **Close the session.** Log actual minutes, evidence path/commit, blocker, and the very next action. Review changes before making a small Git commit when useful. Do not commit credentials or generated build files.
+## Weekly reset
 
-Day numbers mean study sessions, not fixed weekdays. Move sessions to fit your timetable. Day 7 has a one-hour review and leaves the rest of the day free.
+Day 7 includes a 60-minute backend review. Demonstrate the checkpoint, check upcoming AGH briefs/deadlines, compare actual effort with capacity, and choose three next outcomes. Use PROGRESS.md’s template in one place: a weekly issue comment or a Markdown journal entry.
 
-## Weekly review: 60 minutes, already budgeted
+Reuse unfinished issues: change milestone/planned dates, reduce estimates to remaining effort, and preserve academic deadlines. Remove optional scope to make room. Carry at most two essential items. After two weeks below 80% core completion, reduce scope about 25%.
 
-Use the Day 7 checklist and the review template in PROGRESS.md. Demonstrate the week's checkpoint, compare planned versus actual hours, inspect upcoming AGH rubrics, and choose at most three outcomes for next week. Carry forward at most two essential unfinished tasks; drop or defer the rest explicitly.
-
-- If less than 80% of core work is done for two weeks, reduce next week's scope by about 25%.
-- If Java prerequisites are missing, use the bounded repair block in Week 02 before starting Spring.
-- If an exam or submission needs more time, cut stretch features and course videos first, then reduce backend/IBM work. Do not create catch-up debt or remove sleep to preserve a ratio.
-
-## How to ask your mentor for help
-
-> I am on Week __, Day __, task __. Expected: __. Actual command/output: __. I tried __. Please give one hint or review my approach, without a complete solution.
-
-For a weekly review, share the progress entry and links to your attempts/tests. Ask the mentor to adjust the next week around your current lectures and deadlines. Internship readiness is assessed through working evidence and explanations; the calendar alone does not establish it.
+Spring starts around week 2 after G1; PostgreSQL follows in week 3. The evolving Study Task Tracker is still your Java portfolio exercise to implement. AGH Flask assignments stay in Flask and follow the lecturer’s tooling.

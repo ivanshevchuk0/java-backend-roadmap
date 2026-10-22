@@ -2,6 +2,8 @@
 
 [Roadmap](../ROADMAP.md) · [Progress](../PROGRESS.md) · [Previous](week-10.md) · [Next](week-12.md)
 
+**Live progress:** [Week 11 GitHub issues](../TASKS.md#week-11). Use issues for checklist updates; this file remains the curriculum.
+
 **Outline budget:** B12 / I4 / A4 = 20h. Entry: working documented demo. Goal: consolidate what exists, practice explaining it, and prepare a small number of suitable internship applications.
 
 **Materials:** your own code/test reports and actual live role descriptions. Use official technical references only to resolve a specific weak answer. No new framework course.

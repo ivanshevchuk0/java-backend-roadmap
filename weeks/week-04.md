@@ -2,6 +2,8 @@
 
 [Roadmap](../ROADMAP.md) · [Progress](../PROGRESS.md) · [Previous](week-03.md) · [Next](week-05.md)
 
+**Live progress:** [Week 04 GitHub issues](../TASKS.md#week-04). Use issues for checklist updates; this file remains the curriculum.
+
 **Outline budget:** B12 / I4 / A4 = 20h. Entry: task persistence and migration checkpoint. Goal: a task belongs to a real course, invalid requests fail predictably, and deletion has defined behavior. Refine around actual AGH deadlines.
 
 **Materials:** selected Spring validation, exception-handling, and JPA relationship references matching your version; targeted Amazon persistence material only for a gap. Keep domain rules simple and migrations explicit.

@@ -7,9 +7,15 @@
 3. Maintain IBM Data Science progress without competing with urgent coursework.
 4. Prepare for internships through small coding exercises, SQL, project explanations, and applications.
 
-The horizon is **240 hours at 20 hours/week**: B 144, I 48, A 48 before deadline adjustments. This is a planning budget, not a promise to finish several certificates. Weeks are relative to your chosen start date; enter actual dates in PROGRESS.md.
+The horizon is **240 hours at 20 hours/week**: B 144, I 48, A 48 before deadline adjustments. This is a planning budget, not a promise to finish several certificates. Weeks are relative to your chosen start. Enter planned Start date/Target date in the Project and verified academic Deadline separately; record capacity in PROGRESS.md.
 
 No complete exercise solutions are included. No application is scaffolded in this phase. Avoid adding microservices, Kubernetes, Kafka, reactive programming, a large frontend, or AI features during the core plan.
+
+## Tracking with GitHub
+
+Use [TASKS.md](TASKS.md) to open weekly GitHub issues and repository milestones. Issues hold daily checklists/evidence; GitHub Projects supplies Board, Table, and Roadmap views. See [GITHUB_PROJECTS.md](GITHUB_PROJECTS.md) for free setup and the explicit Projects-permission step. No custom learning-tracker application is required.
+
+The learning content stays here and in the weekly Markdown. Track live execution in issues rather than duplicating checkbox updates across tools. Weekly repository milestones indicate the scheduled week; issue titles retain the original curriculum week when work is rescheduled.
 
 ## Configure capacity and protect AGH work
 
@@ -171,7 +177,6 @@ By Week 12, aim to demonstrate:
 
 After this cycle, consider Google ML Crash Course within the I budget **instead of adding more weekly hours**, once Python functions/collections, NumPy/pandas basics, algebra/functions, basic linear algebra, and descriptive statistics are comfortable. Use the [official prerequisite checklist](https://developers.google.com/machine-learning/crash-course/prereqs-and-prework). If those foundations or AGH work are weak, continue them first. No AI component is needed in the Java application to make progress toward AI/ML engineering.
 
-<!-- roadmap-dependencies:start -->
 ## Learning dependencies
 
 These dependencies apply to backend milestones. IBM Data Science and current AGH work run in parallel; AGH deadlines take priority. Verify checkpoint evidence before expanding backend scope.
@@ -207,4 +212,3 @@ flowchart LR
   class DS,ML data;
   class AGH agh;
 ```
-<!-- roadmap-dependencies:end -->

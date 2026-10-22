@@ -2,6 +2,8 @@
 
 [Roadmap](../ROADMAP.md) · [Progress](../PROGRESS.md) · [Previous](week-06.md) · [Next](week-08.md)
 
+**Live progress:** [Week 07 GitHub issues](../TASKS.md#week-07). Use issues for checklist updates; this file remains the curriculum.
+
 **Outline budget:** B12 / I4 / A4 = 20h. Entry: working PostgreSQL application and verification command. Goal: another environment can start the same app/database with documented configuration.
 
 **Materials:** official Docker build/Compose documentation and a matching Spring packaging reference. Learn images, containers, networking, ports, and volumes through the existing application.

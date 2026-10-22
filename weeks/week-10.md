@@ -2,6 +2,8 @@
 
 [Roadmap](../ROADMAP.md) · [Progress](../PROGRESS.md) · [Previous](week-09.md) · [Next](week-11.md)
 
+**Live progress:** [Week 10 GitHub issues](../TASKS.md#week-10). Use issues for checklist updates; this file remains the curriculum.
+
 **Outline budget:** B12 / I4 / A4 = 20h. Entry: deployment rehearsal and recovery evidence. Goal: a reviewer can run the application, understand its contract, and see honest limits without a long explanation from you.
 
 **Materials:** selected official Spring/configuration and API documentation references; no new course or custom authentication system. Keep the local single-user scope unless public access is an explicit replacement task.

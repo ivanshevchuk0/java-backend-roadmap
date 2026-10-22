@@ -2,6 +2,8 @@
 
 [Roadmap](../ROADMAP.md) · [Progress](../PROGRESS.md) · [Previous](week-05.md) · [Next](week-07.md)
 
+**Live progress:** [Week 06 GitHub issues](../TASKS.md#week-06). Use issues for checklist updates; this file remains the curriculum.
+
 **Outline budget:** B12 / I4 / A4 = 20h. Entry: reliable service/DB tests. Goal: bounded API results with clear query semantics and one evidence-based performance observation.
 
 **Materials:** Spring Data query/pagination documentation and PostgreSQL query-plan reference; choose only the sections needed for the query. Do not build a generic search framework.

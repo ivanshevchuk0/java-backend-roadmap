@@ -2,6 +2,8 @@
 
 [Roadmap](../ROADMAP.md) · [Progress](../PROGRESS.md) · [Previous](week-07.md) · [Next](week-09.md)
 
+**Live progress:** [Week 08 GitHub issues](../TASKS.md#week-08). Use issues for checklist updates; this file remains the curriculum.
+
 **Outline budget:** B12 / I4 / A4 = 20h. Entry: documented container/local run path. Goal: every change can be checked consistently, including real PostgreSQL tests.
 
 **Materials:** official documentation for the repository's actual CI provider, Maven test lifecycle, and chosen PostgreSQL test setup. Use a CI database service or Testcontainers if feasible; choose one approach first.

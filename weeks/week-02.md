@@ -2,6 +2,8 @@
 
 [Overview](../README.md) · [Progress](../PROGRESS.md) · [Previous week](week-01.md) · [Next week](week-03.md)
 
+**Live progress:** [Week 02 GitHub issues](../TASKS.md#week-02). Use issues for checklist updates; this file remains the curriculum.
+
 **Budget:** B 12h / I 4h / A 4h = 20h. Follow the AGH override before using these default tasks. This file describes work you will do; no app has been generated in the framework phase.
 
 **Entry:** G1 evidence from Week 01. HTTP can be new. PostgreSQL proficiency is not required to start an in-memory Spring endpoint.

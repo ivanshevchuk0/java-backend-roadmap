@@ -2,6 +2,8 @@
 
 [Roadmap](../ROADMAP.md) · [Progress](../PROGRESS.md) · [Previous](week-11.md)
 
+**Live progress:** [Week 12 GitHub issues](../TASKS.md#week-12). Use issues for checklist updates; this file remains the curriculum.
+
 **Outline budget:** B12 / I4 / A4 = 20h. Entry: feature freeze and known issue list. Goal: prove what you built from a clean checkout, assess gaps, and plan the next cycle realistically.
 
 **Materials:** your documented commands, actual CI reports, current AGH rubrics, and the Google ML Crash Course prerequisite checklist only for future planning. Do not squeeze a full new ML course into release week.

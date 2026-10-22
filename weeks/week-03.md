@@ -2,6 +2,8 @@
 
 [Roadmap](../ROADMAP.md) · [Progress](../PROGRESS.md) · [Previous](week-02.md) · [Next](week-04.md)
 
+**Live progress:** [Week 03 GitHub issues](../TASKS.md#week-03). Use issues for checklist updates; this file remains the curriculum.
+
 **Outline budget:** B12 / I4 / A4 = 20h. Refine against real AGH briefs before starting. Track letters and review rules follow README. Entry: G2; repair any Week 02 PostgreSQL setup blocker first. Goal: the same API now stores tasks durably. Avoid adding a second application.
 
 **Materials:** selected Amazon SQL/JDBC sections; Spring JPA guide; official Flyway documentation for the chosen version. Keep passive material under about 30% of the week's total. Every slot below includes its evidence log.

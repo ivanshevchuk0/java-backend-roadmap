@@ -2,6 +2,8 @@
 
 [Overview](../README.md) · [Progress](../PROGRESS.md) · [Resources](../RESOURCES.md) · [Next week](week-02.md)
 
+**Live progress:** [Week 01 GitHub issues](../TASKS.md#week-01). Use issues for checklist updates; this file remains the curriculum.
+
 **Budget:** B 12h / I 4h / A 4h = 20h. This is a future task checklist, not generated application code. Day numbers are movable sessions. Every task's estimate includes its short evidence log. Check real deadlines first and replace A tasks when needed.
 
 **Outcome:** explain your model, manipulate tasks in a collection, handle invalid/missing data, and run at least four meaningful JUnit tests. This is enough to attempt Spring in Week 02; advanced Java topics can follow later.

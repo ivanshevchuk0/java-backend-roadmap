@@ -51,3 +51,20 @@ Use current exercise instructions, lecture slides, grading rubric, and lecturer 
 - Flask requested by AGH → implement in Flask. A working Spring endpoint is useful prior knowledge, not a substitute submission.
 - After two explanations of the same issue, stop collecting resources. Write a tiny experiment or request a hint with your error output.
 - Notes should contain commands, decisions, mistakes, and evidence. Avoid transcribing whole lectures or copying completed tutorial repositories.
+
+## Free route and tracker resources
+
+The tracker uses only GitHub Free. Course links above are optional learning sources, not required purchases. Coursera certificate access or graded assessments may require payment; this plan does not promise free credentials. If access is paid, skip the purchase and practice the same topic using the official references below.
+
+| Topic | Free reference | Practical evidence |
+| --- | --- | --- |
+| Java, Spring, SQL, Git, testing, Docker | Official references already listed above | Independently run the week's exercise and relevant checks |
+| Python fundamentals | [Python tutorial](https://docs.python.org/3/tutorial/) | A runnable script/notebook with explained inputs and outputs |
+| Tabular data and analysis | [pandas getting started](https://pandas.pydata.org/docs/getting_started/index.html) | Load, filter, summarize, and check a small dataset |
+| Arrays and numerical basics | [NumPy beginner guide](https://numpy.org/doc/stable/user/absolute_beginners.html) | Explain and run one array operation appropriate to your current level |
+| Linux/Bash | Ubuntu's local manual pages and the shell references above | Commands or a small script matched to the AGH rubric |
+| Flask | The official Flask reference above | Required route/template/request/test behavior in Flask |
+
+Record your actual IBM course unit when you have access; otherwise label the week's work as free-reference practice instead of certificate completion. Google ML stays later, after its prerequisites. Any AGH-hosted deployment follows the university's assigned platform; paid cloud hosting is not part of the learning tracker.
+
+[GitHub Projects setup](GITHUB_PROJECTS.md) documents native views, fields, filters, and permissions. No subscriptions, marketplace extensions, or external tracking services are needed.

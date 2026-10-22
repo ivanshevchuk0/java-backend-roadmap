@@ -2,6 +2,8 @@
 
 [Roadmap](../ROADMAP.md) · [Progress](../PROGRESS.md) · [Previous](week-04.md) · [Next](week-06.md)
 
+**Live progress:** [Week 05 GitHub issues](../TASKS.md#week-05). Use issues for checklist updates; this file remains the curriculum.
+
 **Outline budget:** B12 / I4 / A4 = 20h. Entry: working relationships and deliberate errors. Goal: understand what unit tests, HTTP tests, and actual PostgreSQL tests each prove.
 
 **Materials:** Mockito API, JUnit/Boot testing references, and selected transaction documentation. Use mocks for a real dependency boundary, not for the database behavior you are trying to prove.

@@ -2,6 +2,8 @@
 
 [Roadmap](../ROADMAP.md) · [Progress](../PROGRESS.md) · [Previous](week-08.md) · [Next](week-10.md)
 
+**Live progress:** [Week 09 GitHub issues](../TASKS.md#week-09). Use issues for checklist updates; this file remains the curriculum.
+
 **Outline budget:** B12 / I4 / A4 = 20h. Entry: G3. Core target is a local Ubuntu deployment rehearsal, with exact revision and evidence. Hosting is optional and must replace work within the budget, not add hours.
 
 **Materials:** chosen Spring/Compose runtime and PostgreSQL backup/restore documentation. If hosting replaces a local block, consult the provider's current official deployment, configuration, and cost documentation at that time.
