@@ -1,6 +1,6 @@
 # EPAM Java Readiness
 
-[Roadmap](ROADMAP.md) · [Live tracker](TASKS.md#epam-java-readiness) · [Weekly review](PROGRESS.md)
+[Roadmap](ROADMAP.md) · [Live tracker](ROADMAP.md#epam-java-readiness) · [Weekly review](GITHUB_PROJECTS.md#weekly-reset)
 
 This is a preparation milestone inside the existing plan, targeted for Week 11 with a bounded Week 12 retry. It is **our learning benchmark**, not an EPAM certification, official question bank, admission guarantee, or published passing score. No complete exercise solutions are included.
 

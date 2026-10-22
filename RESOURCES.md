@@ -47,7 +47,7 @@ For Flyway, CI provider setup, Spring security configuration, and a hosting prov
 
 ## AGH source precedence
 
-Use current exercise instructions, lecture slides, grading rubric, and lecturer announcements first. Fill their URLs/paths into PROGRESS.md. The topic mapping in ROADMAP.md is provisional and must move with the course schedule. Local coursework notes help identify what to review but are not authoritative proof of submission or grading.
+Use current exercise instructions, lecture slides, grading rubric, and lecturer announcements first. Record their URLs/paths in the current AGH issue. The topic mapping in ROADMAP.md is provisional and must move with the course schedule. Local coursework notes help identify what to review but are not authoritative proof of submission or grading.
 
 ## Avoid redundant work
 

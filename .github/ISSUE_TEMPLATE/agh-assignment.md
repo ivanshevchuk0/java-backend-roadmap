@@ -6,6 +6,8 @@ labels: "learning-plan,track:agh,assignment"
 assignees: ivanshevchuk0
 ---
 
+Reuse the current weekly AGH issue unless this submission genuinely needs its own task. Creating a second card is optional, not the normal daily workflow.
+
 ## Authoritative brief
 
 - Subject / exercise / lecture:

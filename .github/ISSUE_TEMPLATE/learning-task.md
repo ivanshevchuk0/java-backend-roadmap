@@ -1,34 +1,30 @@
 ---
 name: Learning task
-about: A small learning task with a measurable result
+about: Only for genuinely new work; reuse the existing weekly issue first
 title: "[Learning] "
 labels: learning-plan
 assignees: ivanshevchuk0
 ---
 
-## Goal
+Reuse the existing weekly issue for ordinary practice or rescheduling. Create this only for genuinely new scope; reduce replaced weekly hours so work is counted once.
 
-One concrete result:
+## Learn
 
-## Plan
+Topic and relevant course section / free reference link:
 
-- Choose one label: `track:backend`, `track:data`, or `track:agh`.
-- Original curriculum week / source:
-- Scheduled week: set repository Milestone.
-- Remaining Estimate (hours):
-- Project Priority (P0/P1/P2):
-- Planned Start date / Target date:
-- Real Deadline: only if verified against a brief.
-- Prerequisite / original issue link:
+## Work
 
-## Checklist and completion criteria
+One small independent exercise and its time box:
 
-- [ ] Attempt the smallest exercise slice:
-- [ ] Verify expected behavior and a relevant boundary/error case:
-- [ ] Record evidence and explain the key idea independently:
+## Done when
 
-## Evidence and next action
+- [ ] Expected behavior and a boundary/error case verified.
+- [ ] Evidence and an independent explanation recorded.
 
-Actual minutes, result/commit, blocker, next step:
+## Schedule and evidence
 
-If extracted from another issue, reduce its estimate so time is counted once. Ask for hints/review rather than complete solutions.
+Track label / original curriculum week / scheduled Milestone:
+Remaining hours / planned dates / blocker:
+Actual minutes · result/commit · next action:
+
+Use Project Status To Do / In Progress / Done. Real deadlines only when verified. Ask for hints rather than complete solutions.
