@@ -46,7 +46,7 @@ Official UI references: [filters](https://docs.github.com/en/issues/planning-and
 
 ## Daily updates
 
-Open README → urgent AGH work or the first unchecked item in the active issue. The first unfinished day is expanded initially; expand the next day as you progress. Every unfinished task links material, states the exercise under **Work**, and gives **Done when** criteria.
+Open README → urgent AGH work or the first unchecked item in the active issue. All daily checkboxes remain visible, so the first unfinished task stays easy to find as progress changes. Only supporting context/evidence is collapsed. Every unfinished task links material, states the exercise under **Work**, and gives **Done when** criteria.
 
 Set the weekly card In Progress when you start. Check a task only after verifying it; add `minutes · evidence · next action` in an issue comment. Resume an unfinished item before another tutorial. A day is a movable study session, not an automatic calendar deadline.
 
