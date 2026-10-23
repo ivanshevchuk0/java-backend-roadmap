@@ -4,10 +4,12 @@ The existing private Learning OS website, redesigned around connected skills usi
 
 ## Daily use
 
-- **Skill roadmap:** explore three tracks, expand a section, search, pan or zoom. Click a node for materials, an exercise, completion criteria, prerequisites and original practice tasks.
+- **Skill roadmap:** Java opens by default as a compact vertical diagram. Switch to separate Data Science or AGH roadmaps. Expand/collapse sections, search, pan or zoom; use Start, Next topic and Fit view to orient yourself. Light is the default; the moon/sun button saves a local theme preference. Click a node for materials, an exercise, completion criteria, prerequisites and original practice tasks.
 - **Today:** recorded AGH deadlines within seven days (including overdue), explicitly promoted unfinished AGH tasks, then eligible skills. Recommendations respect prerequisites and the current week; later ML remains available for manual exploration.
 - **12-week plan:** browse all tasks, change the current week, adapt weekly capacity, defer work, record actual minutes/evidence, edit course notes and weekly reviews, and verify project milestones.
 - **Navigation → Export / Import:** keep a portable JSON backup. Invalid imports leave saved progress intact. Imports merge supplied records, preserving unrelated history.
+
+Solid blue lines show curated reading order and related concepts; dotted blue lines mark optional/later branches. Actual prerequisites remain in each topic’s panel and determine recommendations. The diagram does not postpone the Week 1 Maven/JUnit or Week 2 Spring Boot gates. Concept references open existing materials and have no independent completion state or added workload.
 
 Skill status is a self-assessment. Completing a topic does not check practice tasks or verify a project milestone. Track bars count completed skills; 60/20/20 labels describe the time allocation. Logged time is entered explicitly. AGH coursework overrides the default 20-hour budget.
 
@@ -27,7 +29,9 @@ Website changes do not alter GitHub issues, checkboxes or milestones. The websit
 ../ROADMAP.md                 Detailed weekly learning content
 ../EPAM_READINESS.md          EPAM preparation requirements and assessments
 src/data/roadmap.json         Original stable weekly tasks and course catalog
-src/data/skills.ts            Skills, groups, prerequisites and task mappings
+src/data/skills.ts            Skills, prerequisites and task mappings
+src/data/diagram.ts           Curated sections, branches and deterministic geometry
+src/diagram.css               Diagram-only light/dark styling
 src/App.tsx                   Primary skill tree, Today and retained schedule
 src/components/SkillTree.tsx  Interactive React Flow canvas
 src/components/TopicPanel.tsx Materials, criteria, tasks and deadlines
@@ -65,9 +69,10 @@ With that preview running, in a second terminal:
 ```bash
 node scripts/api-smoke.mjs http://127.0.0.1:5173
 npm run test:browser
+npm run test:diagram
 ```
 
-The browser regression requires Playwright Chromium (`npx playwright install chromium` once). It uses isolated profiles and only permits loopback URLs. It verifies legacy migration, refresh/reopening, independent devices, concurrent fields, offline reload/reconnect, export/invalid import, AGH priority, search/expansion, zoom/pan and mobile panels. It restores its local database snapshot afterward. Never run mutation smoke tests against personal production progress.
+The browser regression requires Playwright Chromium (`npx playwright install chromium` once). It uses isolated profiles and only permits loopback URLs. It verifies legacy migration, refresh/reopening, independent devices, concurrent fields, offline reload/reconnect, export/invalid import, AGH priority, search/expansion, zoom/pan and mobile panels. It restores its local database snapshot afterward. The separate read-only diagram check verifies central alignment, grouped rows, connector routing, collapse/search, independent tracks, light/dark preference and mobile readability. Never run mutation smoke tests against personal production progress.
 
 ## Publishing
 

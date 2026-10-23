@@ -1,94 +1,124 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Background, BackgroundVariant, Controls, Handle, Position, ReactFlow, type Node, type NodeProps, type ReactFlowInstance } from '@xyflow/react';
-import { ArrowUpRight, Check, ChevronDown, Circle, Layers3, LockKeyhole, Plus, Sparkles } from 'lucide-react';
-import { topics, topicGroups, type Topic } from '../data/skills';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { BaseEdge, Controls, Handle, Position, ReactFlow, type Edge, type EdgeProps, type Node, type NodeProps, type ReactFlowInstance } from '@xyflow/react';
+import { Check, ChevronDown, LocateFixed, LockKeyhole, Minus, Plus } from 'lucide-react';
+import { topics, type Topic } from '../data/skills';
+import { diagramSections, layoutDiagram } from '../data/diagram';
 import type { TrackId } from '../lib/types';
 
 export type TopicStatus = 'not-started' | 'in-progress' | 'completed';
 export const statusLabels: Record<TopicStatus, string> = { 'not-started': 'Not started', 'in-progress': 'In progress', completed: 'Completed' };
 export const trackNames: Record<TrackId, string> = { backend: 'Java & Backend', data: 'Data Science', agh: 'AGH studies' };
-type SkillData = { topic?: Topic; title: string; track: TrackId; status?: TopicStatus; ready?: boolean; next?: boolean; count?: number; expanded?: boolean; toggle?: () => void; open?: () => void };
-type SkillNode = Node<SkillData, 'skill' | 'section'>;
-
-function SkillCard({ data, selected }: NodeProps<SkillNode>) {
-  const topic = data.topic!;
-  return <div className={`skill-node ${data.track} ${data.status} ${selected ? 'selected' : ''} ${data.next ? 'recommended' : ''}`}>
-    <Handle type="target" position={Position.Top} isConnectable={false} />
-    <div className="skill-node-top"><span className={`skill-state ${data.status}`}>{data.status === 'completed' ? <Check size={12} /> : data.status === 'in-progress' ? <span className="running-dot" /> : <Circle size={11} />}{statusLabels[data.status ?? 'not-started']}</span><span className="node-week">W{String(topic.week).padStart(2, '0')}</span></div>
-    <div className="skill-node-title">{topic.milestone && <Sparkles size={15} />}<strong>{data.title}</strong><ArrowUpRight size={14} /></div>
-    {data.next && <span className="node-next">Your next step</span>}{!data.ready && data.status !== 'completed' && <span className="node-lock"><LockKeyhole size={10} />Prerequisites to explore</span>}
-    <Handle type="source" position={Position.Bottom} isConnectable={false} />
+type DiagramData = { title: string; topic?: Topic; referenceTopicId?: string; description?: string; status?: TopicStatus; main?: boolean; guide?: boolean; optional?: boolean; ready?: boolean; next?: boolean; order?: number; collapsed?: boolean; toggle?: () => void; count?: number; };
+type DiagramNode = Node<DiagramData, 'skill' | 'concept' | 'frame'>;
+function Ports() { return <>{[Position.Top, Position.Bottom, Position.Left, Position.Right].flatMap(position => [<Handle key={`in-${position}`} id={`in-${position}`} type="target" position={position} isConnectable={false} />, <Handle key={`out-${position}`} id={`out-${position}`} type="source" position={position} isConnectable={false} />])}</>; }
+function TopicNode({ data, selected }: NodeProps<DiagramNode>) {
+  return <div className={`diagram-node ${data.main ? 'main-topic' : 'branch-topic'} ${data.guide ? 'guide-topic' : ''} ${data.status ?? ''} ${selected ? 'selected' : ''} ${data.next ? 'recommended' : ''} ${data.optional ? 'optional-topic' : ''}`}>
+    <Ports />
+    {data.main && <span className="diagram-sequence">{String(data.order).padStart(2, '0')}</span>}
+    <span className={`diagram-status ${data.status ?? 'reference'}`} title={data.status ? statusLabels[data.status] : 'Concept reference · no separate completion'}>{data.status === 'completed' ? <Check size={12} strokeWidth={3} /> : data.status === 'in-progress' ? <span /> : data.guide ? <span className="guide-marker">↗</span> : data.status ? <i /> : null}</span>
+    <strong>{data.title}</strong>
+    {!data.ready && data.topic && data.status !== 'completed' && <LockKeyhole size={10} className="diagram-lock" aria-label="Prerequisites in details" />}
+    {data.main && <span className={`diagram-node-caption ${data.next ? 'is-next' : ''}`}>{data.next ? 'Next recommended' : data.guide ? 'Reference · no extra study hours' : data.topic ? `Week ${String(data.topic.week).padStart(2, '0')}` : ''}</span>}
+    {data.toggle && <button className="diagram-collapse nodrag nopan" onClick={event => { event.stopPropagation(); data.toggle?.(); }} onKeyDown={event => event.stopPropagation()} aria-label={`${data.collapsed ? 'Expand' : 'Collapse'} ${data.title}`} aria-expanded={!data.collapsed}>{data.collapsed ? <Plus size={13} /> : <Minus size={13} />}</button>}
+    {data.main && data.collapsed && <span className="diagram-collapsed-count">{data.count} details hidden</span>}
   </div>;
 }
-function SectionCard({ data }: NodeProps<SkillNode>) {
-  return <div className={`section-node ${data.track}`}><Handle type="target" position={Position.Top} isConnectable={false} /><span className="section-node-label"><Layers3 size={13} />{data.title}</span><button className="nodrag nopan" onClick={e => { e.stopPropagation(); data.toggle?.(); }} aria-label={`${data.expanded ? 'Collapse' : 'Expand'} ${data.title}`} aria-expanded={data.expanded}>{data.expanded ? <ChevronDown size={13} /> : <Plus size={13} />}{data.expanded ? 'Less' : `${data.count} skills`}</button><Handle type="source" position={Position.Bottom} isConnectable={false} /></div>;
+function GroupFrame({ data }: NodeProps<DiagramNode>) { return <div className="diagram-group"><span>{data.title}</span></div>; }
+function DiagramEdge(props: EdgeProps) {
+  const { sourceX, sourceY, targetX, targetY } = props;
+  const vertical = props.data?.spine;
+  const distance = Math.max(30, Math.abs(targetX - sourceX) * .55);
+  const direction = targetX > sourceX ? 1 : -1;
+  const path = vertical ? `M ${sourceX} ${sourceY} L ${targetX} ${targetY}` : `M ${sourceX} ${sourceY} C ${sourceX + direction * distance} ${sourceY}, ${targetX - direction * distance} ${targetY}, ${targetX} ${targetY}`;
+  return <BaseEdge id={props.id} path={path} style={props.style} interactionWidth={0} />;
 }
-const nodeTypes = { skill: SkillCard, section: SectionCard };
+const nodeTypes = { skill: TopicNode, concept: TopicNode, frame: GroupFrame };
+const edgeTypes = { curated: DiagramEdge };
+const topicById = new Map(topics.map(topic => [topic.id, topic]));
 
-export function SkillTree({ statuses, selectedId, nextId, onSelect, search, focusTrack }: { statuses: Record<string, TopicStatus>; selectedId: string | null; nextId?: string; onSelect: (id: string) => void; search: string; focusTrack: TrackId | 'all' }) {
-  const [expanded, setExpanded] = useState<Set<string>>(new Set());
-  const [instance, setInstance] = useState<ReactFlowInstance<SkillNode> | null>(null);
-  const reducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const duration = reducedMotion ? 0 : 280;
-  const matching = useMemo(() => search.trim() ? topics.filter(t => `${t.title} ${t.description}`.toLowerCase().includes(search.trim().toLowerCase())) : [], [search]);
-  useEffect(() => { if (matching.length) setExpanded(old => new Set([...old, ...matching.map(t => t.group)])); }, [matching]);
-  const selectedTopic = topics.find(t => t.id === selectedId);
-  useEffect(() => { if (selectedTopic) setExpanded(old => old.has(selectedTopic.group) ? old : new Set([...old, selectedTopic.group])); }, [selectedTopic]);
-  const toggle = useCallback((id: string) => setExpanded(old => { const next = new Set(old); if (next.has(id)) next.delete(id); else next.add(id); return next; }), []);
-
+export function SkillTree({ statuses, selectedId, nextId, onSelect, search, focusTrack, theme = 'light', progressReady = true }: { statuses: Record<string, TopicStatus>; selectedId: string | null; nextId?: string; onSelect: (id: string, focus?: { title: string; description: string }) => void; search: string; focusTrack: TrackId; theme?: 'light' | 'dark'; progressReady?: boolean }) {
+  const [collapsed, setCollapsed] = useState<Set<string>>(new Set());
+  const [instance, setInstance] = useState<ReactFlowInstance<DiagramNode> | null>(null);
+  const wrapper = useRef<HTMLDivElement>(null);
+  const initializedTrack = useRef<TrackId | null>(null);
+  const matching = useMemo(() => search.trim() ? topics.filter(t => t.track === focusTrack && `${t.title} ${t.description}`.toLowerCase().includes(search.trim().toLowerCase())) : [], [search, focusTrack]);
+  const toggle = useCallback((id: string) => setCollapsed(old => { const next = new Set(old); next.has(id) ? next.delete(id) : next.add(id); return next; }), []);
+  const selectedSection = diagramSections[focusTrack].find(section => section.topicId === selectedId || [section.left, section.right].some(group => group?.entries.some(entry => entry.topicId === selectedId)));
+  const effectiveCollapsed = useMemo(() => {
+    const result = new Set(collapsed);
+    if (selectedSection && selectedId !== selectedSection.topicId) result.delete(selectedSection.id);
+    for (const section of diagramSections[focusTrack]) if ([section.left, section.right].some(group => group?.entries.some(entry => matching.some(topic => topic.id === entry.topicId)))) result.delete(section.id);
+    return result;
+  }, [collapsed, selectedSection, selectedId, matching, focusTrack]);
+  const layout = useMemo(() => layoutDiagram(focusTrack, effectiveCollapsed), [focusTrack, effectiveCollapsed]);
   const { nodes, edges } = useMemo(() => {
-    const result: SkillNode[] = [];
-    const visible = new Set<string>();
-    const laneIds: TrackId[] = ['backend', 'data', 'agh'];
-    for (const [index, track] of laneIds.entries()) {
-      let y = 72;
-      for (const group of topicGroups.filter(g => g.track === track)) {
-        const items = topics.filter(t => t.group === group.id);
-        const shown = expanded.has(group.id) ? items : items.slice(0, 2);
-        const x = index * 320 + 30;
-        result.push({ id: `group-${group.id}`, type: 'section', position: { x, y }, data: { title: group.title, track, count: items.length, expanded: expanded.has(group.id), toggle: () => toggle(group.id) }, selectable: false, focusable: false, width: 244, height: 40 });
-        y += 66;
-        for (const topic of shown) {
-          const status = statuses[topic.id] ?? 'not-started';
-          result.push({ id: topic.id, type: 'skill', position: { x, y }, data: { topic, title: topic.title, track, status, ready: topic.prerequisites.every(id => statuses[id] === 'completed'), next: topic.id === nextId }, selected: topic.id === selectedId, width: 244, height: 112, ariaLabel: `${topic.title}, ${statusLabels[status]}, week ${topic.week}`, ariaRole: 'button' });
-          visible.add(topic.id); y += 145;
+    const nodes: DiagramNode[] = [];
+    const edges: Edge[] = [];
+    let previous: string | null = null;
+    for (const [index, placement] of layout.sections.entries()) {
+      const section = placement.section;
+      const topic = section.topicId ? topicById.get(section.topicId) : undefined;
+      const id = section.topicId ?? `guide-${section.id}`;
+      const common = (t?: Topic): Partial<DiagramData> => ({ topic: t, status: t ? statuses[t.id] ?? 'not-started' : undefined, ready: t?.prerequisites.every(dependency => statuses[dependency] === 'completed') ?? true, next: t?.id === nextId });
+      nodes.push({ id, type: topic ? 'skill' : 'concept', position: { x: 390, y: placement.centerY - 23 }, width: 200, height: 46, style: { width: 200, height: 46 }, data: { title: section.title, ...common(topic), referenceTopicId: section.referenceTopicId, description: section.description, main: true, guide: !topic, order: index + 1, collapsed: placement.collapsed, toggle: () => toggle(section.id), count: (section.left?.entries.length ?? 0) + (section.right?.entries.length ?? 0), optional: section.optional }, selected: selectedId === topic?.id, ariaLabel: `${section.title}${topic ? `, ${statusLabels[statuses[topic.id] ?? 'not-started']}` : ', reference guide'}`, ariaRole: 'button' });
+      if (previous) edges.push({ id: `spine-${previous}-${id}`, source: previous, target: id, sourceHandle: 'out-bottom', targetHandle: 'in-top', type: 'curated', data: { spine: true }, style: { stroke: 'var(--diagram-blue)', strokeWidth: 1.8, ...(section.optional ? { strokeDasharray: '3 5' } : {}) } });
+      previous = id;
+      for (const [side, group] of [['left', placement.left], ['right', placement.right]] as const) {
+        if (!group) continue;
+        nodes.push({ id: `frame-${group.group.id}`, type: 'frame', position: { x: group.x, y: group.y }, width: group.width, height: group.height, style: { width: group.width, height: group.height, pointerEvents: 'none' }, data: { title: group.group.title }, selectable: false, focusable: false, zIndex: -1 });
+        for (const row of group.entries) {
+          const entry = row.entry;
+          const targetTopic = entry.topicId ? topicById.get(entry.topicId) : undefined;
+          const entryId = entry.topicId ?? `reference-${entry.id}`;
+          nodes.push({ id: entryId, type: targetTopic ? 'skill' : 'concept', position: { x: row.x, y: row.y }, width: row.width, height: row.height, style: { width: row.width, height: row.height }, data: { title: entry.label, ...common(targetTopic), referenceTopicId: entry.referenceTopicId ?? section.topicId ?? section.referenceTopicId, description: entry.description, optional: entry.optional }, selected: !!targetTopic && selectedId === targetTopic.id, ariaLabel: `${entry.label}, ${targetTopic ? statusLabels[statuses[targetTopic.id] ?? 'not-started'] : 'concept reference'}`, ariaRole: 'button' });
+          edges.push({ id: `branch-${id}-${entryId}`, source: id, target: entryId, sourceHandle: `out-${side}`, targetHandle: `in-${side === 'left' ? 'right' : 'left'}`, type: 'curated', style: { stroke: 'var(--diagram-blue)', strokeWidth: 1.5, ...(entry.optional || section.optional ? { strokeDasharray: '3 5', strokeLinecap: 'round' as const } : {}) } });
         }
-        y += 52;
       }
     }
-    const connections: { id: string; source: string; target: string; type: string; style: { stroke: string; strokeWidth: number; strokeDasharray?: string }; animated?: boolean }[] = [];
-    for (const topic of topics.filter(t => visible.has(t.id))) {
-      if (!topic.prerequisites.length) connections.push({ id: `entry-${topic.id}`, source: `group-${topic.group}`, target: topic.id, type: 'smoothstep', style: { stroke: 'var(--edge)', strokeWidth: 1.5 } });
-      for (const dependency of topic.prerequisites) {
-        const source = visible.has(dependency) ? dependency : `group-${topics.find(t => t.id === dependency)?.group}`;
-        if (!result.some(n => n.id === source) || source === topic.id) continue;
-        const done = statuses[dependency] === 'completed';
-        connections.push({ id: `${dependency}-${topic.id}`, source, target: topic.id, type: 'smoothstep', style: { stroke: done ? 'var(--green)' : 'var(--edge)', strokeWidth: 1.5, ...(topics.find(t => t.id === dependency)?.track !== topic.track ? { strokeDasharray: '4 5' } : {}) } });
-      }
+    return { nodes, edges };
+  }, [layout, statuses, nextId, selectedId, toggle]);
+  const duration = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 220;
+  const showStart = useCallback(() => {
+    if (!instance || !wrapper.current) return;
+    const width = wrapper.current.clientWidth;
+    const zoom = width < 600 ? .88 : Math.min(1, (width - 30) / 980);
+    void instance.setViewport({ x: width / 2 - 490 * zoom, y: 34, zoom }, { duration });
+  }, [instance, duration]);
+  const locate = useCallback((id?: string | null) => {
+    const node = nodes.find(node => node.id === id);
+    if (!instance || !node || !wrapper.current) return;
+    const width = wrapper.current.clientWidth;
+    void instance.setCenter(node.position.x + (node.width ?? 200) / 2, node.position.y + 23, { zoom: width < 600 ? 1 : Math.min(1.08, (width - 25) / 980), duration });
+  }, [instance, nodes, duration]);
+  useEffect(() => {
+    if (!instance || !progressReady) return;
+    if (initializedTrack.current !== focusTrack) {
+      const timer = setTimeout(() => {
+        initializedTrack.current = focusTrack;
+        const next = nodes.find(node => node.id === nextId);
+        if (next && next.position.y > 400 && wrapper.current) {
+          const width = wrapper.current.clientWidth;
+          const zoom = width < 600 ? .88 : Math.min(1, (width - 30) / 980);
+          void instance.setViewport({ x: width / 2 - 490 * zoom, y: 120 - next.position.y * zoom, zoom }, { duration });
+        } else showStart();
+      }, 60);
+      return () => clearTimeout(timer);
     }
-    return { nodes: result, edges: connections };
-  }, [expanded, statuses, selectedId, nextId, toggle]);
-
+  }, [focusTrack, instance, showStart, progressReady, nextId, nodes, duration]);
+  useEffect(() => { const target = selectedId ?? matching[0]?.id; if (!target || !instance) return; const timer = setTimeout(() => locate(target), 70); return () => clearTimeout(timer); }, [selectedId, matching, instance, nodes.length]);
   useEffect(() => {
-    if (!instance) return;
-    const target = matching[0]?.id ?? selectedId;
-    if (!target || !nodes.some(n => n.id === target)) return;
-    const timer = setTimeout(() => { void instance.fitView({ nodes: [{ id: target }], padding: 1.8, minZoom: .75, maxZoom: 1.05, duration }); }, 80);
-    return () => clearTimeout(timer);
-  }, [instance, selectedId, matching, nodes.length, duration]);
-  useEffect(() => {
-    if (!instance) return;
-    if (focusTrack === 'all') { void instance.setViewport({ x: 26, y: 12, zoom: window.innerWidth < 700 ? .84 : .92 }, { duration }); return; }
-    const first = nodes.filter(n => n.data.track === focusTrack && n.type === 'skill').slice(0, 3);
-    const timer = setTimeout(() => { void instance.fitView({ nodes: first, padding: .35, minZoom: .65, maxZoom: 1.1, duration }); }, 60);
-    return () => clearTimeout(timer);
-  }, [focusTrack, instance, duration]);
-  return <div className="skill-canvas" aria-label="Interactive learning skill tree">
-    <ReactFlow<SkillNode> nodes={nodes} edges={edges} nodeTypes={nodeTypes} onInit={setInstance} nodesDraggable={false} nodesConnectable={false} elementsSelectable nodesFocusable edgesFocusable={false} deleteKeyCode={null} onNodeClick={(_, node) => { if (node.type === 'skill') onSelect(node.id); }} onKeyDown={event => { if (event.key !== 'Enter' && event.key !== ' ') return; const element = (event.target as HTMLElement).closest('.react-flow__node-skill'); const id = element?.getAttribute('data-id'); if (id) { event.preventDefault(); onSelect(id); } }} minZoom={.25} maxZoom={1.6} defaultViewport={{ x: 26, y: 12, zoom: .92 }} colorMode="dark" preventScrolling proOptions={{ hideAttribution: false }} ariaLabelConfig={{ 'node.a11yDescription.default': 'Press Enter or Space to explore this topic.', 'node.a11yDescription.keyboardDisabled': 'Press Enter or Space to explore this topic.' }}>
-      <Background variant={BackgroundVariant.Dots} gap={22} size={1} color="#313338" />
-      <Controls showInteractive={false} position="bottom-right" fitViewOptions={{ padding: .15, duration }} />
+    const element = wrapper.current;
+    if (!element) return;
+    let previousWidth = element.clientWidth;
+    const observer = new ResizeObserver(entries => { const width = entries[0].contentRect.width; if (Math.abs(width - previousWidth) > 20) { previousWidth = width; showStart(); } });
+    observer.observe(element); return () => observer.disconnect();
+  }, [showStart]);
+  return <div className="skill-canvas curated-canvas" ref={wrapper} aria-label={`${trackNames[focusTrack]} interactive roadmap`}>
+    <ReactFlow<DiagramNode> nodes={nodes} edges={edges} nodeTypes={nodeTypes} edgeTypes={edgeTypes} onInit={setInstance} nodesDraggable={false} nodesConnectable={false} elementsSelectable nodesFocusable edgesFocusable={false} deleteKeyCode={null} onNodeClick={(_, node) => { const id = node.data.topic?.id ?? node.data.referenceTopicId; if (id) onSelect(id, node.data.topic ? undefined : { title: node.data.title, description: node.data.description ?? 'This concept is covered by the linked existing skill and its exercises.' }); }} onKeyDown={event => { if (event.key !== 'Enter' && event.key !== ' ') return; const element = (event.target as HTMLElement).closest('.react-flow__node-skill,.react-flow__node-concept'); const node = nodes.find(node => node.id === element?.getAttribute('data-id')); const id = node?.data.topic?.id ?? node?.data.referenceTopicId; if (id) { event.preventDefault(); onSelect(id, node?.data.topic ? undefined : { title: node!.data.title, description: node!.data.description ?? 'This concept is covered by the linked existing skill and its exercises.' }); } }} minZoom={.15} maxZoom={1.8} defaultViewport={{ x: 0, y: 34, zoom: .85 }} colorMode={theme} panOnScroll panOnScrollSpeed={.8} zoomOnScroll={false} zoomActivationKeyCode={['Control', 'Meta']} zoomOnPinch preventScrolling proOptions={{ hideAttribution: false }} ariaLabelConfig={{ 'node.a11yDescription.default': 'Press Enter to open learning materials. Use the plus or minus button to expand or collapse this section.' }}>
+      <Controls showInteractive={false} position="bottom-right" fitViewOptions={{ padding: .08, duration }} />
     </ReactFlow>
-    <div className="canvas-instruction"><span className="keycap">↔</span>Drag to explore<span>·</span>Scroll to zoom</div>
-    {search && !matching.length && <div className="canvas-empty">No matching skills. Try “Java”, “SQL”, or “EPAM”.</div>}
+    <div className="diagram-navigation"><button onClick={showStart} title="Return to the beginning">Start<ChevronDown size={12} /></button><button onClick={() => locate(selectedId ?? (topicById.get(nextId ?? '')?.track === focusTrack ? nextId : diagramSections[focusTrack].find(s => s.topicId)?.topicId))}><LocateFixed size={13} />{selectedId ? 'Current topic' : 'Next topic'}</button><button onClick={() => setCollapsed(new Set(diagramSections[focusTrack].map(section => section.id)))}>Collapse all</button><button onClick={() => setCollapsed(new Set())}>Expand all</button></div>
+    <div className="canvas-instruction">Scroll to move · Pinch or use + / − to zoom</div>
+    {search && !matching.length && <div className="canvas-empty">No match in this track. Search results can open another roadmap.</div>}
   </div>;
 }

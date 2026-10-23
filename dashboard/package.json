@@ -14,7 +14,8 @@
     "db:generate": "drizzle-kit generate",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "test:browser": "node scripts/skill-tree-smoke.mjs"
+    "test:browser": "node scripts/skill-tree-smoke.mjs",
+    "test:diagram": "node scripts/diagram-smoke.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

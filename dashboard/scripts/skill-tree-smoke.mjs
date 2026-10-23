@@ -77,10 +77,13 @@ try {
   assert.equal(Object.keys(saved.skills).length, 0, 'Task completion must not fabricate topic mastery.');
   assert(await page.getByRole('button', { name: /Pre-redesign backup/ }).count());
   assert((await page.locator('.react-flow__edge').count()) > 5, 'Graph edges missing.');
-  assert((await page.locator('.react-flow__node-skill').count()) <= 20, 'Too many default visible topics.');
+  assert.equal(await page.locator('.react-flow__node-skill').count(), topicList.filter(t => t.track === 'backend').length, 'Default map must show Java skills only.');
+  assert(await page.locator('.react-flow__node-frame').count() > 20, 'Missing outlined concept groups.');
   let panel = await openTopic(page, core);
+  const positionsBefore = await page.locator('.react-flow__node').evaluateAll(nodes => Object.fromEntries(nodes.map(node => [node.getAttribute('data-id'), node.style.transform])));
   await panel.getByRole('button', { name: 'Completed', exact: true }).click(); await synced(page);
   await eventually(async () => (await cloud()).skills[core.id]?.status === 'completed', 'topic status cloud save');
+  assert.deepEqual(await page.locator('.react-flow__node').evaluateAll(nodes => Object.fromEntries(nodes.map(node => [node.getAttribute('data-id'), node.style.transform]))), positionsBefore, 'Progress must not move roadmap nodes.');
   assert.equal(Object.values((await cloud()).tasks).filter(t => t.status === 'done').length, 1, 'Topic status changed task checkboxes.');
   await page.reload(); await synced(page); panel = await openTopic(page, core);
   assert.equal(await panel.getByRole('button', { name: 'Completed', exact: true }).getAttribute('aria-pressed'), 'true');
@@ -119,7 +122,9 @@ try {
   await page.getByRole('button', { name: /zoom in/i }).click();
   await eventually(async () => await viewport.getAttribute('style') !== beforeZoom, 'zoom control changes viewport');
   const canvas = await page.locator('.skill-canvas').boundingBox(); const beforePan = await viewport.getAttribute('style');
-  await page.mouse.move(canvas.x + 15, canvas.y + 30); await page.mouse.down(); await page.mouse.move(canvas.x + 70, canvas.y + 55, { steps: 5 }); await page.mouse.up();
+  const blank = await page.locator('.skill-canvas').evaluate(element => { const r = element.getBoundingClientRect(); for (let y = r.top + 80; y < Math.min(r.bottom - 80, innerHeight - 70); y += 30) for (let x = r.left + 15; x < r.right - 80; x += 30) if (document.elementFromPoint(x, y)?.classList.contains('react-flow__pane')) return { x, y }; });
+  assert(blank, 'No visible canvas area to exercise panning.');
+  await page.mouse.move(blank.x, blank.y); await page.mouse.down(); await page.mouse.move(blank.x + 55, blank.y + 25, { steps: 5 }); await page.mouse.up();
   assert.notEqual(await viewport.getAttribute('style'), beforePan, 'Panning did not move the viewport.');
   panel = await openTopic(page, assignments);
   await panel.getByLabel('Assignment name', { exact: true }).fill('QA OS lab deadline');

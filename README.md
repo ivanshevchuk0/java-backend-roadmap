@@ -12,7 +12,7 @@ Your existing private website is the learning homepage. It shows your saved week
 2. Click a node: read its explanation/material, attempt the exercise, and check the completion criteria.
 3. Set its status and update the linked practice tasks with actual minutes and evidence. Progress saves privately across devices; check the sync indicator before switching devices.
 
-Use **+ skills** to expand a section, search for a hidden topic, or pan/zoom the tree. **12-week plan** retains every scheduled task, weekly capacity, course note, review, and project checkpoint. Change your current week explicitly; the calendar never marks work complete.
+The **Java Backend**, **Data Science**, and **AGH** tabs open separate roadmaps. Follow the central path and grouped side branches; use each section’s **+ / −** controls, search, or pan/zoom. The moon/sun button switches the light/dark diagram theme. **12-week plan** retains every scheduled task, weekly capacity, course note, review, and project checkpoint. Change your current week explicitly; the calendar never marks work complete.
 
 [**12-week Markdown plan**](ROADMAP.md#all-weeks) · [**Materials**](RESOURCES.md) · [**EPAM Java Readiness**](EPAM_READINESS.md)
 
