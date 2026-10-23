@@ -1,34 +1,35 @@
 # Java Backend Learning
 
-**Current view: Week 01 — Core Java & OOP** · Study start not confirmed.
+[**Open my interactive skill roadmap →**](https://java-backend-learning-os.modestduck2.chatgpt.site)
 
-**Priority: real AGH assignments first.** Then build one Java/Spring Boot + PostgreSQL application and continue your current IBM Data Science unit.
+Your existing private website is the learning homepage. It shows your saved week, next eligible skill, and progress across **Java & Backend (60%) · IBM Data Science (20%) · AGH (20%)**.
 
-[**This week's tasks**](https://github.com/ivanshevchuk0/java-backend-roadmap/issues?q=is%3Aissue+milestone%3A%22Week+01%22) · [**Next weeks**](ROADMAP.md#all-weeks) · [AGH deadlines](https://github.com/ivanshevchuk0/java-backend-roadmap/issues/3#agh-brief)
+**AGH assignments and real deadlines come first.** Default capacity is 20 hours/week; reserve university time before splitting the remaining time Java:IBM about 3:1.
 
-| Open a task and mark progress there | This week's focus | Budget |
-| --- | --- | --- |
-| [**AGH — #3**](https://github.com/ivanshevchuk0/java-backend-roadmap/issues/3) | Verify briefs/deadlines; work on the earliest required submission | 4h · 20%, first priority |
-| [**Java / Backend — #1**](https://github.com/ivanshevchuk0/java-backend-roadmap/issues/1) | Diagnostic → classes/interfaces → collections → Maven/JUnit | 12h · 60% |
-| [**IBM Data Science — #2**](https://github.com/ivanshevchuk0/java-backend-roadmap/issues/2) | Continue your actual current unit; produce a runnable lab artifact | 4h · 20% |
+## Every day
 
-## What to do today
+1. Open **Today**. Check your recorded AGH deadlines, then choose the suggested next skill.
+2. Click a node: read its explanation/material, attempt the exercise, and check the completion criteria.
+3. Set its status and update the linked practice tasks with actual minutes and evidence. Progress saves privately across devices; check the sync indicator before switching devices.
 
-1. Open **AGH #3** and verify current deadlines. Reserve urgent coursework time first.
-2. Otherwise open **Java #1**, start its first unchecked item, follow **Learn → Work → Done when**. Day 1 starts with the 30-minute tool check, then a Java diagnostic.
-3. Tick the **issue checkbox** after checking the result. Add a short comment: `minutes · evidence · next action`. Resume the first unfinished item next time.
+Use **+ skills** to expand a section, search for a hidden topic, or pan/zoom the tree. **12-week plan** retains every scheduled task, weekly capacity, course note, review, and project checkpoint. Change your current week explicitly; the calendar never marks work complete.
 
-Live checkboxes and comments are the progress record. Close a weekly issue only when its remaining tasks and evidence are complete; watching a video or passing a calendar week does not count. There are no progress boxes to update here.
-
-**Board: setup pending.** Project access is unavailable to this session. The task links above work now; [connect one Project with This Week, Timeline and AGH Deadlines views](GITHUB_PROJECTS.md#authorization).
+[**12-week Markdown plan**](ROADMAP.md#all-weeks) · [**Materials**](RESOURCES.md) · [**EPAM Java Readiness**](EPAM_READINESS.md)
 
 <details>
-<summary>Weekly reset, budget and reference</summary>
+<summary>GitHub tasks and backups</summary>
 
-At review, use the [weekly reset](GITHUB_PROJECTS.md#weekly-reset). Update this homepage's week, three task links and focus from [the roadmap](ROADMAP.md#all-weeks), then the Project's This Week milestone filter. Reuse unfinished issues; keep evidence and real deadlines.
+Existing GitHub issues, checkboxes, comments, and milestones are preserved. Website progress synchronizes between your browsers, **not with GitHub issue checkboxes**. Choose the website for daily tracking to avoid updating two trackers.
 
-Default capacity is **20h/week: 12 Java / 4 IBM / 4 AGH**. AGH deadlines override it; reserve mandatory hours and split the remainder Java:IBM about 3:1. Reduce scope before adding hours.
+[Week 01 Java #1](https://github.com/ivanshevchuk0/java-backend-roadmap/issues/1) · [IBM #2](https://github.com/ivanshevchuk0/java-backend-roadmap/issues/2) · [AGH #3](https://github.com/ivanshevchuk0/java-backend-roadmap/issues/3) · [Optional GitHub Project setup](GITHUB_PROJECTS.md#authorization)
 
-[Materials](RESOURCES.md) · [EPAM Java Readiness](EPAM_READINESS.md) · [Project setup](GITHUB_PROJECTS.md)
+On your first visit after the redesign, progress stored in that browser is migrated using the original storage key. A pre-redesign backup remains downloadable. Use **Export / Import** in the navigation for portable JSON backups; do not commit personal exports.
+
+</details>
+
+<details>
+<summary>Website source and maintenance</summary>
+
+The existing website source lives in [dashboard/](dashboard/). [Developer notes](dashboard/README.md) cover checks, storage, and deployment. No local server is needed for daily learning. The website keeps its existing owner-private audience; do not publish its shared owner progress endpoint publicly.
 
 </details>

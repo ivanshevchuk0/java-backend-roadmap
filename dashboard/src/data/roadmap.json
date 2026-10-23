@@ -1,0 +1,2694 @@
+{
+  "schemaVersion": 1,
+  "id": "java-backend-12-week-v1",
+  "title": "Java Backend / Learning Roadmap",
+  "defaultWeeklyHours": 20,
+  "tracks": [
+    {
+      "id": "backend",
+      "label": "Java / Backend",
+      "short": "Backend",
+      "ratio": 0.6
+    },
+    {
+      "id": "data",
+      "label": "Data Science",
+      "short": "Data Science",
+      "ratio": 0.2
+    },
+    {
+      "id": "agh",
+      "label": "AGH preparation",
+      "short": "AGH",
+      "ratio": 0.2
+    }
+  ],
+  "courses": [
+    {
+      "id": "amazon-java",
+      "provider": "Amazon",
+      "title": "Programming with Java",
+      "track": "backend",
+      "url": "https://www.coursera.org/learn/programming-with-java",
+      "scope": "Selected Java and OOP sections; skip material you can demonstrate."
+    },
+    {
+      "id": "amazon-sql",
+      "provider": "Amazon",
+      "title": "Database Management with Java and SQL",
+      "track": "backend",
+      "url": "https://www.coursera.org/learn/database-management-with-java-and-sql",
+      "scope": "SQL, JDBC and persistence support for the same application."
+    },
+    {
+      "id": "amazon-spring",
+      "provider": "Amazon",
+      "title": "Full Stack Web Development",
+      "track": "backend",
+      "url": "https://www.coursera.org/learn/fullstack-web-development",
+      "scope": "Start selected Spring sections in week 2 after G1."
+    },
+    {
+      "id": "ibm-data",
+      "provider": "IBM",
+      "title": "Data Science Professional Certificate",
+      "track": "data",
+      "url": "https://www.coursera.org/professional-certificates/ibm-data-science",
+      "scope": "Continue your current enrolled unit. 48 hours is a budget, not a certificate completion promise."
+    },
+    {
+      "id": "ibm-linux",
+      "provider": "IBM",
+      "title": "Linux Commands & Shell Scripting",
+      "track": "agh",
+      "url": "https://www.coursera.org/learn/hands-on-introduction-to-linux-commands-and-shell-scripting",
+      "scope": "Selected shell sections for current AGH labs; later OS topics use lecturer materials."
+    },
+    {
+      "id": "ibm-flask",
+      "provider": "IBM",
+      "title": "Python & Flask Applications",
+      "track": "agh",
+      "url": "https://www.coursera.org/learn/python-project-for-ai-application-development",
+      "scope": "Selected Flask sections for actual AGH requirements. Spring never substitutes for Flask."
+    },
+    {
+      "id": "google-ml",
+      "provider": "Google",
+      "title": "Machine Learning Crash Course",
+      "track": "data",
+      "url": "https://developers.google.com/machine-learning/crash-course/prereqs-and-prework",
+      "scope": "After week 12, when Python, data and math foundations are ready.",
+      "later": true
+    }
+  ],
+  "weeks": [
+    {
+      "number": 1,
+      "title": "Java foundation and a small tested model",
+      "phase": "Foundation",
+      "source": "ROADMAP.md#week-01",
+      "checkpoint": "Java model + G1 prerequisite demo",
+      "milestone": {
+        "id": "m1",
+        "title": "Java model + G1 prerequisite demo",
+        "dependsOn": []
+      },
+      "tasks": [
+        {
+          "id": "w01-d1-b-1",
+          "day": 1,
+          "track": "backend",
+          "title": "tool and Git check",
+          "description": "Check `java --version`, `javac --version`, `mvn --version`, `git --version`; open the intended work folder in VS Code and confirm Java support. Decide where future exercise/app code will live.",
+          "criteria": "versions and paths recorded in the issue comment; compile/run a tiny class from the terminal, or record the exact blocker and next fix. Do not install every later tool today.",
+          "estimatedMinutes": 30,
+          "priority": "high",
+          "courseIds": [
+            "amazon-java"
+          ]
+        },
+        {
+          "id": "w01-d1-b-2",
+          "day": 1,
+          "track": "backend",
+          "title": "Java diagnostic",
+          "description": "Use current AGH Java code for a diagnostic: trace constructor/static/instance execution, then make one runnable object-based attempt. Reserve the last 15m for short traces of primitives/wrappers, an array, String equality, and pass-by-value. Review only the first gap.",
+          "criteria": "attempt compiles; explain class/object, constructor timing, field/local state, static/instance, and argument/return; predict and check four small traces, including == versus equals and whether a method changes a caller variable. Log gaps rather than repeat a whole introduction.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": [
+            "amazon-java"
+          ]
+        },
+        {
+          "id": "w01-d1-b-3",
+          "day": 1,
+          "track": "backend",
+          "title": "define the project slice",
+          "description": "Write a short domain note for StudyTask: title, status, optional due date, and identifier; define create/find/change-status behavior.",
+          "criteria": "three operations and four acceptance cases written in your own words, including blank title and missing ID. No framework or database yet.",
+          "estimatedMinutes": 30,
+          "priority": "high",
+          "courseIds": [
+            "amazon-java"
+          ]
+        },
+        {
+          "id": "w01-d1-a-1",
+          "day": 1,
+          "track": "agh",
+          "title": "inspect current AGH briefs",
+          "description": "Check the four subjects' actual current exercises and deadlines.",
+          "criteria": "all four rows in the deadline board have a source and next action; unresolved dates are explicitly unknown with a follow-up action.",
+          "estimatedMinutes": 30,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w01-d1-a-2",
+          "day": 1,
+          "track": "agh",
+          "title": "OS baseline",
+          "description": "Review one current Bash exercise. In a disposable directory, independently demonstrate quoting a filename with spaces, one pipeline, and permission inspection.",
+          "criteria": "three command/output examples plus one explanation of quoting. Avoid practicing destructive commands on real coursework.",
+          "estimatedMinutes": 30,
+          "priority": "high",
+          "courseIds": [
+            "ibm-linux"
+          ]
+        },
+        {
+          "id": "w01-d2-b-1",
+          "day": 2,
+          "track": "backend",
+          "title": "targeted OOP reading",
+          "description": "Review the constructor/encapsulation gap from Day 1; compare composition with inheritance and an interface with an abstract class using your own model.",
+          "criteria": "explain private state, constructor versus method, override versus overload, and one justified interface/composition choice without notes; mark any unresolved distinction for later retrieval.",
+          "estimatedMinutes": 20,
+          "priority": "medium",
+          "courseIds": [
+            "amazon-java"
+          ]
+        },
+        {
+          "id": "w01-d2-b-2",
+          "day": 2,
+          "track": "backend",
+          "title": "implement the domain exercise yourself",
+          "description": "Create a StudyTask class and status enum; use a constructor and methods to express the chosen rules. Keep input/output separate from the model.",
+          "criteria": "a small runner creates two independent tasks, changes one status, and shows that the other object's state is unchanged; sources compile. Record one design question instead of adding a framework.",
+          "estimatedMinutes": 100,
+          "priority": "high",
+          "courseIds": [
+            "amazon-java"
+          ]
+        },
+        {
+          "id": "w01-d2-i-1",
+          "day": 2,
+          "track": "data",
+          "title": "IBM starting point",
+          "description": "Open your actual enrolled certificate progress and complete one suitably small segment/lab, or continue the current lab.",
+          "criteria": "course/unit name, completed assessment or executable artifact, and one next step logged. If new, create/run a notebook with three Python expressions/functions and explain the outputs.",
+          "estimatedMinutes": 60,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w01-d3-b-1",
+          "day": 3,
+          "track": "backend",
+          "title": "collections/interface lookup",
+          "description": "Look up List, Set, Map and a small interface; use typed collections and inspect one deliberately wrong element type.",
+          "criteria": "justify a collection for ordered tasks, uniqueness and ID lookup; explain a missing lookup and show the compiler rejecting the wrong type without raw collections.",
+          "estimatedMinutes": 20,
+          "priority": "medium",
+          "courseIds": [
+            "amazon-java"
+          ]
+        },
+        {
+          "id": "w01-d3-b-2",
+          "day": 3,
+          "track": "backend",
+          "title": "in-memory storage",
+          "description": "Define a small repository interface and an in-memory implementation; create/list/find tasks through it. Keep it single-threaded and simple.",
+          "criteria": "store three tasks, retrieve an existing ID, handle a missing ID deliberately, and explain the interface's role. Show the operations in a runnable exercise. Full generic abstractions are unnecessary.",
+          "estimatedMinutes": 100,
+          "priority": "high",
+          "courseIds": [
+            "amazon-java"
+          ]
+        },
+        {
+          "id": "w01-d3-a-1",
+          "day": 3,
+          "track": "agh",
+          "title": "current Java lab",
+          "description": "Check the actual rubric. If the October 20 sports-store task remains relevant, independently verify Scanner input and discount boundaries; otherwise work on the latest task.",
+          "criteria": "compile/run evidence, at least three rubric-derived checks, and a precise remaining-work list. Preserve its required console behavior and submission file rules.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w01-d4-b-1",
+          "day": 4,
+          "track": "backend",
+          "title": "Maven/JUnit essentials",
+          "description": "Inspect Maven source/test layout, compile/test/package phases, dependency test scope, and JUnit assertions.",
+          "criteria": "locate the pom and tests; explain the phase order and why a test dependency is not application code; choose the terminal test command.",
+          "estimatedMinutes": 20,
+          "priority": "high",
+          "courseIds": [
+            "amazon-java"
+          ]
+        },
+        {
+          "id": "w01-d4-b-2",
+          "day": 4,
+          "track": "backend",
+          "title": "package the small exercise and test it",
+          "description": "Create a minimal Maven exercise when you reach this task; add JUnit Jupiter compatible with your JDK. This is still learner-created work, not an entire backend scaffold.",
+          "criteria": "terminal test run passes at least three scenarios: valid creation, changing one object's state independently, and repository lookup. Intentionally break one behavior to see a test fail, then restore it. Save the command/report summary. Carry these classes into the later app instead of restarting from another tutorial.",
+          "estimatedMinutes": 100,
+          "priority": "high",
+          "courseIds": [
+            "amazon-java"
+          ]
+        },
+        {
+          "id": "w01-d4-i-1",
+          "day": 4,
+          "track": "data",
+          "title": "Python practice",
+          "description": "Continue the current certificate unit; if reviewing basics, practice functions, lists/dictionaries, and a simple transformation.",
+          "criteria": "one rerunnable notebook/script or a finished provider lab; explain one input/output and one error you corrected.",
+          "estimatedMinutes": 60,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w01-d5-b-1",
+          "day": 5,
+          "track": "backend",
+          "title": "exceptions and validation",
+          "description": "Review blank-title and missing-task failure handling; distinguish checked and unchecked exceptions and identify when try-with-resources closes a resource. File practice comes in Week 06.",
+          "criteria": "describe which layer validates and what the caller sees; give one checked/unchecked example and explain why a catch-all hides a failure.",
+          "estimatedMinutes": 20,
+          "priority": "high",
+          "courseIds": [
+            "amazon-java"
+          ]
+        },
+        {
+          "id": "w01-d5-b-2",
+          "day": 5,
+          "track": "backend",
+          "title": "create a small service",
+          "description": "Move create/find/change-status use cases behind a service using constructor-supplied repository dependency.",
+          "criteria": "a runner calls the service rather than manipulating storage directly; both valid and missing-ID paths are deliberate. Explain dependency injection here as passing a dependency through the constructor.",
+          "estimatedMinutes": 70,
+          "priority": "high",
+          "courseIds": [
+            "amazon-java"
+          ]
+        },
+        {
+          "id": "w01-d5-b-3",
+          "day": 5,
+          "track": "backend",
+          "title": "negative tests",
+          "description": "Add at least one invalid-title test and one missing-ID test; avoid catch-all exception handling.",
+          "criteria": "both fail if their behavior is removed and pass normally; total suite has at least four meaningful tests. Record any unfinished rule as a blocker.",
+          "estimatedMinutes": 30,
+          "priority": "high",
+          "courseIds": [
+            "amazon-java"
+          ]
+        },
+        {
+          "id": "w01-d5-a-1",
+          "day": 5,
+          "track": "agh",
+          "title": "current web lab",
+          "description": "Verify current HTML/CSS rubric; use lab02's noted TODOs only if still relevant.",
+          "criteria": "evidence for one layout check at wide/narrow widths, one form validation case, and asset loading; record remaining rubric items. Do not assume an existing “published” note proves today's behavior or submission.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w01-d6-b-1",
+          "day": 6,
+          "track": "backend",
+          "title": "SQL and HTTP preview",
+          "description": "Read a brief explanation of primary/foreign keys and GET vs POST.",
+          "criteria": "explain a task identifier, a future course reference, and the different purpose of the two HTTP methods.",
+          "estimatedMinutes": 20,
+          "priority": "medium",
+          "courseIds": [
+            "amazon-java",
+            "amazon-sql"
+          ]
+        },
+        {
+          "id": "w01-d6-b-2",
+          "day": 6,
+          "track": "backend",
+          "title": "relational exercise",
+          "description": "Sketch Course → StudyTask and write three proposed queries: list tasks, filter by status, count tasks per course. Execute in an existing suitable SQL environment if available; otherwise mark results as predictions to run in Week 02.",
+          "criteria": "diagram, three query attempts, predicted results for a tiny dataset, and a clear “executed” or “not yet executed” label. No database setup rabbit hole today.",
+          "estimatedMinutes": 40,
+          "priority": "high",
+          "courseIds": [
+            "amazon-java"
+          ]
+        },
+        {
+          "id": "w01-d6-i-1",
+          "day": 6,
+          "track": "data",
+          "title": "certificate lab",
+          "description": "Spend up to 30m on required explanation and the rest implementing its lab. If choosing a review exercise, load a tiny CSV with Python, validate rows, and summarize one field.",
+          "criteria": "notebook/script reruns and produces one explained result; log incomplete assessments honestly. This does not imply finishing a whole course unit in two hours.",
+          "estimatedMinutes": 120,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w01-d6-a-1",
+          "day": 6,
+          "track": "agh",
+          "title": "current database lab",
+          "description": "Use the assigned tool. If Countries/Cities is still current, independently explain PK/FK, reproduce one filter and one INNER/LEFT JOIN comparison, then check submission requirements.",
+          "criteria": "two query results or design-view evidence, explanation of unmatched rows, and actual submission status recorded. Do not replace a required Base artifact with a PostgreSQL exercise.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w01-d7-b-1",
+          "day": 7,
+          "track": "backend",
+          "title": "demo",
+          "description": "From the terminal, create/list/find/change a task and run tests.",
+          "criteria": "commands and results logged; name one behavior proved by a negative test.",
+          "estimatedMinutes": 20,
+          "priority": "high",
+          "courseIds": [
+            "amazon-java"
+          ]
+        },
+        {
+          "id": "w01-d7-b-2",
+          "day": 7,
+          "track": "backend",
+          "title": "G1 assessment",
+          "description": "Without copying, explain a constructor, interface, typed collection, missing/invalid input handling, Maven dependency, and GET vs POST.",
+          "criteria": "G1 marked passed only if those explanations and at least four passing meaningful tests exist. Mark precise gaps otherwise.",
+          "estimatedMinutes": 20,
+          "priority": "high",
+          "courseIds": [
+            "amazon-java"
+          ]
+        },
+        {
+          "id": "w01-d7-b-3",
+          "day": 7,
+          "track": "backend",
+          "title": "review and Week 02 setup",
+          "description": "Fill the weekly template, check deadlines for the next 14 days, and select next week's three outcomes.",
+          "criteria": "revised B/I/A hours, at most two carryovers, and the first action for Day 1 recorded. G1 gaps use the bounded repair path in ROADMAP; unfinished SQL preview can be deferred.",
+          "estimatedMinutes": 20,
+          "priority": "high",
+          "courseIds": [
+            "amazon-java"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Start Spring Boot and expose a small API",
+      "phase": "First API",
+      "source": "ROADMAP.md#week-02",
+      "checkpoint": "In-memory REST create/read/status + G2",
+      "milestone": {
+        "id": "m2",
+        "title": "In-memory REST create/read/status + G2",
+        "dependsOn": [
+          "m1"
+        ]
+      },
+      "tasks": [
+        {
+          "id": "w02-d1-b-1",
+          "day": 1,
+          "track": "backend",
+          "title": "verify G1 and versions",
+          "description": "Re-run Week 01 tests, explain the constructor/repository boundary, and check JDK compatibility with your chosen stable Spring Boot version.",
+          "criteria": "G1 and chosen versions recorded. If prerequisites fail, use today's full 2h B block for targeted repair instead, then reassess next session; defer SQL preview if needed to start Spring later this week.",
+          "estimatedMinutes": 30,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w02-d1-b-2",
+          "day": 1,
+          "track": "backend",
+          "title": "generate the smallest app at this point",
+          "description": "Use Spring Initializr with Maven and Spring Web; retain its wrapper and compatible test dependencies. Bring over useful Week 01 classes, avoiding duplicate tutorial implementations.",
+          "criteria": "wrapper builds/tests from terminal and the application starts locally. Record the actual project path. Database/JPA/Docker dependencies can wait.",
+          "estimatedMinutes": 30,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w02-d1-b-3",
+          "day": 1,
+          "track": "backend",
+          "title": "first read endpoint",
+          "description": "Implement a GET task-list endpoint using a small in-memory dependency, consulting at most 15m of the REST guide.",
+          "criteria": "a terminal HTTP request to `/api/tasks` returns 200 and valid JSON; explain URL → controller → response in your own words. The list may initially be empty.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w02-d1-a-1",
+          "day": 1,
+          "track": "agh",
+          "title": "OS processes/current lab",
+          "description": "Follow the actual brief. If no urgent replacement, observe a harmless process, PID/parent relationship, normal termination, and exit status.",
+          "criteria": "three command/output observations and an explanation of process vs program; required lab code stays in the assigned language.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": [
+            "ibm-linux"
+          ]
+        },
+        {
+          "id": "w02-d2-b-1",
+          "day": 2,
+          "track": "backend",
+          "title": "Spring bean/constructor injection reading",
+          "description": "Compare Spring constructor injection with Week 01; inspect one component annotation and distinguish metadata from an interface or an ordinary Java constructor.",
+          "criteria": "explain who constructs controller/service, what the annotation signals, and how constructor injection supports a service unit test without Spring.",
+          "estimatedMinutes": 20,
+          "priority": "medium",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w02-d2-b-2",
+          "day": 2,
+          "track": "backend",
+          "title": "POST and service wiring",
+          "description": "Add a small create request/response and wire controller → service → repository.",
+          "criteria": "POST returns 201, a generated ID, and a Location header; a subsequent GET finds the created task. No persistence is claimed yet.",
+          "estimatedMinutes": 80,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w02-d2-b-3",
+          "day": 2,
+          "track": "backend",
+          "title": "keep service tests running",
+          "description": "Run old tests against the adapted service; add or adjust a creation test when necessary.",
+          "criteria": "service behavior remains tested without starting the whole web application; record passing results.",
+          "estimatedMinutes": 20,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w02-d2-i-1",
+          "day": 2,
+          "track": "data",
+          "title": "current certificate unit",
+          "description": "Continue its Python/data lab.",
+          "criteria": "one completed small segment or reproducible intermediate artifact and a next step logged; use a function/list/dictionary exercise if basics still need repair.",
+          "estimatedMinutes": 60,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w02-d3-b-1",
+          "day": 3,
+          "track": "backend",
+          "title": "HTTP semantics",
+          "description": "Review path parameters, JSON, 400, 404, and status updates.",
+          "criteria": "write an expected-status table for valid create/read/update, blank title, invalid status, and missing task.",
+          "estimatedMinutes": 20,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w02-d3-b-2",
+          "day": 3,
+          "track": "backend",
+          "title": "implement the next vertical slice",
+          "description": "Add read-by-ID and PATCH status through the service. Handle missing numeric IDs explicitly and reject invalid input using the simplest compatible approach; formal validation refactoring comes in Week 04.",
+          "criteria": "create → read → change status → read works; missing ID gives 404, blank title and unknown status give 400 rather than 500.",
+          "estimatedMinutes": 70,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w02-d3-b-3",
+          "day": 3,
+          "track": "backend",
+          "title": "exercise domain/service boundaries",
+          "description": "Add or refine tests for missing-ID and invalid-status handling.",
+          "criteria": "at least one test verifies each failure behavior, and unchanged tasks retain their state.",
+          "estimatedMinutes": 30,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w02-d3-a-1",
+          "day": 3,
+          "track": "agh",
+          "title": "current OOP exercise",
+          "description": "Implement or independently recheck the current Java rubric, using inheritance/interfaces only if useful or required.",
+          "criteria": "runnable evidence for two required behaviors and one boundary case, plus submission status. Do not rewrite a working lab to imitate Spring patterns.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w02-d4-b-1",
+          "day": 4,
+          "track": "backend",
+          "title": "web-test lookup",
+          "description": "Read the testing section matching your selected Spring Boot version.",
+          "criteria": "distinguish a service unit test from an HTTP/controller test and choose a compatible approach.",
+          "estimatedMinutes": 20,
+          "priority": "medium",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w02-d4-b-2",
+          "day": 4,
+          "track": "backend",
+          "title": "automate HTTP cases",
+          "description": "Write tests for create, list/read, status change, missing ID, blank title, and unknown status. Assert meaningful status and response content rather than only application startup.",
+          "criteria": "at least five meaningful HTTP tests cover both success and failure, terminal build passes, and a deliberately broken status/validation rule makes a test fail before restoring it. Record any scenario still untested.",
+          "estimatedMinutes": 100,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w02-d4-i-1",
+          "day": 4,
+          "track": "data",
+          "title": "data exercise",
+          "description": "Continue the current lab, or read a small local CSV and calculate a grouped/count summary if ready.",
+          "criteria": "reproducible artifact with one interpretation and one input-quality check. Do not skip unresolved Python prerequisites to reach pandas early.",
+          "estimatedMinutes": 60,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w02-d5-b-1",
+          "day": 5,
+          "track": "backend",
+          "title": "SQL/JDBC reading",
+          "description": "Select keys, joins, and parameterized queries from Amazon's database course or the PostgreSQL tutorial.",
+          "criteria": "explain why SQL parameters are different from concatenating user input into a query.",
+          "estimatedMinutes": 20,
+          "priority": "medium",
+          "courseIds": [
+            "amazon-spring",
+            "amazon-sql"
+          ]
+        },
+        {
+          "id": "w02-d5-b-2",
+          "day": 5,
+          "track": "backend",
+          "title": "set up a disposable PostgreSQL database and practice",
+          "description": "Use local PostgreSQL or a database-only container. Record the version and connection method without secret values. Create a tiny Course/StudyTask sample schema and run select, filter, join, group/count, and insert exercises. This is SQL practice; the API still uses memory.",
+          "criteria": "five executed query/command results with predicted-vs-actual notes, including a course with no tasks and an intentional FK violation. Leave JDBC coding to Week 03 rather than build another application. If setup blocks for 30m, record the error, write query attempts, and reserve the first Week 03 block for setup; do not claim execution.",
+          "estimatedMinutes": 100,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring",
+            "amazon-sql"
+          ]
+        },
+        {
+          "id": "w02-d5-a-1",
+          "day": 5,
+          "track": "agh",
+          "title": "current web task",
+          "description": "Follow the rubric; if appropriate, practice one DOM/event or form behavior and inspect its HTTP request.",
+          "criteria": "one browser-visible behavior and request/validation evidence recorded. If Flask has already been assigned, replace this with the actual Flask task immediately.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w02-d6-b-1",
+          "day": 6,
+          "track": "backend",
+          "title": "document current behavior",
+          "description": "Write app run/test commands and manual request examples, including the memory-only storage limitation and reset behavior.",
+          "criteria": "instructions reproduce create → read → update and at least one error. Record actual commands; do not present future PostgreSQL support as complete.",
+          "estimatedMinutes": 25,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w02-d6-b-2",
+          "day": 6,
+          "track": "backend",
+          "title": "internship baseline",
+          "description": "Explain your request flow aloud for five minutes; answer three questions on encapsulation, collections, and HTTP; list two strengths and two gaps.",
+          "criteria": "short notes include one design tradeoff and the next practice target. Review your Git diff and make a focused commit if ready.",
+          "estimatedMinutes": 35,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w02-d6-i-1",
+          "day": 6,
+          "track": "data",
+          "title": "certificate lab",
+          "description": "Continue the currently appropriate lab, spending more time running/editing than watching.",
+          "criteria": "rerunnable output, three observations, and actual certificate progress logged. If unfinished, identify the next specific step rather than rushing to the next unit.",
+          "estimatedMinutes": 120,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w02-d6-a-1",
+          "day": 6,
+          "track": "agh",
+          "title": "current database assignment",
+          "description": "Practice in its required tool; choose joins/aggregation if the rubric leaves a gap.",
+          "criteria": "two query results and an explanation of the zero-match case; verify any imminent submission separately from portfolio work.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w02-d7-b-1",
+          "day": 7,
+          "track": "backend",
+          "title": "API demo",
+          "description": "Start from an empty in-memory store; create a task, read it, change status, show one 400 and one 404, and run tests.",
+          "criteria": "exact commands/results and app revision recorded. State that restart loses in-memory tasks.",
+          "estimatedMinutes": 20,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w02-d7-b-2",
+          "day": 7,
+          "track": "backend",
+          "title": "G2 review",
+          "description": "Explain controller/service/repository responsibilities, constructor injection, PK/FK, a join, and parameterized SQL.",
+          "criteria": "mark passed only with the HTTP flow and explanations; flag missing PostgreSQL setup/query execution for the first Week 03 block.",
+          "estimatedMinutes": 20,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w02-d7-b-3",
+          "day": 7,
+          "track": "backend",
+          "title": "replan",
+          "description": "Fill the weekly review, check real AGH deadlines, and refine the Week 03 outline.",
+          "criteria": "three outcomes, actual hours, at most two essential carryovers, and a first action recorded. If the API is unfinished, simplify optional documentation/interview work before expanding database scope.",
+          "estimatedMinutes": 20,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Persist tasks in PostgreSQL",
+      "phase": "Persistence",
+      "source": "ROADMAP.md#week-03",
+      "checkpoint": "API data survives restart; migrations and actual PostgreSQL checks are reproducible. Do not call an H2-only or mocked test a PostgreSQL integration check.",
+      "milestone": {
+        "id": "m3",
+        "title": "PostgreSQL migrations + restart persistence",
+        "dependsOn": [
+          "m2"
+        ]
+      },
+      "tasks": [
+        {
+          "id": "w03-d1-b-1",
+          "day": 1,
+          "track": "backend",
+          "title": "Database & first migration",
+          "description": "establish the application's PostgreSQL database and first task-table migration. Reserve up to 30m for setup repair if needed.",
+          "criteria": "migration applies to an empty disposable DB; a second start makes no destructive schema change; connection settings are externalized.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring",
+            "amazon-sql"
+          ]
+        },
+        {
+          "id": "w03-d1-a-1",
+          "day": 1,
+          "track": "agh",
+          "title": "current OS thread/shared-state topic or urgent lab",
+          "description": "current OS thread/shared-state topic or urgent lab.",
+          "criteria": "draw one interleaving and identify a possible race; record a rubric-derived lab check if assigned.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w03-d2-b-1",
+          "day": 2,
+          "track": "backend",
+          "title": "JDBC to JPA",
+          "description": "time-box a prepared-statement JDBC operation to 30m within the existing exercise, then begin JPA mapping/repository integration for 90m.",
+          "criteria": "JDBC query uses parameters and closes resources; JPA saves and reloads one task in actual PostgreSQL.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring",
+            "amazon-sql"
+          ]
+        },
+        {
+          "id": "w03-d2-i-1",
+          "day": 2,
+          "track": "data",
+          "title": "Continue your IBM unit",
+          "description": "current IBM lab, or pandas loading/filtering if ready.",
+          "criteria": "artifact loads a dataset and explains one selection, or records the exact incomplete step.",
+          "estimatedMinutes": 60,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w03-d3-b-1",
+          "day": 3,
+          "track": "backend",
+          "title": "Connect the repository",
+          "description": "switch the service's repository implementation from memory to PostgreSQL.",
+          "criteria": "HTTP create/read/status flow still works and a task survives application restart; explain which layer changed; within that explanation, identify an Optional lookup and explain a record versus a mutable entity without rewriting it.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w03-d3-a-1",
+          "day": 3,
+          "track": "agh",
+          "title": "current Java collections/OOP exercise",
+          "description": "current Java collections/OOP exercise.",
+          "criteria": "runnable attempt with two required cases and one boundary case, or a clear blocker.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w03-d4-b-1",
+          "day": 4,
+          "track": "backend",
+          "title": "PostgreSQL integration tests",
+          "description": "add PostgreSQL integration checks using migrations.",
+          "criteria": "save/reload, update, missing-ID, and one database constraint scenario run against real PostgreSQL; report how the database is isolated/reset.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring",
+            "amazon-sql"
+          ]
+        },
+        {
+          "id": "w03-d4-i-1",
+          "day": 4,
+          "track": "data",
+          "title": "Continue your IBM unit",
+          "description": "current lab or basic summary statistics.",
+          "criteria": "one reproducible summary with a plain-language interpretation.",
+          "estimatedMinutes": 60,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w03-d5-b-1",
+          "day": 5,
+          "track": "backend",
+          "title": "Collections, generics & SQL",
+          "description": "practice collections/equality and generics (60m), one join/count SQL question (40m), and DB/test setup notes (20m). Use a tiny value-key fixture and one generic method; no generic repository framework.",
+          "criteria": "choose List/Set/Map and briefly compare Queue; demonstrate equal keys with consistent equals/hashCode, explain lookup/iteration cost, and show a typed generic method plus why `List<Integer>` is not `List<Number>`. Predict and verify the SQL result; record setup commands. Carry a remaining gap into review rather than add hours.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-java",
+            "amazon-spring",
+            "amazon-sql"
+          ]
+        },
+        {
+          "id": "w03-d5-a-1",
+          "day": 5,
+          "track": "agh",
+          "title": "current Flask assignment, or a tiny routing exercise if it has not arrived",
+          "description": "current Flask assignment, or a tiny routing exercise if it has not arrived.",
+          "criteria": "two routes exercised with expected responses; distinguish this preparation from any required submission.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": [
+            "ibm-flask"
+          ]
+        },
+        {
+          "id": "w03-d6-b-1",
+          "day": 6,
+          "track": "backend",
+          "title": "Prove restart persistence",
+          "description": "repeat restart persistence and review schema ownership.",
+          "criteria": "evidence names DB version, app revision, migration, and surviving record; schema is migration-managed rather than silently rebuilt at startup.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring",
+            "amazon-sql"
+          ]
+        },
+        {
+          "id": "w03-d6-i-1",
+          "day": 6,
+          "track": "data",
+          "title": "IBM certificate lab",
+          "description": "current IBM lab, or compare two data subsets if ready.",
+          "criteria": "rerunnable notebook/script and three observations; record actual provider progress.",
+          "estimatedMinutes": 120,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w03-d6-a-1",
+          "day": 6,
+          "track": "agh",
+          "title": "current database keys/normalization topic",
+          "description": "current database keys/normalization topic.",
+          "criteria": "explain PK/FK and identify one redundancy anomaly in a small example using course terminology.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w03-d7-b-1",
+          "day": 7,
+          "track": "backend",
+          "title": "Review the persistence checkpoint",
+          "description": "demo persistence (20m), explain JDBC/JPA/migration roles without notes (20m), and review/replan (20m).",
+          "criteria": "checkpoint marked from evidence, upcoming AGH deadlines checked, next three outcomes and revised hours recorded.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring",
+            "amazon-sql"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Relationships, validation, and a clear error contract",
+      "phase": "Data integrity",
+      "source": "ROADMAP.md#week-04",
+      "checkpoint": "course/task relation and consistent client errors work in HTTP and PostgreSQL. No advanced many-to-many model or authentication project is needed.",
+      "milestone": {
+        "id": "m4",
+        "title": "Relationship + consistent 400/404 + delete",
+        "dependsOn": [
+          "m3"
+        ]
+      },
+      "tasks": [
+        {
+          "id": "w04-d1-b-1",
+          "day": 1,
+          "track": "backend",
+          "title": "Validate API requests",
+          "description": "introduce/refine request/response DTOs and title/status/date validation.",
+          "criteria": "document required versus optional fields; blank title, unknown status, and malformed input each return 400; normal create remains 201.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w04-d1-a-1",
+          "day": 1,
+          "track": "agh",
+          "title": "current IPC topic or lab",
+          "description": "current IPC topic or lab.",
+          "criteria": "compare two IPC mechanisms and show one assigned or tiny approved-language example with observed output.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w04-d2-b-1",
+          "day": 2,
+          "track": "backend",
+          "title": "Link tasks to courses",
+          "description": "add Course persistence, create/list operations, and task-to-course association with a migration. Decide what happens to older tasks explicitly.",
+          "criteria": "create a course and linked task, query the relationship, reject a missing course, and demonstrate FK enforcement in PostgreSQL.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w04-d2-i-1",
+          "day": 2,
+          "track": "data",
+          "title": "Continue your IBM unit",
+          "description": "current unit or missing-value exercise.",
+          "criteria": "identify missing values and justify one handling choice without silently discarding rows.",
+          "estimatedMinutes": 60,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w04-d3-b-1",
+          "day": 3,
+          "track": "backend",
+          "title": "Consistent errors & deletion",
+          "description": "standardize error responses and implement task deletion.",
+          "criteria": "document a small stable error shape; missing task/course cases have deliberate status codes; existing task deletion gives 204 and later read gives 404.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w04-d3-a-1",
+          "day": 3,
+          "track": "agh",
+          "title": "current Java exceptions exercise",
+          "description": "current Java exceptions exercise.",
+          "criteria": "demonstrate one expected failure and one successful case; explain propagation/handling.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w04-d4-b-1",
+          "day": 4,
+          "track": "backend",
+          "title": "Test the relationship",
+          "description": "automate relationship and HTTP error scenarios.",
+          "criteria": "tests cover invalid payload, missing ID, missing course, successful link, and delete behavior; at least one relationship constraint check uses PostgreSQL.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w04-d4-i-1",
+          "day": 4,
+          "track": "data",
+          "title": "Continue your IBM unit",
+          "description": "current IBM lab or clean a small dataset.",
+          "criteria": "record before/after row counts and verify one invariant.",
+          "estimatedMinutes": 60,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w04-d5-b-1",
+          "day": 5,
+          "track": "backend",
+          "title": "Lambdas, joins & refactoring",
+          "description": "practice functional interfaces and lambdas (60m), SQL INNER/LEFT JOIN (30m), and simplify one confusing layer (30m). Reuse the Week 03 fixture for a Predicate and Comparator.",
+          "criteria": "two runnable lambda examples have explained inputs/results, including empty input or duplicate keys; explain the single abstract method and capture rule; SQL includes an unmatched row; refactor preserves tests.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-java",
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w04-d5-a-1",
+          "day": 5,
+          "track": "agh",
+          "title": "actual Flask requests/templates exercise",
+          "description": "actual Flask requests/templates exercise.",
+          "criteria": "one request/form path and one invalid-input path verified in Flask, or the latest rubric-derived behavior.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": [
+            "ibm-flask"
+          ]
+        },
+        {
+          "id": "w04-d6-b-1",
+          "day": 6,
+          "track": "backend",
+          "title": "Update the API contract",
+          "description": "update the API behavior table and review the migration.",
+          "criteria": "docs match real 201/204/400/404 responses and an existing database upgrades without unexplained data loss.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w04-d6-i-1",
+          "day": 6,
+          "track": "data",
+          "title": "IBM certificate lab",
+          "description": "current certificate lab; connect SQL knowledge only if it is relevant.",
+          "criteria": "one rerunnable result with data-quality notes and certificate status logged.",
+          "estimatedMinutes": 120,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w04-d6-a-1",
+          "day": 6,
+          "track": "agh",
+          "title": "current joins/aggregation task",
+          "description": "current joins/aggregation task.",
+          "criteria": "two executed queries with expected results, including a zero-match group where relevant.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w04-d7-b-1",
+          "day": 7,
+          "track": "backend",
+          "title": "Review relationships & errors",
+          "description": "demo valid and invalid flows (20m), explain DTO vs entity and PK/FK (20m), weekly review (20m).",
+          "criteria": "relationship/error checkpoint has evidence; next scope/hours reflect live AGH work.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Test service behavior and transaction rollback",
+      "phase": "Testing",
+      "source": "ROADMAP.md#week-05",
+      "checkpoint": "you can identify which test proves each behavior, and rollback is verified through actual database state. Mocked repository calls alone are insufficient.",
+      "milestone": {
+        "id": "m5",
+        "title": "Service isolation + DB integration + rollback",
+        "dependsOn": [
+          "m4"
+        ]
+      },
+      "tasks": [
+        {
+          "id": "w05-d1-b-1",
+          "day": 1,
+          "track": "backend",
+          "title": "Map behaviors to tests",
+          "description": "build a behavior/test matrix and write Mockito-isolated service tests.",
+          "criteria": "valid creation and missing-course behavior tested with repository isolation; explain the mock's purpose and one limitation.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w05-d1-a-1",
+          "day": 1,
+          "track": "agh",
+          "title": "current synchronization exercise",
+          "description": "current synchronization exercise.",
+          "criteria": "identify the critical section and explain a lock/semaphore choice using an observed example or assigned trace.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w05-d2-b-1",
+          "day": 2,
+          "track": "backend",
+          "title": "Isolate service behavior",
+          "description": "improve boundary tests without starting Spring unnecessarily.",
+          "criteria": "invalid-title, status change, and missing-task service tests assert outcomes; a deliberate behavior regression is caught.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w05-d2-i-1",
+          "day": 2,
+          "track": "data",
+          "title": "Continue your IBM unit",
+          "description": "current unit or SQL/data-access lab.",
+          "criteria": "execute a relevant query/transformation and explain its result; no duplicate video sequence for already-demonstrated SQL.",
+          "estimatedMinutes": 60,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w05-d3-b-1",
+          "day": 3,
+          "track": "backend",
+          "title": "Make a batch atomic",
+          "description": "define a two-task batch creation service operation, without adding a new HTTP endpoint, and make it atomic.",
+          "criteria": "success creates both tasks; a forced failure during the second write leaves neither task committed; explain the transaction boundary.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w05-d3-a-1",
+          "day": 3,
+          "track": "agh",
+          "title": "current OOP interface/equality topic",
+          "description": "current OOP interface/equality topic.",
+          "criteria": "explain a relevant equality or interface decision with runnable examples and a boundary case.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w05-d4-b-1",
+          "day": 4,
+          "track": "backend",
+          "title": "Prove transaction rollback",
+          "description": "test rollback and constraints against PostgreSQL.",
+          "criteria": "committed database state is inspected after the service call; test setup does not hide behavior inside a surrounding test transaction; record success and failure results.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring",
+            "amazon-sql"
+          ]
+        },
+        {
+          "id": "w05-d4-i-1",
+          "day": 4,
+          "track": "data",
+          "title": "Continue your IBM unit",
+          "description": "current IBM lab.",
+          "criteria": "one reproducible intermediate result plus next step; use the course's actual remaining assessment requirements.",
+          "estimatedMinutes": 60,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w05-d5-b-1",
+          "day": 5,
+          "track": "backend",
+          "title": "Streams, SQL & test independence",
+          "description": "practice streams on existing synthetic tasks (60m), a SQL transaction question (30m), and test cleanup (30m). Compare one filter/map/aggregate pipeline with a loop; do not add an endpoint.",
+          "criteria": "loop and stream results agree for normal, empty and duplicate-containing inputs; explain intermediate/terminal operations and avoid shared mutation; explain rollback and keep tests independent of order.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-java",
+            "amazon-spring",
+            "amazon-sql"
+          ]
+        },
+        {
+          "id": "w05-d5-a-1",
+          "day": 5,
+          "track": "agh",
+          "title": "current Flask testing assignment",
+          "description": "current Flask testing assignment.",
+          "criteria": "one success and one error-path test run in the Python/Flask project required by the course.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": [
+            "ibm-flask"
+          ]
+        },
+        {
+          "id": "w05-d6-b-1",
+          "day": 6,
+          "track": "backend",
+          "title": "Repeat the database checks",
+          "description": "consolidate repeatable test commands and failure diagnosis.",
+          "criteria": "another run from a reset disposable test DB succeeds; unit versus DB-test commands and reset procedure are documented.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring",
+            "amazon-sql"
+          ]
+        },
+        {
+          "id": "w05-d6-i-1",
+          "day": 6,
+          "track": "data",
+          "title": "IBM certificate lab",
+          "description": "certificate lab or a data-access exercise if appropriate.",
+          "criteria": "outputs rerun and one issue/fix is explained; actual unit progress logged.",
+          "estimatedMinutes": 120,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w05-d6-a-1",
+          "day": 6,
+          "track": "agh",
+          "title": "current database transaction exercise",
+          "description": "current database transaction exercise.",
+          "criteria": "show commit/rollback behavior and predict the final rows before executing.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w05-d7-b-1",
+          "day": 7,
+          "track": "backend",
+          "title": "Review the testing checkpoint",
+          "description": "demo a test catching a real regression and rollback evidence (20m), explain test layers (20m), review/replan (20m).",
+          "criteria": "test matrix shows covered behaviors and known gaps; next week reflects AGH deadlines.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Queries, stable pagination, and SQL reasoning",
+      "phase": "Query design",
+      "source": "ROADMAP.md#week-06",
+      "checkpoint": "filters/pages are correct and tested, and one query decision is explained using observed SQL/plan evidence.",
+      "milestone": {
+        "id": "m6",
+        "title": "Filters + stable pages + query explanation",
+        "dependsOn": [
+          "m5"
+        ]
+      },
+      "tasks": [
+        {
+          "id": "w06-d1-b-1",
+          "day": 1,
+          "track": "backend",
+          "title": "Design filters & page limits",
+          "description": "define status/course filters and bounded page parameters.",
+          "criteria": "examples specify defaults, maximum size, invalid values, and stable ordering with an ID tie-breaker; empty results are valid.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w06-d1-a-1",
+          "day": 1,
+          "track": "agh",
+          "title": "current deadlock material",
+          "description": "current deadlock material.",
+          "criteria": "draw a wait-for example, name the four conditions, and explain one prevention strategy.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w06-d2-b-1",
+          "day": 2,
+          "track": "backend",
+          "title": "Implement stable pagination",
+          "description": "implement filtering and pagination in the existing repository/API.",
+          "criteria": "two pages from a fixed dataset return predictable non-overlapping results; combined filters produce the expected subset.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w06-d2-i-1",
+          "day": 2,
+          "track": "data",
+          "title": "Continue your IBM unit",
+          "description": "current IBM lab or visualization preparation.",
+          "criteria": "choose a question, data columns, and a suitable chart with a reason.",
+          "estimatedMinutes": 60,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w06-d3-b-1",
+          "day": 3,
+          "track": "backend",
+          "title": "Test page boundaries",
+          "description": "test edge cases and document the list-response change.",
+          "criteria": "first/last/empty pages, bad page parameters, and filter combinations are covered; API examples match page metadata.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w06-d3-a-1",
+          "day": 3,
+          "track": "agh",
+          "title": "current Java exam/lab review",
+          "description": "current Java exam/lab review.",
+          "criteria": "answer five retrieval questions and run one exercise targeting the weakest answer.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w06-d4-b-1",
+          "day": 4,
+          "track": "backend",
+          "title": "Inspect SQL & query plans",
+          "description": "inspect generated SQL and one PostgreSQL query plan.",
+          "criteria": "identify a join/filter/sort, consider one index, compare plans on a documented sample size, and state limits of timing conclusions on tiny data.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring",
+            "amazon-sql"
+          ]
+        },
+        {
+          "id": "w06-d4-i-1",
+          "day": 4,
+          "track": "data",
+          "title": "Continue your IBM unit",
+          "description": "current lab or one chart.",
+          "criteria": "chart has labeled axes/units and one supported interpretation.",
+          "estimatedMinutes": 60,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w06-d5-b-1",
+          "day": 5,
+          "track": "backend",
+          "title": "UTF-8 I/O, SQL & transactions",
+          "description": "practice Java I/O (60m), SQL aggregation (30m), and transaction-boundary review (30m). Write/read a tiny UTF-8 task-title file with Path/Files and one try-with-resources reader or writer; use a fixed line format.",
+          "criteria": "round-trip values match, empty and missing-file cases are deliberate, and a checked I/O exception and resource closure are explained; SQL result and transaction scope are justified. No general CSV parser or Java object serialization implementation.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring",
+            "amazon-sql"
+          ]
+        },
+        {
+          "id": "w06-d5-a-1",
+          "day": 5,
+          "track": "agh",
+          "title": "current Flask REST exercise",
+          "description": "current Flask REST exercise.",
+          "criteria": "required method/status behavior and one error response verified in Flask.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": [
+            "ibm-flask"
+          ]
+        },
+        {
+          "id": "w06-d6-b-1",
+          "day": 6,
+          "track": "backend",
+          "title": "Run the query regression suite",
+          "description": "run the regression suite and one bounded-list demo.",
+          "criteria": "previous create/update/rollback checks remain green; docs show stable ordering and response limits.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring",
+            "amazon-sql"
+          ]
+        },
+        {
+          "id": "w06-d6-i-1",
+          "day": 6,
+          "track": "data",
+          "title": "IBM certificate lab",
+          "description": "continue the certificate lab or chart comparison.",
+          "criteria": "reproducible artifact, three observations, and a note on one misleading interpretation to avoid.",
+          "estimatedMinutes": 120,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w06-d6-a-1",
+          "day": 6,
+          "track": "agh",
+          "title": "current index/query-plan topic or urgent database lab",
+          "description": "current index/query-plan topic or urgent database lab.",
+          "criteria": "one explained plan or two rubric-derived query checks.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w06-d7-b-1",
+          "day": 7,
+          "track": "backend",
+          "title": "Review queries & tradeoffs",
+          "description": "demo pages/filters (20m), explain a query and transaction choice (20m), review/replan (20m).",
+          "criteria": "query checkpoint recorded; Week 07 remains within capacity.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Reproducible app and database with Docker Compose",
+      "phase": "Containers",
+      "source": "ROADMAP.md#week-07",
+      "checkpoint": "app+DB start predictably with documented commands, migrations, and volume persistence. A running container without a working HTTP/database flow is incomplete.",
+      "milestone": {
+        "id": "m7",
+        "title": "Compose startup + volume persistence",
+        "dependsOn": [
+          "m6"
+        ]
+      },
+      "tasks": [
+        {
+          "id": "w07-d1-b-1",
+          "day": 1,
+          "track": "backend",
+          "title": "Package the application",
+          "description": "package the app and create a small Docker image definition.",
+          "criteria": "packaged artifact and image build; container starts with configuration supplied externally; record JDK/runtime choices.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w07-d1-a-1",
+          "day": 1,
+          "track": "agh",
+          "title": "current OS memory topic",
+          "description": "current OS memory topic.",
+          "criteria": "explain stack/heap/address-space roles and inspect one harmless process's memory information.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w07-d2-b-1",
+          "day": 2,
+          "track": "backend",
+          "title": "Compose app & PostgreSQL",
+          "description": "define app+PostgreSQL Compose services, internal network, and persistent volume.",
+          "criteria": "app reaches DB by service name, migrations apply, and a local HTTP request succeeds.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring",
+            "amazon-sql"
+          ]
+        },
+        {
+          "id": "w07-d2-i-1",
+          "day": 2,
+          "track": "data",
+          "title": "Continue your IBM unit",
+          "description": "current IBM lab or descriptive statistics.",
+          "criteria": "compute and interpret a central-tendency/spread measure relevant to the dataset.",
+          "estimatedMinutes": 60,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w07-d3-b-1",
+          "day": 3,
+          "track": "backend",
+          "title": "Add startup readiness",
+          "description": "add startup readiness and document expected first-run behavior.",
+          "criteria": "cold start works twice; explain service readiness versus container start and host versus container ports.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w07-d3-a-1",
+          "day": 3,
+          "track": "agh",
+          "title": "current OOP review",
+          "description": "current OOP review.",
+          "criteria": "independently solve one small course-style exercise and identify one weak concept.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w07-d4-b-1",
+          "day": 4,
+          "track": "backend",
+          "title": "Verify a clean environment",
+          "description": "verify persistence/configuration and clean-clone instructions in a separate disposable checkout or copy.",
+          "criteria": "create record, restart services, retrieve same record; no hidden IDE settings or secret values needed in tracked files.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w07-d4-i-1",
+          "day": 4,
+          "track": "data",
+          "title": "Continue your IBM unit",
+          "description": "current lab or exploratory analysis.",
+          "criteria": "one supported data observation and one unanswered question recorded.",
+          "estimatedMinutes": 60,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w07-d5-b-1",
+          "day": 5,
+          "track": "backend",
+          "title": "Algorithms, Java repair & SQL",
+          "description": "solve one array/String/Map algorithm (60m), repair or retrieve an I/O/generics gap (30m), and solve one SQL question (30m). This replaces the early posting survey; live role review stays in Week 11.",
+          "criteria": "independent algorithm attempt covers normal, empty and duplicate cases with time/space reasoning; one earlier gap has new evidence; SQL predicted and actual results agree. If blocked, retain the attempt and smallest next action.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w07-d5-a-1",
+          "day": 5,
+          "track": "agh",
+          "title": "current responsive HTML/CSS/JS lab",
+          "description": "current responsive HTML/CSS/JS lab.",
+          "criteria": "two viewport checks and one required interaction verified, without building an elaborate portfolio frontend.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": [
+            "ibm-flask"
+          ]
+        },
+        {
+          "id": "w07-d6-b-1",
+          "day": 6,
+          "track": "backend",
+          "title": "Write the run guide",
+          "description": "write a two-minute run/demo guide.",
+          "criteria": "startup, sample requests, logs, normal shutdown, and distinction between restart and destructive volume removal are clear.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w07-d6-i-1",
+          "day": 6,
+          "track": "data",
+          "title": "IBM certificate lab",
+          "description": "continue the certificate lab.",
+          "criteria": "rerunnable notebook and three observations with actual progress logged.",
+          "estimatedMinutes": 120,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w07-d6-a-1",
+          "day": 6,
+          "track": "agh",
+          "title": "current database schema/review task",
+          "description": "current database schema/review task.",
+          "criteria": "one diagram or schema attempt plus two rubric-derived checks.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w07-d7-b-1",
+          "day": 7,
+          "track": "backend",
+          "title": "Review reproducibility",
+          "description": "demo clean startup and persistence (20m), explain image/container/network/volume (20m), review/replan (20m).",
+          "criteria": "reproducibility evidence and remaining blockers logged before CI.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "title": "CI and trustworthy integration checks",
+      "phase": "Continuous integration",
+      "source": "ROADMAP.md#week-08",
+      "checkpoint": "a green CI result proves the intended test layers ran. A prepared workflow file alone is not an executed CI pipeline.",
+      "milestone": {
+        "id": "m8",
+        "title": "CI includes PostgreSQL integration + G3",
+        "dependsOn": [
+          "m7"
+        ]
+      },
+      "tasks": [
+        {
+          "id": "w08-d1-b-1",
+          "day": 1,
+          "track": "backend",
+          "title": "One full verification command",
+          "description": "make one full verification command run unit, HTTP, and PostgreSQL integration tests.",
+          "criteria": "test report names/counts prove all intended classes execute; missing DB causes an explicit failure rather than silent skipping.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w08-d1-a-1",
+          "day": 1,
+          "track": "agh",
+          "title": "current virtual-memory lecture/lab",
+          "description": "current virtual-memory lecture/lab.",
+          "criteria": "explain paging/page fault and solve one small address/page calculation or assigned trace.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w08-d2-b-1",
+          "day": 2,
+          "track": "backend",
+          "title": "Run tests in CI",
+          "description": "configure CI to use a compatible JDK and PostgreSQL.",
+          "criteria": "workflow configuration names required steps and an actual run executes verification; record provider/run link and revision. If no remote exists, arrange your chosen repository hosting at this stage and mark CI unverified until it runs.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w08-d2-i-1",
+          "day": 2,
+          "track": "data",
+          "title": "Continue your IBM unit",
+          "description": "current unit; only if ready, review train/validation/test concepts.",
+          "criteria": "current artifact or a correct split explanation with one leakage example.",
+          "estimatedMinutes": 60,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w08-d3-b-1",
+          "day": 3,
+          "track": "backend",
+          "title": "Prove CI catches failures",
+          "description": "verify failures are visible.",
+          "criteria": "a deliberate failing test fails CI, restoration passes, and database-test reports are inspectable; avoid merging intentional breakage.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w08-d3-a-1",
+          "day": 3,
+          "track": "agh",
+          "title": "current OOP exam/lab practice",
+          "description": "current OOP exam/lab practice.",
+          "criteria": "a timed mini-exercise with results and two corrections logged.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w08-d4-b-1",
+          "day": 4,
+          "track": "backend",
+          "title": "Check test isolation",
+          "description": "inspect repeatability and test isolation.",
+          "criteria": "two verification runs from reset disposable test data pass without order assumptions; CI applies migrations.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w08-d4-i-1",
+          "day": 4,
+          "track": "data",
+          "title": "Continue your IBM unit",
+          "description": "current IBM lab, or leakage/split exercise if prerequisites are met.",
+          "criteria": "reproducible result and one stated limitation; modeling remains optional.",
+          "estimatedMinutes": 60,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w08-d5-b-1",
+          "day": 5,
+          "track": "backend",
+          "title": "Algorithms, threads & walkthrough",
+          "description": "rehearse the project walkthrough (15m), solve one algorithm (45m), examine Java threads (30m), and solve one SQL question (30m). Use only two threads, join and a shared counter; connect to existing AGH concepts.",
+          "criteria": "walkthrough explains request flow/tests; algorithm has an edge case and complexity; explain a possible lost update, join versus synchronization, and stack/heap ownership. A race need not appear on one run. Verify SQL; no executor/framework project or replacement of required OS labs.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w08-d5-a-1",
+          "day": 5,
+          "track": "agh",
+          "title": "actual Flask/cloud-assignment preparation",
+          "description": "actual Flask/cloud-assignment preparation.",
+          "criteria": "rubric, required platform, configuration needs, and one locally verified behavior recorded.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": [
+            "ibm-flask"
+          ]
+        },
+        {
+          "id": "w08-d6-b-1",
+          "day": 6,
+          "track": "backend",
+          "title": "Document local CI reproduction",
+          "description": "document how a contributor reproduces CI locally.",
+          "criteria": "verification command, DB prerequisites, report locations, and one common failure diagnosis are written.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w08-d6-i-1",
+          "day": 6,
+          "track": "data",
+          "title": "IBM certificate lab",
+          "description": "current certificate lab; optional split/evaluation exercise only when ready.",
+          "criteria": "rerunnable artifact and true assessment status.",
+          "estimatedMinutes": 120,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w08-d6-a-1",
+          "day": 6,
+          "track": "agh",
+          "title": "timed SQL/course database mock",
+          "description": "timed SQL/course database mock.",
+          "criteria": "attempt three course-style questions, execute/check results, log errors.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w08-d7-b-1",
+          "day": 7,
+          "track": "backend",
+          "title": "Review the reproducibility gate",
+          "description": "inspect a real passing CI run (20m), explain test isolation and database evidence (20m), review/replan (20m).",
+          "criteria": "G3 passed only with startup + PostgreSQL test + actual CI evidence; deployment waits if this fails.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "title": "Deployment rehearsal, operations, and recovery",
+      "phase": "Deployment",
+      "source": "ROADMAP.md#week-09",
+      "checkpoint": "the tested revision can be deployed, observed, restarted, and recovered with recorded evidence. A hosted URL is optional.",
+      "milestone": {
+        "id": "m9",
+        "title": "Deployment rehearsal + restore",
+        "dependsOn": [
+          "m8"
+        ]
+      },
+      "tasks": [
+        {
+          "id": "w09-d1-b-1",
+          "day": 1,
+          "track": "backend",
+          "title": "Plan a deployment rehearsal",
+          "description": "write a short deployment checklist and select a known tested app revision.",
+          "criteria": "exact version, build/start command, DB migration/configuration needs, local access URL, and success checks recorded.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w09-d1-a-1",
+          "day": 1,
+          "track": "agh",
+          "title": "current filesystems lecture/lab",
+          "description": "current filesystems lecture/lab.",
+          "criteria": "explain path/inode/permission concepts as taught and run one rubric-derived inspection.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w09-d2-b-1",
+          "day": 2,
+          "track": "backend",
+          "title": "Deploy the tested revision",
+          "description": "deploy locally from the packaged/containerized build in a fresh environment. Optional: substitute a hosted setup only if G3 and safe access are ready.",
+          "criteria": "running revision, health/readiness result, and create/read/status smoke evidence recorded; hosting limitations/cost verified if applicable.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w09-d2-i-1",
+          "day": 2,
+          "track": "data",
+          "title": "Continue your IBM unit",
+          "description": "current unit or evaluation concepts if ready.",
+          "criteria": "explain one suitable metric or complete a current lab segment.",
+          "estimatedMinutes": 60,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w09-d3-b-1",
+          "day": 3,
+          "track": "backend",
+          "title": "Inspect logs & restart behavior",
+          "description": "inspect logs, configuration, and restart behavior.",
+          "criteria": "find one request/startup event in logs, diagnose a deliberately incorrect local DB setting, restore it, and show data survives restart.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w09-d3-a-1",
+          "day": 3,
+          "track": "agh",
+          "title": "timed current Java exercise",
+          "description": "timed current Java exercise.",
+          "criteria": "runnable attempt, observed errors, and two targeted corrections recorded.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w09-d4-b-1",
+          "day": 4,
+          "track": "backend",
+          "title": "Back up & restore data",
+          "description": "back up synthetic app data and restore into a disposable database.",
+          "criteria": "restored row counts and one API read match expected data; exact backup/restore procedure and version compatibility noted.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w09-d4-i-1",
+          "day": 4,
+          "track": "data",
+          "title": "Continue your IBM unit",
+          "description": "current certificate lab.",
+          "criteria": "reproducible intermediate output plus next step, without skipping prerequisites.",
+          "estimatedMinutes": 60,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w09-d5-b-1",
+          "day": 5,
+          "track": "backend",
+          "title": "Java retrieval, CV & SQL",
+          "description": "run a Core Java retrieval diagnostic (30m), draft a one-page CV (45m), and solve one SQL problem (45m). Use six short unseen traces/questions covering arrays/Strings, OOP, exceptions, generics, collections and streams.",
+          "criteria": "record six answers with corrections and the weakest two topics; CV claims link to demonstrated features; SQL has predicted/actual results and one correction note.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring",
+            "amazon-sql"
+          ]
+        },
+        {
+          "id": "w09-d5-a-1",
+          "day": 5,
+          "track": "agh",
+          "title": "actual Flask deployment assignment, if due, or local production-serving preparation",
+          "description": "actual Flask deployment assignment, if due, or local production-serving preparation.",
+          "criteria": "rubric-derived deployment evidence; a local development server alone is not labeled a completed cloud assignment.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": [
+            "ibm-flask"
+          ]
+        },
+        {
+          "id": "w09-d6-b-1",
+          "day": 6,
+          "track": "backend",
+          "title": "Rehearse compatible rollback",
+          "description": "rehearse returning to a previous compatible app revision using a copied/disposable environment.",
+          "criteria": "record revision and smoke result; explain why database migrations may limit rollback.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w09-d6-i-1",
+          "day": 6,
+          "track": "data",
+          "title": "IBM certificate lab",
+          "description": "continue the appropriate certificate lab.",
+          "criteria": "rerunnable output and three observations with assessment status logged.",
+          "estimatedMinutes": 120,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w09-d6-a-1",
+          "day": 6,
+          "track": "agh",
+          "title": "current database recovery/transaction or urgent lab work",
+          "description": "current database recovery/transaction or urgent lab work.",
+          "criteria": "one explained recovery scenario or two required checks.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w09-d7-b-1",
+          "day": 7,
+          "track": "backend",
+          "title": "Review deployment evidence",
+          "description": "deployment/recovery demo (20m), explain configuration and migration risks (20m), review/replan (20m).",
+          "criteria": "local vs hosted outcome labeled accurately and next scope reflects AGH deadlines.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "title": "Explainable API, safe defaults, and portfolio evidence",
+      "phase": "Portfolio",
+      "source": "ROADMAP.md#week-10",
+      "checkpoint": "application documentation is reproducible and claims match observed functionality. IBM export analysis is optional if current certificate work is more appropriate; it does not become a new service.",
+      "milestone": {
+        "id": "m10",
+        "title": "Documented API/demo + safe configuration",
+        "dependsOn": [
+          "m9"
+        ]
+      },
+      "tasks": [
+        {
+          "id": "w10-d1-b-1",
+          "day": 1,
+          "track": "backend",
+          "title": "Review input & configuration",
+          "description": "review actual input/error/configuration boundaries.",
+          "criteria": "invalid-input checks pass, responses expose no stack traces, tracked configuration contains no secret values, and public write access is not unintentionally exposed. Record concrete findings/fixes.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w10-d1-a-1",
+          "day": 1,
+          "track": "agh",
+          "title": "current sockets topic/lab",
+          "description": "current sockets topic/lab.",
+          "criteria": "explain client/server, port, TCP vs UDP, and inspect one harmless connection or required example.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w10-d2-b-1",
+          "day": 2,
+          "track": "backend",
+          "title": "Document the API",
+          "description": "finalize an API reference with executable request examples.",
+          "criteria": "create/read/update/delete, filters/pages, errors, and sample responses match the running version; document single-user scope and known limits.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w10-d2-i-1",
+          "day": 2,
+          "track": "data",
+          "title": "Continue your IBM unit",
+          "description": "continue the current lab, or export a small synthetic task dataset for analysis.",
+          "criteria": "input schema, provenance, and one data-quality check recorded.",
+          "estimatedMinutes": 60,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w10-d3-b-1",
+          "day": 3,
+          "track": "backend",
+          "title": "Prepare the project README",
+          "description": "write a clear app README and prepare a five-minute demo.",
+          "criteria": "purpose, architecture sketch, run/test commands, migrations, deployment path, and limitations are present; someone can follow the steps without IDE-only setup.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w10-d3-a-1",
+          "day": 3,
+          "track": "agh",
+          "title": "weakest current OOP topic",
+          "description": "weakest current OOP topic.",
+          "criteria": "one independent exercise and explanation show whether the gap is closed.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w10-d4-b-1",
+          "day": 4,
+          "track": "backend",
+          "title": "Close a demonstrated quality gap",
+          "description": "inspect one concrete quality gap from the demo and add a regression check.",
+          "criteria": "one reproducible bug/confusing behavior is fixed and tested, or the verified absence of the suspected bug is documented.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w10-d4-i-1",
+          "day": 4,
+          "track": "data",
+          "title": "Continue your IBM unit",
+          "description": "current unit or pandas analysis of the export.",
+          "criteria": "answer one specific question with a reproducible grouped summary.",
+          "estimatedMinutes": 60,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w10-d5-b-1",
+          "day": 5,
+          "track": "backend",
+          "title": "Targeted Java repair, CV & SQL",
+          "description": "refine CV/project explanation (45m), repair the weakest Java diagnostic skill (45m), and practice SQL (30m). Reuse your own code and vary the input; do not start another course.",
+          "criteria": "one evidence-based CV bullet and debugging story, one independently retried Java gap with a boundary case, and one verified SQL attempt. If Java is secure, explain a fresh variation instead of repeating a tutorial.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w10-d5-a-1",
+          "day": 5,
+          "track": "agh",
+          "title": "weakest current web/Flask requirement",
+          "description": "weakest current web/Flask requirement.",
+          "criteria": "one rubric-derived behavior and negative case verified in the required stack.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": [
+            "ibm-flask"
+          ]
+        },
+        {
+          "id": "w10-d6-b-1",
+          "day": 6,
+          "track": "backend",
+          "title": "Rehearse the five-minute demo",
+          "description": "run a timed demo and collect evidence links.",
+          "criteria": "demo fits five minutes, commands work, and current revision/test/deployment evidence is easy to find.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w10-d6-i-1",
+          "day": 6,
+          "track": "data",
+          "title": "IBM certificate lab",
+          "description": "current lab or finish export analysis.",
+          "criteria": "notebook reruns, reports three observations and a limitation; no unsupported predictive/ML claims.",
+          "estimatedMinutes": 120,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w10-d6-a-1",
+          "day": 6,
+          "track": "agh",
+          "title": "weakest current database topic",
+          "description": "weakest current database topic.",
+          "criteria": "two independently attempted queries/tasks with checked results.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w10-d7-b-1",
+          "day": 7,
+          "track": "backend",
+          "title": "Review portfolio evidence",
+          "description": "demonstrate documented behavior (20m), explain one tradeoff and one limitation (20m), review/replan (20m).",
+          "criteria": "feature freeze scope chosen for Week 11; live AGH priorities recorded.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "title": "Feature freeze, review, and internship preparation",
+      "phase": "Interview readiness",
+      "source": "ROADMAP.md#week-11",
+      "checkpoint": "core application is stable, weak explanations have practice evidence, CV claims are accurate, and application actions are logged honestly.",
+      "milestone": {
+        "id": "m11",
+        "title": "Feature freeze + mock interview + CV",
+        "dependsOn": [
+          "m10"
+        ]
+      },
+      "tasks": [
+        {
+          "id": "w11-d1-b-1",
+          "day": 1,
+          "track": "backend",
+          "title": "Freeze features & review code",
+          "description": "freeze features and review controller/service/repository code plus test gaps.",
+          "criteria": "prioritized list of at most three concrete fixes; each has a reproduction or clear criterion.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w11-d1-a-1",
+          "day": 1,
+          "track": "agh",
+          "title": "current OS security material or urgent submission",
+          "description": "current OS security material or urgent submission.",
+          "criteria": "explain least privilege and one course-relevant threat/control, or produce assigned lab evidence.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w11-d2-b-1",
+          "day": 2,
+          "track": "backend",
+          "title": "Fix the highest-impact findings",
+          "description": "fix the highest-impact review findings.",
+          "criteria": "each selected fix has a passing check and no new feature scope; remaining issues are explicitly deferred.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w11-d2-i-1",
+          "day": 2,
+          "track": "data",
+          "title": "Continue your IBM unit",
+          "description": "current certificate lab/notebook review.",
+          "criteria": "rerun from a clean session and record missing dependencies or hidden state.",
+          "estimatedMinutes": 60,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w11-d3-b-1",
+          "day": 3,
+          "track": "backend",
+          "title": "EPAM Readiness assessment A",
+          "description": "attempt EPAM Readiness assessment A (90m) and review/correct it (30m), following EPAM_READINESS.md. Use fresh self-authored or mentor-provided prompts: concept/output traces, one collection algorithm, and one lambda/stream transformation.",
+          "criteria": "save the original timed attempt, test results, time/space explanation, concept score and corrections separately; mark pass/partial using the internal rubric, never by elapsed time or corrections alone.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w11-d3-a-1",
+          "day": 3,
+          "track": "agh",
+          "title": "actual Java exam/lab priority",
+          "description": "actual Java exam/lab priority.",
+          "criteria": "one timed course-style attempt checked against its rubric.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w11-d4-b-1",
+          "day": 4,
+          "track": "backend",
+          "title": "EPAM Readiness assessment B, SQL & English",
+          "description": "attempt EPAM Readiness assessment B (90m), SQL (20m), and an English project explanation (10m), following EPAM_READINESS.md. Reuse the current Maven/Spring app and a tiny separate I/O fixture; no new feature.",
+          "criteria": "record file round-trip/error evidence, meaningful JUnit checks, terminal build and dependency explanation, Spring request/DI explanation, verified SQL with a zero-match case, and a short English explanation with unresolved gaps. These are preparation results, not an official entrance-test score.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring",
+            "amazon-sql"
+          ]
+        },
+        {
+          "id": "w11-d4-i-1",
+          "day": 4,
+          "track": "data",
+          "title": "Continue your IBM unit",
+          "description": "current lab or notebook clarity.",
+          "criteria": "add rationale for one transformation and distinguish observation from inference.",
+          "estimatedMinutes": 60,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w11-d5-b-1",
+          "day": 5,
+          "track": "backend",
+          "title": "Prepare suitable applications",
+          "description": "finalize the one-page CV and review two suitable live internship openings.",
+          "criteria": "dated links, requirements/eligibility, tailored CV version, and honest application status logged; submit yourself if materials fit. If no suitable openings exist, record the search and two concrete target criteria.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w11-d5-a-1",
+          "day": 5,
+          "track": "agh",
+          "title": "actual web/Flask exam or submission priority",
+          "description": "actual web/Flask exam or submission priority.",
+          "criteria": "two required checks and submission state recorded.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": [
+            "ibm-flask"
+          ]
+        },
+        {
+          "id": "w11-d6-b-1",
+          "day": 6,
+          "track": "backend",
+          "title": "Tell two debugging stories",
+          "description": "practice two short stories about debugging/tradeoffs.",
+          "criteria": "each explains the problem, your action, observed result, and learning without invented metrics.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w11-d6-i-1",
+          "day": 6,
+          "track": "data",
+          "title": "IBM certificate lab",
+          "description": "current certificate work or notebook consolidation.",
+          "criteria": "reproducible artifact with dependencies/data source, three conclusions, and limitations.",
+          "estimatedMinutes": 120,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w11-d6-a-1",
+          "day": 6,
+          "track": "agh",
+          "title": "actual database exam/lab priority",
+          "description": "actual database exam/lab priority.",
+          "criteria": "one timed query set or submission check, with mistakes logged.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w11-d7-b-1",
+          "day": 7,
+          "track": "backend",
+          "title": "Review release readiness",
+          "description": "show fixes/test results (20m), retry weak explanations (20m), and review/replan release week (20m). During review, update the EPAM readiness tracker with existing assessment evidence.",
+          "criteria": "release scope fits actual capacity; readiness checklist records pass/partial plus remaining gaps and links, without claiming a certificate or test admission; AGH risks take precedence.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "title": "Release evidence and the next learning cycle",
+      "phase": "Release",
+      "source": "ROADMAP.md#week-12",
+      "checkpoint": "a reviewer can reproduce the core application and you can explain its design, tests, deployment, and limits. AGH work and IBM progress are tracked with evidence. If a core check is missing, mark the outcome partial and make it the next task; do not label it complete because 12 weeks elapsed.",
+      "milestone": {
+        "id": "m12",
+        "title": "Fresh-checkout release/demo + G4",
+        "dependsOn": [
+          "m11"
+        ]
+      },
+      "tasks": [
+        {
+          "id": "w12-d1-b-1",
+          "day": 1,
+          "track": "backend",
+          "title": "Verify a clean checkout",
+          "description": "perform a clean-checkout verification and startup rehearsal.",
+          "criteria": "full verification and app+DB startup succeed using only documented requirements; record revision, versions, commands, and one request result.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w12-d1-a-1",
+          "day": 1,
+          "track": "agh",
+          "title": "mixed OS retrieval/current deadline",
+          "description": "mixed OS retrieval/current deadline.",
+          "criteria": "answer five questions from your real syllabus and work one weak example or required submission check.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w12-d2-b-1",
+          "day": 2,
+          "track": "backend",
+          "title": "Fix release blockers",
+          "description": "fix only release-blocking issues discovered in Day 1.",
+          "criteria": "each fix has reproduction and passing regression evidence; no new features.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w12-d2-i-1",
+          "day": 2,
+          "track": "data",
+          "title": "Continue your IBM unit",
+          "description": "audit actual certificate progress.",
+          "criteria": "completed/partial units and remaining assessments listed without inflating completion.",
+          "estimatedMinutes": 60,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w12-d3-b-1",
+          "day": 3,
+          "track": "backend",
+          "title": "Capture the final demo",
+          "description": "run and capture the final demo.",
+          "criteria": "five-minute walkthrough shows create/read/status, one validation error, course relationship, filtering/pages, persistence, and where tests/deployment evidence live.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w12-d3-a-1",
+          "day": 3,
+          "track": "agh",
+          "title": "mixed Java assessment/current deadline",
+          "description": "mixed Java assessment/current deadline.",
+          "criteria": "a timed course-style attempt plus corrections or a confirmed submission.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w12-d4-b-1",
+          "day": 4,
+          "track": "backend",
+          "title": "Record the release evidence",
+          "description": "finalize release notes, limitations, and reproducibility evidence.",
+          "criteria": "exact release revision or tag, passing CI link, deployment/restore evidence, API examples, and known gaps are documented; local vs hosted status is explicit.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w12-d4-i-1",
+          "day": 4,
+          "track": "data",
+          "title": "Continue your IBM unit",
+          "description": "assess future ML prerequisites.",
+          "criteria": "mark Python/pandas/NumPy, algebra, linear-algebra basics, and statistics as demonstrated or needing work; name evidence, not confidence alone.",
+          "estimatedMinutes": 60,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w12-d5-b-1",
+          "day": 5,
+          "track": "backend",
+          "title": "Readiness retry & applications",
+          "description": "retry the weakest EPAM readiness component (60m) and follow through on applications/search (60m). Use a fresh input or prompt; if already ready, use the hour for a varied Java/SQL mock.",
+          "criteria": "compare the independent retry with the original and update readiness evidence honestly; application/search status uses live eligibility requirements. Leave readiness open if remaining gaps exceed the time box.",
+          "estimatedMinutes": 120,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w12-d5-a-1",
+          "day": 5,
+          "track": "agh",
+          "title": "mixed web/Flask assessment/current deadline",
+          "description": "mixed web/Flask assessment/current deadline.",
+          "criteria": "verify two required behaviors in the correct stack and record remaining work.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": [
+            "ibm-flask"
+          ]
+        },
+        {
+          "id": "w12-d6-b-1",
+          "day": 6,
+          "track": "backend",
+          "title": "Choose the next backend issue",
+          "description": "choose the next backend improvement based on observed gaps.",
+          "criteria": "one bounded next issue has prerequisites, estimate, and measurable acceptance criteria.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        },
+        {
+          "id": "w12-d6-i-1",
+          "day": 6,
+          "track": "data",
+          "title": "IBM certificate lab",
+          "description": "finish a current lab segment and plan the next IBM milestone; consider Google ML only if foundations and AGH capacity permit.",
+          "criteria": "rerunnable result and a realistic next milestone within the I budget.",
+          "estimatedMinutes": 120,
+          "priority": "medium",
+          "courseIds": [
+            "ibm-data"
+          ]
+        },
+        {
+          "id": "w12-d6-a-1",
+          "day": 6,
+          "track": "agh",
+          "title": "mixed database assessment/current deadline",
+          "description": "mixed database assessment/current deadline.",
+          "criteria": "checked query attempts and actual remaining submission states recorded.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": []
+        },
+        {
+          "id": "w12-d7-b-1",
+          "day": 7,
+          "track": "backend",
+          "title": "Review the next learning cycle",
+          "description": "assess G4 with evidence (20m), compare Week 01 and current skills (20m), plan the next four weeks (20m).",
+          "criteria": "pass/partial status is honest; next capacity, AGH priorities, backend issue, and IBM/ML direction are recorded.",
+          "estimatedMinutes": 60,
+          "priority": "high",
+          "courseIds": [
+            "amazon-spring"
+          ]
+        }
+      ]
+    }
+  ]
+}
