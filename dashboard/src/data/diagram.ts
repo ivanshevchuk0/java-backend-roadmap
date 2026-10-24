@@ -239,9 +239,14 @@ const groupHeight = (value?: DiagramGroup): number => !value?.entries.length ? 0
 
 /** Geometry depends only on the chosen track and collapsed sections, never on progress or status. */
 export function layoutDiagram(track: TrackId, collapsedSections: ReadonlySet<string> = new Set()): DiagramLayout {
+  return layoutSections(diagramSections[track], collapsedSections);
+}
+
+/** The same deterministic geometry also lays out the independent Java Developer map. */
+export function layoutSections(sections: readonly DiagramSection[], collapsedSections: ReadonlySet<string> = new Set()): DiagramLayout {
   const d = DIAGRAM_LAYOUT;
   let nextY: number = d.outerPadding;
-  const sections = diagramSections[track].map((section): SectionPlacement => {
+  const placements = sections.map((section): SectionPlacement => {
     const collapsed = collapsedSections.has(section.id);
     const height = collapsed ? d.collapsedHeight
       : Math.max(d.minSectionHeight, groupHeight(section.left) + d.sectionPadding * 2, groupHeight(section.right) + d.sectionPadding * 2);
@@ -262,5 +267,5 @@ export function layoutDiagram(track: TrackId, collapsedSections: ReadonlySet<str
     nextY += height + d.sectionGap;
     return { section, y, height, centerY, collapsed, left: placeGroup(section.left, d.leftGroupX), right: placeGroup(section.right, d.rightGroupX) };
   });
-  return { width: d.width, totalHeight: nextY - d.sectionGap + d.outerPadding, sections };
+  return { width: d.width, totalHeight: nextY - d.sectionGap + d.outerPadding, sections: placements };
 }

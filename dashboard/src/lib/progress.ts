@@ -1,3 +1,4 @@
+import { optionalSkillIds } from '../data/skill-catalog';
 import { LEARNING_MAPS, validateLearningJson, validateLearningMap, validateLearningReferences } from './learning';
 import { allTasks, roadmap } from './roadmap';
 import type { Progress, Task, TaskProgress, TrackId, Week } from './types';
@@ -125,11 +126,12 @@ export function parseProgress(json: string): Progress {
     for (const [id, value] of Object.entries(record(source.skills))) {
       if (!id || id.length > 120 || ['__proto__', 'constructor', 'prototype'].includes(id)) throw new Error('Invalid skill ID.');
       const skill = record(value);
-      if (!['not-started', 'in-progress', 'completed'].includes(String(skill.status))) throw new Error('Invalid skill status.');
+      if (!['not-started', 'in-progress', 'completed', 'skipped'].includes(String(skill.status))) throw new Error('Invalid skill status.');
+      if (skill.status === 'skipped' && !optionalSkillIds.has(id)) throw new Error('Only optional skills may be skipped.');
       const updatedAt = text(skill.updatedAt, 60);
       if (Number.isNaN(Date.parse(updatedAt))) throw new Error('Invalid skill timestamp.');
       if (skill.notes !== undefined) text(skill.notes);
-      result.skills[id] = { ...skill, status: skill.status as import('./types').TopicStatus, updatedAt };
+      result.skills[id] = { ...skill, status: skill.status as import('./types').SkillStatus, updatedAt };
     }
   }
   if (source.deadlines !== undefined) {

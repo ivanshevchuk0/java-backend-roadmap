@@ -1,5 +1,5 @@
 import { goalTemplates } from '../data/learning';
-import { topics } from '../data/skills';
+import { allTopics as topics } from '../data/skill-catalog';
 import { allTasks, roadmap } from './roadmap';
 import type { LearningActivity, LearningResource, Progress, ResourceUnit, WeeklyGoal } from './types';
 

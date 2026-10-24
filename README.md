@@ -14,7 +14,7 @@ Your existing private website is the learning homepage. It shows your saved week
 
 **Weekly plan** lets you edit outcomes, move them to another week or postpone them without copying records. The original 190 exercises and their evidence remain under **Optional practice & original task history**. Course progress is independent of weekly goals; no daily quota is enforced.
 
-The roadmap.sh-inspired diagrams retain their current design. Core Java and Backend Engineering have clear navigation alongside separate Data Science and AGH maps. Each skill has key concepts, prerequisites, resources, practice, mastery criteria and personal notes, with essential/recommended/advanced guidance.
+The roadmap.sh-inspired diagrams retain their current design. Choose **Java Developer** for the expanded, individually trackable Java hierarchy, or **Backend** for the retained backend path. Data Science and AGH keep their separate maps. Each Java topic has its own materials, practice, mastery criteria, notes and Not started / Learning / Done state. Optional branches can be skipped without counting as mastery. Shared topics reuse the same progress record across maps.
 
 All website progress saves privately across devices. Watch the sync indicator before switching devices; Export / Import provides a portable backup.
 

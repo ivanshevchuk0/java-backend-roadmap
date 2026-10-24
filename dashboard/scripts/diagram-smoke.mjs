@@ -8,7 +8,7 @@ const output = `/tmp/curated-roadmap-qa-${Date.now()}`; await mkdir(output);
 const browser = await chromium.launch({headless:true});
 const errors = [];
 async function closePanel(page) { const panel=page.getByRole('dialog'); if(await panel.count()) await panel.getByRole('button',{name:'Close topic details',exact:true}).click(); }
-async function openMap(page) { if(await page.locator('.map-page').count())return;if(await page.getByRole('button',{name:'Open navigation',exact:true}).isVisible())await page.getByRole('button',{name:'Open navigation',exact:true}).click();await page.getByRole('navigation',{name:'Learning navigation'}).getByRole('button',{name:'Skill roadmap',exact:true}).click(); }
+async function openMap(page) { if(!await page.locator('.map-page').count()){if(await page.getByRole('button',{name:'Open navigation',exact:true}).isVisible())await page.getByRole('button',{name:'Open navigation',exact:true}).click();await page.getByRole('navigation',{name:'Learning navigation'}).getByRole('button',{name:'Skill roadmap',exact:true}).click();}await page.getByRole('group',{name:'Choose roadmap'}).getByRole('button',{name:'Backend',exact:true}).click(); }
 async function search(page,name) { await openMap(page); await closePanel(page); await page.getByLabel('Search roadmap skills').fill(name); await page.locator('.search-results button').filter({hasText:name}).first().click(); await page.getByRole('dialog').waitFor(); }
 try {
  const context=await browser.newContext({viewport:{width:1440,height:1100},reducedMotion:'reduce'});const page=await context.newPage(); page.on('pageerror',e=>errors.push(e.message));

@@ -6,7 +6,7 @@ The existing private Learning OS website, redesigned around connected skills usi
 
 - **Today** is the homepage: real AGH deadlines, current-week outcomes, an eligible next skill, active resources, and recent progress.
 - **Weekly plan** defaults to four broad outcomes per week. Edit, reschedule, carry forward, archive or postpone the same goal record. Deeper original exercises and checkpoint/review history remain in closed disclosures. There is no required daily schedule.
-- **Skill roadmap** retains the curated visual maps and light/dark appearance. Open a skill for purpose, concepts, prerequisites, selected resources, practical exercises, mastery criteria and personal notes. The Core Java and Backend Engineering shortcuts navigate the existing Java map.
+- **Skill roadmap** retains the curated visual maps and light/dark appearance. Open a skill for purpose, concepts, prerequisites, selected resources, practical exercises, mastery criteria and personal notes. Choose Java Developer for the expanded Java hierarchy; Backend retains the previous backend diagram. Search includes visible labels and key concepts, and the section menu jumps directly to a topic group.
 - **Courses & Resources** is independent of the weekly plan. Add courses, videos, playlists, documentation, articles, books, projects or roadmap links. Record only the modules/lessons/chapters you use, save a resume link and notes, and explicitly set whole-resource status.
 - **Activity** records a takeaway with optional minutes and shows weekly/monthly summaries. Explicit skill/exercise/resource/lesson/milestone completions add history entries. Loading or importing old progress never invents events.
 - **Export / Import** keeps the same portable v1 backup envelope and now includes goals, resources, units, activities and skill notes. Invalid imports leave stored data intact.
@@ -25,6 +25,14 @@ Activity is an event history, not another completion tracker. Summaries count re
 
 ## Progress and privacy
 
+### Phase 1: Java map migration and rollback
+
+Before rollout, export progress from the current private site. The Java expansion is additive: retain every existing skill/task/course/goal ID, all notes and completion, the v1 backup envelope, the same browser key and the same D1 document. Reused Java skills read their existing `skills[id]` record. New `java-*` skills have no stored row until explicitly edited. No parent or child completion is inferred; resource lessons and activity remain independent. The diagram is static content, not a new daily-task schedule. No database schema migration or bulk progress rewrite is needed.
+
+Optional Java skills may store `skipped`; this is separate from mastery and never satisfies a prerequisite. Existing three-state values remain unchanged. To roll back the interface, redeploy the saved version before this release (version 4), keeping an export from both before and after the upgrade. The old parser does not understand `skipped`: first export the upgraded data, then use the current API to reset only records whose status is `skipped` to `not-started` (preserving their notes and other fields), and remove links to new `java-*` IDs from new resource/goal/activity records if the old validator cannot resolve them. Keep the full export for re-upgrading; do not delete it or overwrite whole documents. If a complete state rollback is intended instead, explicitly restore the pre-upgrade export using a controlled restore that clears records absent from that snapshot; the normal Import operation merges records and is not a destructive reset. Never run a destructive restore as part of deployment.
+
+Validate this release against an old backup, explicit new skill notes/status/skip, refresh/reopening, concurrent device edits and offline recovery. Check that unchanged historical records are byte-for-byte equivalent and that geometry is independent of progress. Only local isolated test data is mutated by browser checks; production verification is read-only.
+
 The original `learning-os:java-backend:v1` localStorage key and version-1 export envelope remain supported. Existing task IDs, checkboxes, minutes, evidence, course notes, capacity plans, reviews and milestone evidence are retained. Original browser data is backed up under `learning-os:java-backend:v1:before-skill-tree`; the UI offers that exact backup. Unknown safe legacy metadata is preserved.
 
 `/api/progress` stores private progress in the existing Sites native D1 binding. The same owner-private website shares this record across your devices. Browser cache and a durable pending-change queue allow offline edits; the sync indicator distinguishes saved, saving and offline states. Conditional revisions detect concurrent writes and rebase changed fields, so editing evidence on one device does not replace a task status changed on another. Simultaneous edits to the same field resolve in accepted-write order. Keep JSON backups for history/recovery.
@@ -41,7 +49,9 @@ Website changes do not alter GitHub issues, checkboxes or milestones. The websit
 src/data/roadmap.json         Original stable weekly tasks and course catalog
 src/data/skills.ts            Stable skill IDs, prerequisites and task mappings
 src/data/learning.ts          Rich skill guidance, goal templates and learning paths
-src/data/diagram.ts           Curated sections, branches and deterministic geometry
+src/data/java-roadmap.ts      Expanded Java topics, specific guides and curated sections
+src/data/skill-catalog.ts     Canonical lookup; shared map IDs use one progress record
+src/data/diagram.ts           Retained diagrams and deterministic geometry
 src/diagram.css               Diagram-only light/dark styling
 src/App.tsx                   Existing navigation and integration
 src/components/LearningViews.tsx Homepage, broad goals and activity journal
@@ -85,9 +95,10 @@ node scripts/api-smoke.mjs http://127.0.0.1:5173
 npm run test:browser
 npm run test:diagram
 npm run test:tracker
+npm run test:java-map
 ```
 
-The browser regression requires Playwright Chromium (`npx playwright install chromium` once). It uses isolated profiles and only permits loopback URLs. It verifies legacy migration, refresh/reopening, independent devices, concurrent fields, offline reload/reconnect, export/invalid import, AGH priority, search/expansion, zoom/pan and mobile panels. It restores its local database snapshot afterward. The separate read-only diagram check verifies central alignment, grouped rows, connector routing, collapse/search, independent tracks, light/dark preference and mobile readability. The tracker browser check exercises actual course/lesson progress, high-level goal moves, notes, activity summaries, backups, two browsers, concurrent edits and offline recovery. It also restores its local snapshot. Never run mutation smoke tests against personal production progress.
+The browser regression requires Playwright Chromium (`npx playwright install chromium` once). It uses isolated profiles and only permits loopback URLs. It verifies legacy migration, refresh/reopening, independent devices, concurrent fields, offline reload/reconnect, export/invalid import, AGH priority, search/expansion, zoom/pan and mobile panels. It restores its local database snapshot afterward. The separate read-only diagram check verifies central alignment, grouped rows, connector routing, collapse/search, independent tracks, light/dark preference and mobile readability. The tracker browser check exercises actual course/lesson progress, high-level goal moves, notes, activity summaries, backups, two browsers, concurrent edits and offline recovery. It also restores its local snapshot. The Java map check additionally verifies individually tracked subskills, independent mastery, optional skip, node positions, connector routing, section navigation, offline notes and mobile panels. Never run mutation smoke tests against personal production progress.
 
 ## Publishing
 

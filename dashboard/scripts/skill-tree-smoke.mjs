@@ -88,25 +88,25 @@ try {
   assert(await page.getByRole('button', { name: /Pre-redesign backup/ }).count());
   await page.getByRole('navigation',{name:'Learning navigation'}).getByRole('button',{name:'Skill roadmap',exact:true}).click();
   assert((await page.locator('.react-flow__edge').count()) > 5, 'Graph edges missing.');
-  assert.equal(await page.locator('.react-flow__node-skill').count(), topicList.filter(t => t.track === 'backend').length, 'Default map must show Java skills only.');
+  assert(await page.locator('.react-flow__node-skill').count() >= 65, 'Default Java map must expose the detailed skill hierarchy.');
   assert(await page.locator('.react-flow__node-frame').count() > 20, 'Missing outlined concept groups.');
   let panel = await openTopic(page, core);
   const positionsBefore = await page.locator('.react-flow__node').evaluateAll(nodes => Object.fromEntries(nodes.map(node => [node.getAttribute('data-id'), node.style.transform])));
-  await panel.getByRole('button', { name: 'Completed', exact: true }).click(); await synced(page);
+  await panel.getByRole('button', { name: 'Done', exact: true }).click(); await synced(page);
   await eventually(async () => (await cloud()).skills[core.id]?.status === 'completed', 'topic status cloud save');
   assert.deepEqual(await page.locator('.react-flow__node').evaluateAll(nodes => Object.fromEntries(nodes.map(node => [node.getAttribute('data-id'), node.style.transform]))), positionsBefore, 'Progress must not move roadmap nodes.');
   assert.equal(Object.values((await cloud()).tasks).filter(t => t.status === 'done').length, 1, 'Topic status changed task checkboxes.');
   await page.reload(); await synced(page); panel = await openTopic(page, core);
-  assert.equal(await panel.getByRole('button', { name: 'Completed', exact: true }).getAttribute('aria-pressed'), 'true');
+  assert.equal(await panel.getByRole('button', { name: 'Done', exact: true }).getAttribute('aria-pressed'), 'true');
   await page.close(); page = await desktop.newPage(); page.on('pageerror', e => errors.push(e.message));
   await page.goto(base); await synced(page); panel = await openTopic(page, core);
-  assert.equal(await panel.getByRole('button', { name: 'Completed', exact: true }).getAttribute('aria-pressed'), 'true');
+  assert.equal(await panel.getByRole('button', { name: 'Done', exact: true }).getAttribute('aria-pressed'), 'true');
   console.log('PASS: original v1 progress migration, evidence/minutes/notes preservation, refresh and reopening.');
 
   const second = await browser.newContext({ viewport: { width: 1440, height: 1000 }, reducedMotion: 'reduce' }); contexts.push(second);
   let phonePeer = await second.newPage(); phonePeer.on('pageerror', e => errors.push(e.message));
   await phonePeer.goto(base); await synced(phonePeer); let otherPanel = await openTopic(phonePeer, core);
-  assert.equal(await otherPanel.getByRole('button', { name: 'Completed', exact: true }).getAttribute('aria-pressed'), 'true');
+  assert.equal(await otherPanel.getByRole('button', { name: 'Done', exact: true }).getAttribute('aria-pressed'), 'true');
   assert.equal(await phonePeer.evaluate(key => JSON.parse(localStorage.getItem(key)).progress.tasks[Object.keys(JSON.parse(localStorage.getItem(key)).progress.tasks)[0]].actualMinutes, storageKey), 35);
   const taskDetailsA = panel.locator('.practice-task').filter({ hasText: commonTask.title }).first();
   const taskDetailsB = otherPanel.locator('.practice-task').filter({ hasText: commonTask.title }).first();
@@ -117,10 +117,10 @@ try {
 
   otherPanel = await openTopic(phonePeer, oop);
   await second.route('**/api/progress', route => route.abort('internetdisconnected'));
-  await otherPanel.getByRole('button', { name: 'In progress', exact: true }).click();
+  await otherPanel.getByRole('button', { name: 'Learning', exact: true }).click();
   await phonePeer.locator('.sync-state.offline').waitFor();
   await phonePeer.reload(); await phonePeer.locator('.sync-state.offline').waitFor(); otherPanel = await openTopic(phonePeer, oop);
-  assert.equal(await otherPanel.getByRole('button', { name: 'In progress', exact: true }).getAttribute('aria-pressed'), 'true');
+  assert.equal(await otherPanel.getByRole('button', { name: 'Learning', exact: true }).getAttribute('aria-pressed'), 'true');
   await second.unroute('**/api/progress');
   await phonePeer.evaluate(() => window.dispatchEvent(new Event('online'))); await synced(phonePeer);
   await eventually(async () => (await cloud()).skills[oop.id]?.status === 'in-progress', 'offline queue reconnect');

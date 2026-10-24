@@ -1,3 +1,4 @@
+import { optionalSkillIds } from '../data/skill-catalog';
 import { LEARNING_MAPS, validateLearningMap } from './learning';
 import { parseProgress, serializeProgress } from './progress';
 import type { Progress } from './types';
@@ -64,7 +65,8 @@ function entryValue(group: string, id: string, value: unknown) {
       if (entry.plannedMinutes !== undefined) number(entry.plannedMinutes, 0, 10080);
       break;
     case 'skills':
-      choice(entry.status, ['not-started', 'in-progress', 'completed']);
+      choice(entry.status, ['not-started', 'in-progress', 'completed', 'skipped']);
+      if (entry.status === 'skipped' && !optionalSkillIds.has(id)) return fail();
       timestamp(entry.updatedAt);
       if (entry.notes !== undefined) text(entry.notes);
       break;

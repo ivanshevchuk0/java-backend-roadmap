@@ -11,3 +11,6 @@
 .home-priority h2 { font-size:18px; }
 .home-priority p { font-size:12px; line-height:1.8; max-width:690px; }
 @media(max-width:600px) { .learning-goals.compact .goal-row { padding:14px 13px; flex-wrap:nowrap; gap:12px; }.learning-goals.compact .goal-content { flex-basis:auto; }.learning-goals.compact .goal-content h3 { font-size:14px; line-height:1.6; }.home-priority { padding:16px; gap:12px; }.home-priority h2 { font-size:17px; }.home-priority p { font-size:12px; }.home-priority .eyebrow { font-size:9px; } }
+.skill-skip-button { display:block; margin:12px 0; padding:8px 12px; min-height:38px; border:1px solid #526256; border-radius:5px; color:#a5b5a9; font-size:12px; }
+.skill-skip-button:hover,.skill-skip-button.active { border-color:#a4b5a7; color:#dde5df; background:#29382d; }
+@media(max-width:600px) { .skill-skip-button { min-height:44px; font-size:13px; } }

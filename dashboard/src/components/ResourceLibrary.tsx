@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type RefObject } from 'react';
 import { Archive, ArrowRight, ArrowUpRight, BookOpen, Check, ChevronDown, CirclePlay, FileText, Filter, FolderOpen, Link2, ListChecks, Pencil, Plus, Search, Undo2, X } from 'lucide-react';
-import { topics } from '../data/skills';
+import { allTopics as topics } from '../data/skill-catalog';
 import { getResources, getUnits, resourceCompletion } from '../lib/learning';
 import { roadmap } from '../lib/roadmap';
 import type { LearningResource, Progress, ResourceKind, ResourceStatus, ResourceUnit, TopicStatus, TrackId } from '../lib/types';

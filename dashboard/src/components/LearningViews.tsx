@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { ArrowRight, ArrowUpRight, BookOpen, CalendarDays, Check, Clock3, Edit3, Flag, Plus, ShieldCheck } from 'lucide-react';
 import { Modal } from './Modal';
-import { topics, type Topic } from '../data/skills';
+import type { Topic } from '../data/skills';
+import { allTopics as topics } from '../data/skill-catalog';
 import { getGoals, getResources, localDate, resourceCompletion } from '../lib/learning';
 import { trackNames } from './SkillTree';
 import type { LearningActivity, Progress, TrackId, WeeklyGoal } from '../lib/types';

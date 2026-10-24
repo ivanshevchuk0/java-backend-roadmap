@@ -49,7 +49,8 @@ export interface TaskProgress {
 }
 export interface WeeklyPlan { hours: number; aghHours: number }
 export type TopicStatus = 'not-started' | 'in-progress' | 'completed';
-export interface SkillProgress { status: TopicStatus; updatedAt: string; notes?: string }
+export type SkillStatus = TopicStatus | 'skipped';
+export interface SkillProgress { status: SkillStatus; updatedAt: string; notes?: string }
 export interface AssignmentDeadline { label: string; date: string; done: boolean; updatedAt: string }
 export interface Progress {
   goals?: Record<string, WeeklyGoal>;
