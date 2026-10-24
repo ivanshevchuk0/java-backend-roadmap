@@ -40,26 +40,36 @@ async function synced(page) { await page.locator('.sync-state.synced').waitFor({
 async function openTopic(page, topic) {
   const panel = page.getByRole('dialog');
   if (await panel.count()) await panel.getByRole('button', { name: 'Close topic details', exact: true }).click();
+  if (!await page.locator('.map-page').count()) { if(await page.getByRole('button',{name:'Open navigation',exact:true}).isVisible()) await page.getByRole('button',{name:'Open navigation',exact:true}).click(); await page.getByRole('navigation',{name:'Learning navigation'}).getByRole('button',{name:'Skill roadmap',exact:true}).click(); }
   const search = page.getByPlaceholder('Find a skill, topic, or milestone…');
   await search.fill(topic.title);
   await page.locator('.search-results button').filter({ hasText: topic.title }).first().click();
   await page.getByRole('heading', { name: topic.title, exact: true }).waitFor();
+  const details = page.getByRole('dialog').locator('.topic-practice-disclosure'); if(await details.count() && !await details.evaluate(el=>el.open)) await details.locator('summary').first().click();
   return page.getByRole('dialog');
 }
 async function capture(page, name) { await page.screenshot({ path: join(artifacts, name), fullPage: true }); }
 async function cleanLocalTestData() {
-  for (let attempt = 0; attempt < 8; attempt++) {
-    const current = await (await fetch(`${base}/api/progress`)).json();
-    const changes = { currentWeek: original?.currentWeek ?? 1, startDate: original?.startDate ?? '' };
-    for (const group of ['tasks', 'skills', 'deadlines', 'weeklyPlans', 'milestones', 'courseNotes', 'reviews']) {
-      for (const id of new Set([...Object.keys(current.progress?.[group] ?? {}), ...Object.keys(original?.[group] ?? {})])) changes[`${group}.${id}`] = original?.[group]?.[id] ?? null;
+  async function restoreChanges(changes) {
+    for (let attempt = 0; attempt < 8; attempt++) {
+      const current = await (await fetch(`${base}/api/progress`)).json();
+      const response = await fetch(`${base}/api/progress`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ baseRevision: current.revision, changes }) });
+      if (response.ok) return;
+      assert.equal(response.status, 409);
     }
-    const response = await fetch(`${base}/api/progress`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ baseRevision: current.revision, changes }) });
-    if (response.ok) return;
-    assert.equal(response.status, 409);
+    throw new Error('Could not restore the local QA database.');
   }
-  throw new Error('Could not restore the local QA database.');
+  const groups = ['tasks','skills','deadlines','weeklyPlans','milestones','courseNotes','reviews','goals','resources','units','activities'];
+  const current = (await (await fetch(`${base}/api/progress`)).json()).progress;
+  const reset = { currentWeek: original?.currentWeek ?? 1, startDate: original?.startDate ?? '' };
+  const clear = { ...reset };
+  for (const group of groups) {
+    for (const id of Object.keys(current?.[group] ?? {})) clear[`${group}.${id}`] = null;
+    for (const [id, value] of Object.entries(original?.[group] ?? {})) reset[`${group}.${id}`] = value;
+  }
+  await restoreChanges(clear); await restoreChanges(reset);
 }
+
 try {
   let executablePath;
   try { await access(chromium.executablePath()); } catch { executablePath = process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE; }
@@ -76,6 +86,7 @@ try {
   assert.equal(saved.currentWeek, 2);
   assert.equal(Object.keys(saved.skills).length, 0, 'Task completion must not fabricate topic mastery.');
   assert(await page.getByRole('button', { name: /Pre-redesign backup/ }).count());
+  await page.getByRole('navigation',{name:'Learning navigation'}).getByRole('button',{name:'Skill roadmap',exact:true}).click();
   assert((await page.locator('.react-flow__edge').count()) > 5, 'Graph edges missing.');
   assert.equal(await page.locator('.react-flow__node-skill').count(), topicList.filter(t => t.track === 'backend').length, 'Default map must show Java skills only.');
   assert(await page.locator('.react-flow__node-frame').count() > 20, 'Missing outlined concept groups.');

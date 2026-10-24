@@ -1,7 +1,8 @@
+import { getGoals, getResources, LEARNING_MAPS } from './learning';
 import { createProgress } from './progress';
 import type { Progress } from './types';
 
-export const MAP_KEYS = ['tasks', 'skills', 'deadlines', 'weeklyPlans', 'milestones', 'courseNotes', 'reviews'] as const;
+export const MAP_KEYS = ['tasks', 'skills', 'deadlines', 'weeklyPlans', 'milestones', 'courseNotes', 'reviews', ...LEARNING_MAPS] as const;
 export type QueuedChange = { mode: 'merge' | 'replace' | 'missing'; value: unknown };
 export type PendingChanges = Record<string, QueuedChange>;
 const equal = (a: unknown, b: unknown) => JSON.stringify(a) === JSON.stringify(b);
@@ -17,8 +18,9 @@ export function queueChanges(pending: PendingChanges, before: Progress, after: P
     for (const key of new Set([...Object.keys(a), ...Object.keys(b)])) {
       if (equal(a[key], b[key])) continue;
       const path = `${group}.${key}`;
-      if (isObject(b[key]) && isObject(a[key])) {
-        const delta = Object.fromEntries(Object.entries(b[key]).filter(([field, value]) => !equal((a[key] as Record<string, unknown>)[field], value)));
+      const baseline = a[key] ?? (group === 'resources' ? getResources(before).find(resource => resource.id === key) : group === 'goals' ? getGoals(before).find(goal => goal.id === key) : group === 'skills' ? { status: 'not-started' } : group === 'tasks' ? { status: 'pending', actualMinutes: 0, evidence: '' } : undefined);
+      if (isObject(b[key]) && isObject(baseline)) {
+        const delta = Object.fromEntries(Object.entries(b[key]).filter(([field, value]) => !equal(baseline[field], value)));
         const old = result[path];
         result[path] = { mode: 'merge', value: { ...(old?.mode === 'merge' && isObject(old.value) ? old.value : {}), ...delta } };
       } else result[path] = { mode: b[key] === undefined ? 'replace' : 'merge', value: b[key] ?? null };
@@ -45,14 +47,23 @@ export function resolveChanges(remote: Progress | null, pending: PendingChanges)
   const source = remote ?? createProgress();
   const changes: Record<string, unknown> = {};
   for (const [path, entry] of Object.entries(pending)) {
-    if (path === '_legacy' || path === 'currentWeek' || path === 'startDate') { changes[path] = entry.value; continue; }
+    if (path === '_legacy') {
+      const known = new Set(['updatedAt', 'currentWeek', 'startDate', ...MAP_KEYS]);
+      const safe = isObject(entry.value) ? Object.fromEntries(Object.entries(entry.value).filter(([key]) => !known.has(key) && !['__proto__', 'constructor', 'prototype', '_legacy'].includes(key))) : {};
+      if (Object.keys(safe).length) changes[path] = safe;
+      continue;
+    }
+    if (path === 'currentWeek' || path === 'startDate') { changes[path] = entry.value; continue; }
     const [group, id] = path.split('.');
     const map = (source as unknown as Record<string, unknown>)[group];
     const existing = isObject(map) ? map[id] : undefined;
     if (entry.mode === 'missing' && existing !== undefined) continue;
     let value = entry.value;
     if (entry.mode === 'merge' && isObject(value)) {
-      const defaults = group === 'tasks' ? { status: 'pending', actualMinutes: 0, evidence: '' } : {};
+      const defaults = group === 'tasks' ? { status: 'pending', actualMinutes: 0, evidence: '' }
+        : group === 'resources' ? getResources(source).find(resource => resource.id === id) ?? {}
+        : group === 'goals' ? getGoals(source).find(goal => goal.id === id) ?? {}
+        : group === 'skills' ? { status: 'not-started' } : {};
       value = { ...defaults, ...(isObject(existing) ? existing : {}), ...value };
     }
     changes[path] = value;

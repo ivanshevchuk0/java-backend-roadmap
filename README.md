@@ -8,11 +8,15 @@ Your existing private website is the learning homepage. It shows your saved week
 
 ## Every day
 
-1. Open **Today**. Check your recorded AGH deadlines, then choose the suggested next skill.
-2. Click a node: read its explanation/material, attempt the exercise, and check the completion criteria.
-3. Set its status and update the linked practice tasks with actual minutes and evidence. Progress saves privately across devices; check the sync indicator before switching devices.
+1. Open **Today**: check AGH deadlines and this week’s 3–5 learning outcomes.
+2. Resume a course in **Courses & Resources**, or open a skill’s materials and exercise in **Skill roadmap**.
+3. Mark the lesson you finished, save your next lesson/chapter and notes, then continue whenever you have time. **Activity → Log learning** records a takeaway; time is optional.
 
-The **Java Backend**, **Data Science**, and **AGH** tabs open separate roadmaps. Follow the central path and grouped side branches; use each section’s **+ / −** controls, search, or pan/zoom. The moon/sun button switches the light/dark diagram theme. **12-week plan** retains every scheduled task, weekly capacity, course note, review, and project checkpoint. Change your current week explicitly; the calendar never marks work complete.
+**Weekly plan** lets you edit outcomes, move them to another week or postpone them without copying records. The original 190 exercises and their evidence remain under **Optional practice & original task history**. Course progress is independent of weekly goals; no daily quota is enforced.
+
+The roadmap.sh-inspired diagrams retain their current design. Core Java and Backend Engineering have clear navigation alongside separate Data Science and AGH maps. Each skill has key concepts, prerequisites, resources, practice, mastery criteria and personal notes, with essential/recommended/advanced guidance.
+
+All website progress saves privately across devices. Watch the sync indicator before switching devices; Export / Import provides a portable backup.
 
 [**12-week Markdown plan**](ROADMAP.md#all-weeks) · [**Materials**](RESOURCES.md) · [**EPAM Java Readiness**](EPAM_READINESS.md)
 

@@ -1,17 +1,27 @@
-# Learning skill tree
+# Personal learning tracker
 
 The existing private Learning OS website, redesigned around connected skills using React, TypeScript, Tailwind CSS and React Flow. This is the same Site and origin, with the original 190 practice tasks and course catalog. No exercise solutions or backend learning project are scaffolded here.
 
 ## Daily use
 
-- **Skill roadmap:** Java opens by default as a compact vertical diagram. Switch to separate Data Science or AGH roadmaps. Expand/collapse sections, search, pan or zoom; use Start, Next topic and Fit view to orient yourself. Light is the default; the moon/sun button saves a local theme preference. Click a node for materials, an exercise, completion criteria, prerequisites and original practice tasks.
-- **Today:** recorded AGH deadlines within seven days (including overdue), explicitly promoted unfinished AGH tasks, then eligible skills. Recommendations respect prerequisites and the current week; later ML remains available for manual exploration.
-- **12-week plan:** browse all tasks, change the current week, adapt weekly capacity, defer work, record actual minutes/evidence, edit course notes and weekly reviews, and verify project milestones.
-- **Navigation → Export / Import:** keep a portable JSON backup. Invalid imports leave saved progress intact. Imports merge supplied records, preserving unrelated history.
+- **Today** is the homepage: real AGH deadlines, current-week outcomes, an eligible next skill, active resources, and recent progress.
+- **Weekly plan** defaults to four broad outcomes per week. Edit, reschedule, carry forward, archive or postpone the same goal record. Deeper original exercises and checkpoint/review history remain in closed disclosures. There is no required daily schedule.
+- **Skill roadmap** retains the curated visual maps and light/dark appearance. Open a skill for purpose, concepts, prerequisites, selected resources, practical exercises, mastery criteria and personal notes. The Core Java and Backend Engineering shortcuts navigate the existing Java map.
+- **Courses & Resources** is independent of the weekly plan. Add courses, videos, playlists, documentation, articles, books, projects or roadmap links. Record only the modules/lessons/chapters you use, save a resume link and notes, and explicitly set whole-resource status.
+- **Activity** records a takeaway with optional minutes and shows weekly/monthly summaries. Explicit skill/exercise/resource/lesson/milestone completions add history entries. Loading or importing old progress never invents events.
+- **Export / Import** keeps the same portable v1 backup envelope and now includes goals, resources, units, activities and skill notes. Invalid imports leave stored data intact.
 
-Solid blue lines show curated reading order and related concepts; dotted blue lines mark optional/later branches. Actual prerequisites remain in each topic’s panel and determine recommendations. The diagram does not postpone the Week 1 Maven/JUnit or Week 2 Spring Boot gates. Concept references open existing materials and have no independent completion state or added workload.
+The learning structure keeps the original 60/20/20 guide and 20-hour default capacity; AGH assignments/exams override it. Course lessons, goal outcomes and skill mastery represent different decisions and never mark one another complete. Blue diagram lines remain curated reading order; actual prerequisites govern recommendations. Maven/JUnit start in Week 1 and Spring Boot remains available around Week 2.
 
-Skill status is a self-assessment. Completing a topic does not check practice tasks or verify a project milestone. Track bars count completed skills; 60/20/20 labels describe the time allocation. Logged time is entered explicitly. AGH coursework overrides the default 20-hour budget.
+## Audit and compatibility decisions
+
+The previous weekly view exposed 190 fine-grained tasks, while courses had only notes. The new view exposes four high-level outcomes per week, with the same original practice underneath. All existing task IDs, completion, minutes, evidence, notes, milestone history and references remain intact; no prior mastery or enrollment is inferred.
+
+One existing private progress document remains the source of truth. Four optional maps extend it: `goals`, `resources`, `units`, `activities`; notes extend existing skill records. The 48 goal templates and seven catalog resources are static defaults, not duplicated persisted blank records. Only user edits create overlays, using stable IDs. Rescheduling changes a goal’s week, preserving its identity and notes.
+
+Resource notes use `resources[id].notes`, falling back to old `courseNotes[id]` until that resource is edited. The former course-note editor is no longer exposed as a second editable copy. Archived resources and module trees remain recoverable. Module folders do not count as lessons; parent progress is derived from active leaf lessons, and whole-course status remains explicit. No Coursera/YouTube progress is fetched automatically and no course/module catalog is fabricated.
+
+Activity is an event history, not another completion tracker. Summaries count recorded activity, with optional session minutes only. Historical task-minute counters are retained but are not added again to session time. Same-field simultaneous edits use accepted-write order; field-level rebasing protects unrelated status and notes changes. Import merges supplied records without replaying completion events.
 
 ## Progress and privacy
 
@@ -29,10 +39,14 @@ Website changes do not alter GitHub issues, checkboxes or milestones. The websit
 ../ROADMAP.md                 Detailed weekly learning content
 ../EPAM_READINESS.md          EPAM preparation requirements and assessments
 src/data/roadmap.json         Original stable weekly tasks and course catalog
-src/data/skills.ts            Skills, prerequisites and task mappings
+src/data/skills.ts            Stable skill IDs, prerequisites and task mappings
+src/data/learning.ts          Rich skill guidance, goal templates and learning paths
 src/data/diagram.ts           Curated sections, branches and deterministic geometry
 src/diagram.css               Diagram-only light/dark styling
-src/App.tsx                   Primary skill tree, Today and retained schedule
+src/App.tsx                   Existing navigation and integration
+src/components/LearningViews.tsx Homepage, broad goals and activity journal
+src/components/ResourceLibrary.tsx Independent resources, units and bookmarks
+src/lib/learning.ts           Derived defaults, validation and event history
 src/components/SkillTree.tsx  Interactive React Flow canvas
 src/components/TopicPanel.tsx Materials, criteria, tasks and deadlines
 src/lib/useLearningProgress.ts Browser migration, cache, offline queue and sync
@@ -70,9 +84,10 @@ With that preview running, in a second terminal:
 node scripts/api-smoke.mjs http://127.0.0.1:5173
 npm run test:browser
 npm run test:diagram
+npm run test:tracker
 ```
 
-The browser regression requires Playwright Chromium (`npx playwright install chromium` once). It uses isolated profiles and only permits loopback URLs. It verifies legacy migration, refresh/reopening, independent devices, concurrent fields, offline reload/reconnect, export/invalid import, AGH priority, search/expansion, zoom/pan and mobile panels. It restores its local database snapshot afterward. The separate read-only diagram check verifies central alignment, grouped rows, connector routing, collapse/search, independent tracks, light/dark preference and mobile readability. Never run mutation smoke tests against personal production progress.
+The browser regression requires Playwright Chromium (`npx playwright install chromium` once). It uses isolated profiles and only permits loopback URLs. It verifies legacy migration, refresh/reopening, independent devices, concurrent fields, offline reload/reconnect, export/invalid import, AGH priority, search/expansion, zoom/pan and mobile panels. It restores its local database snapshot afterward. The separate read-only diagram check verifies central alignment, grouped rows, connector routing, collapse/search, independent tracks, light/dark preference and mobile readability. The tracker browser check exercises actual course/lesson progress, high-level goal moves, notes, activity summaries, backups, two browsers, concurrent edits and offline recovery. It also restores its local snapshot. Never run mutation smoke tests against personal production progress.
 
 ## Publishing
 

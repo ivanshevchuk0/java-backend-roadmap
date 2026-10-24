@@ -1,7 +1,8 @@
 'use client';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { createProgress, emptyTask, parseProgress, serializeProgress, STORAGE_KEY } from './progress';
-import { applyChanges, legacyChanges, queueChanges, resolveChanges, type PendingChanges } from './progress-sync';
+import { applyChanges, legacyChanges, MAP_KEYS, queueChanges, resolveChanges, type PendingChanges } from './progress-sync';
+import { withCompletionEvents } from './learning';
 import type { AssignmentDeadline, Progress, TaskProgress, TopicStatus } from './types';
 
 const PENDING_KEY = `${STORAGE_KEY}:pending-v2`;
@@ -137,7 +138,8 @@ export function useLearningProgress() {
     if (!hydrated.current) { setError('Please wait for your saved progress to load before editing.'); return; }
     if (blocked.current) { setError('Export the recovery copy and import a valid backup before editing. Your original data remains intact.'); return; }
     const previous = local.current;
-    const next = { ...updater(previous), updatedAt: new Date().toISOString() };
+    const next = withCompletionEvents(previous, { ...updater(previous), updatedAt: new Date().toISOString() });
+    try { parseProgress(serializeProgress(next)); } catch (cause) { setError(cause instanceof Error ? cause.message : 'Invalid progress update.'); return; }
     const previousQueue = pending.current;
     pending.current = queueChanges(previousQueue, previous, next);
     for (const [path, value] of Object.entries(patches ?? {})) {
@@ -160,7 +162,14 @@ export function useLearningProgress() {
     // Import merges matching entries intentionally; unrelated saved history is retained.
     const old = local.current;
     const next = { ...old, ...imported };
-    for (const key of ['tasks', 'skills', 'deadlines', 'weeklyPlans', 'milestones', 'courseNotes', 'reviews'] as const) Object.assign(next, { [key]: { ...old[key], ...imported[key] } });
+    for (const key of MAP_KEYS) {
+      const merged: Record<string, unknown> = { ...old[key] };
+      for (const [id, value] of Object.entries(imported[key] ?? {})) {
+        const prior = merged[id];
+        merged[id] = prior && value && typeof prior === 'object' && typeof value === 'object' && !Array.isArray(prior) && !Array.isArray(value) ? { ...prior as object, ...value as object } : value;
+      }
+      Object.assign(next, { [key]: merged });
+    }
     pending.current = queueChanges(pending.current, old, next);
     display(next); setSyncState('saving'); void flushRef.current();
   }, [display]);

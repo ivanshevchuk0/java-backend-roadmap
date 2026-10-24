@@ -49,9 +49,13 @@ export interface TaskProgress {
 }
 export interface WeeklyPlan { hours: number; aghHours: number }
 export type TopicStatus = 'not-started' | 'in-progress' | 'completed';
-export interface SkillProgress { status: TopicStatus; updatedAt: string }
+export interface SkillProgress { status: TopicStatus; updatedAt: string; notes?: string }
 export interface AssignmentDeadline { label: string; date: string; done: boolean; updatedAt: string }
 export interface Progress {
+  goals?: Record<string, WeeklyGoal>;
+  resources?: Record<string, LearningResource>;
+  units?: Record<string, ResourceUnit>;
+  activities?: Record<string, LearningActivity>;
   skills?: Record<string, SkillProgress>;
   deadlines?: Record<string, AssignmentDeadline>;
   updatedAt: string;
@@ -62,4 +66,28 @@ export interface Progress {
   milestones: Record<string, { verified: boolean; evidence: string }>;
   courseNotes: Record<string, string>;
   reviews: Record<string, string>;
+}
+
+export type ResourceKind = 'course' | 'video' | 'playlist' | 'documentation' | 'article' | 'book' | 'project' | 'roadmap';
+export type ResourceStatus = 'not-started' | 'in-progress' | 'completed' | 'paused';
+export interface LearningResource {
+  id: string; title: string; kind: ResourceKind; url: string; provider: string;
+  track: TrackId; status: ResourceStatus; skillIds: string[]; notes: string;
+  resumeLabel: string; resumeUrl: string; updatedAt: string; archived: boolean;
+}
+export interface ResourceUnit {
+  id: string; resourceId: string; parentId: string; title: string;
+  kind: 'module' | 'lesson' | 'video' | 'chapter' | 'section' | 'milestone';
+  url: string; status: TopicStatus; notes: string; position: number; updatedAt: string; archived: boolean;
+}
+export interface WeeklyGoal {
+  id: string; title: string; description: string; week: number; originalWeek: number;
+  track: TrackId; status: 'planned' | 'in-progress' | 'completed'; skillIds: string[];
+  notes: string; updatedAt: string; archived: boolean;
+}
+export interface LearningActivity {
+  id: string; date: string; kind: 'study' | 'skill' | 'exercise' | 'course' | 'project' | 'lesson';
+  title: string; track: TrackId; minutes: number | null; notes: string;
+  skillId: string; resourceId: string; taskId: string; milestoneId: string;
+  automatic: boolean; updatedAt: string;
 }

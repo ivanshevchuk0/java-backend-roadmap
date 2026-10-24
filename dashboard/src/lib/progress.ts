@@ -1,3 +1,4 @@
+import { LEARNING_MAPS, validateLearningJson, validateLearningMap, validateLearningReferences } from './learning';
 import { allTasks, roadmap } from './roadmap';
 import type { Progress, Task, TaskProgress, TrackId, Week } from './types';
 
@@ -75,6 +76,7 @@ export function parseProgress(json: string): Progress {
   try { envelope = record(JSON.parse(json)); } catch { throw new Error('This file is not valid progress JSON.'); }
   if (envelope.format !== 'learning-os-progress' || envelope.version !== 1 || envelope.roadmapId !== roadmap.id) throw new Error('Unsupported backup version or a different roadmap. Export a Learning OS v1 backup.');
   const source = record(envelope.progress);
+  validateLearningJson(source);
   const result = { ...source, ...createProgress() } as unknown as Progress;
   result.updatedAt = text(source.updatedAt, 60);
   if (Number.isNaN(Date.parse(result.updatedAt))) throw new Error('Invalid backup timestamp.');
@@ -126,6 +128,7 @@ export function parseProgress(json: string): Progress {
       if (!['not-started', 'in-progress', 'completed'].includes(String(skill.status))) throw new Error('Invalid skill status.');
       const updatedAt = text(skill.updatedAt, 60);
       if (Number.isNaN(Date.parse(updatedAt))) throw new Error('Invalid skill timestamp.');
+      if (skill.notes !== undefined) text(skill.notes);
       result.skills[id] = { ...skill, status: skill.status as import('./types').TopicStatus, updatedAt };
     }
   }
@@ -142,5 +145,13 @@ export function parseProgress(json: string): Progress {
       result.deadlines[id] = { ...deadline, label: text(deadline.label, 200), date, done: deadline.done, updatedAt };
     }
   }
+  for (const group of LEARNING_MAPS) {
+    if (source[group] === undefined) continue;
+    const values = record(source[group]);
+    const validated: Record<string, unknown> = {};
+    for (const [id, value] of Object.entries(values)) validated[id] = validateLearningMap(group, id, value);
+    Object.assign(result, { [group]: validated });
+  }
+  validateLearningReferences(result);
   return result;
 }

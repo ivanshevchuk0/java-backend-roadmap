@@ -15,7 +15,8 @@
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "test:browser": "node scripts/skill-tree-smoke.mjs",
-    "test:diagram": "node scripts/diagram-smoke.mjs"
+    "test:diagram": "node scripts/diagram-smoke.mjs",
+    "test:tracker": "node scripts/tracker-smoke.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

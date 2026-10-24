@@ -36,7 +36,7 @@ const nodeTypes = { skill: TopicNode, concept: TopicNode, frame: GroupFrame };
 const edgeTypes = { curated: DiagramEdge };
 const topicById = new Map(topics.map(topic => [topic.id, topic]));
 
-export function SkillTree({ statuses, selectedId, nextId, onSelect, search, focusTrack, theme = 'light', progressReady = true }: { statuses: Record<string, TopicStatus>; selectedId: string | null; nextId?: string; onSelect: (id: string, focus?: { title: string; description: string }) => void; search: string; focusTrack: TrackId; theme?: 'light' | 'dark'; progressReady?: boolean }) {
+export function SkillTree({ statuses, selectedId, nextId, onSelect, search, focusTrack, theme = 'light', progressReady = true, anchorId, anchorVersion }: { statuses: Record<string, TopicStatus>; selectedId: string | null; nextId?: string; onSelect: (id: string, focus?: { title: string; description: string }) => void; search: string; focusTrack: TrackId; theme?: 'light' | 'dark'; progressReady?: boolean; anchorId?: string | null; anchorVersion?: number }) {
   const [collapsed, setCollapsed] = useState<Set<string>>(new Set());
   const [instance, setInstance] = useState<ReactFlowInstance<DiagramNode> | null>(null);
   const wrapper = useRef<HTMLDivElement>(null);
@@ -105,6 +105,7 @@ export function SkillTree({ statuses, selectedId, nextId, onSelect, search, focu
       return () => clearTimeout(timer);
     }
   }, [focusTrack, instance, showStart, progressReady, nextId, nodes, duration]);
+  useEffect(() => { if (!anchorId || !instance || !nodes.some(node => node.id === anchorId)) return; const timer = setTimeout(() => locate(anchorId), 90); return () => clearTimeout(timer); }, [anchorId, anchorVersion, instance, focusTrack]);
   useEffect(() => { const target = selectedId ?? matching[0]?.id; if (!target || !instance) return; const timer = setTimeout(() => locate(target), 70); return () => clearTimeout(timer); }, [selectedId, matching, instance, nodes.length]);
   useEffect(() => {
     const element = wrapper.current;

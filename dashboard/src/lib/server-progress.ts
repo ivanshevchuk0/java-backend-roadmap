@@ -1,3 +1,4 @@
+import { LEARNING_MAPS, validateLearningMap } from './learning';
 import { parseProgress, serializeProgress } from './progress';
 import type { Progress } from './types';
 
@@ -5,9 +6,9 @@ import type { Progress } from './types';
 export const MAX_PROGRESS_BYTES = 2_000_000;
 export type ProgressDocument = Record<string, unknown>;
 export type ProgressPatch = { baseRevision: number; changes: Record<string, unknown> };
-const maps = new Set(['tasks', 'skills', 'deadlines', 'weeklyPlans', 'milestones', 'courseNotes', 'reviews']);
+const maps = new Set(['tasks', 'skills', 'deadlines', 'weeklyPlans', 'milestones', 'courseNotes', 'reviews', ...LEARNING_MAPS]);
 const forbidden = new Set(['__proto__', 'constructor', 'prototype']);
-const coreRoots = new Set(['currentWeek', 'startDate', 'updatedAt', 'tasks', 'skills', 'deadlines', 'weeklyPlans', 'milestones', 'courseNotes', 'reviews', '_legacy']);
+const coreRoots = new Set(['currentWeek', 'startDate', 'updatedAt', 'tasks', 'skills', 'deadlines', 'weeklyPlans', 'milestones', 'courseNotes', 'reviews', ...LEARNING_MAPS, '_legacy']);
 
 function fail(): never { throw new Error('Invalid progress update.'); }
 function object(value: unknown): Record<string, unknown> {
@@ -51,6 +52,7 @@ function safeJson(value: unknown, depth = 0): void {
 }
 function entryValue(group: string, id: string, value: unknown) {
   if (value === null) return;
+  if (LEARNING_MAPS.includes(group as typeof LEARNING_MAPS[number])) { validateLearningMap(group, id, value); return; }
   if (group === 'courseNotes' || group === 'reviews') { text(value); return; }
   const entry = object(value);
   switch (group) {
@@ -64,6 +66,7 @@ function entryValue(group: string, id: string, value: unknown) {
     case 'skills':
       choice(entry.status, ['not-started', 'in-progress', 'completed']);
       timestamp(entry.updatedAt);
+      if (entry.notes !== undefined) text(entry.notes);
       break;
     case 'deadlines':
       text(entry.label, 200); date(entry.date); boolean(entry.done); timestamp(entry.updatedAt);
