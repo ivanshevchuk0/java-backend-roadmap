@@ -17,7 +17,9 @@
     "test:browser": "node scripts/skill-tree-smoke.mjs",
     "test:diagram": "node scripts/diagram-smoke.mjs",
     "test:tracker": "node scripts/tracker-smoke.mjs",
-    "test:java-map": "node scripts/java-roadmap-smoke.mjs"
+    "test:java-map": "node scripts/java-roadmap-smoke.mjs",
+    "test:reference": "node scripts/reference-roadmap-smoke.mjs",
+    "test:planner": "node scripts/planner-smoke.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

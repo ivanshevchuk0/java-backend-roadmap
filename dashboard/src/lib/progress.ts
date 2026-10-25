@@ -1,4 +1,5 @@
-import { optionalSkillIds } from '../data/skill-catalog';
+import { isReferenceSkillId } from './reference-roadmaps';
+import { allTopics } from '../data/skill-catalog';
 import { LEARNING_MAPS, validateLearningJson, validateLearningMap, validateLearningReferences } from './learning';
 import { allTasks, roadmap } from './roadmap';
 import type { Progress, Task, TaskProgress, TrackId, Week } from './types';
@@ -68,6 +69,7 @@ function integer(value: unknown, min: number, max: number): number {
 }
 function weekKey(key: string) { if (!/^(?:[1-9]|1[0-2])$/.test(key)) throw new Error('Unknown week in backup.'); }
 const taskIds = new Set(allTasks.map(t => t.id));
+const knownSkillIds = new Set(allTopics.map(topic => topic.id));
 const milestoneIds = new Set(roadmap.weeks.map(w => w.milestone.id));
 const courseIds = new Set(roadmap.courses.map(c => c.id));
 
@@ -127,10 +129,12 @@ export function parseProgress(json: string): Progress {
       if (!id || id.length > 120 || ['__proto__', 'constructor', 'prototype'].includes(id)) throw new Error('Invalid skill ID.');
       const skill = record(value);
       if (!['not-started', 'in-progress', 'completed', 'skipped'].includes(String(skill.status))) throw new Error('Invalid skill status.');
-      if (skill.status === 'skipped' && !optionalSkillIds.has(id)) throw new Error('Only optional skills may be skipped.');
+      if (skill.status === 'skipped' && !knownSkillIds.has(id) && !isReferenceSkillId(id)) throw new Error('Only known skills may be skipped.');
       const updatedAt = text(skill.updatedAt, 60);
       if (Number.isNaN(Date.parse(updatedAt))) throw new Error('Invalid skill timestamp.');
       if (skill.notes !== undefined) text(skill.notes);
+      if (skill.label !== undefined) text(skill.label, 300);
+      if (skill.track !== undefined && !['backend', 'data', 'agh'].includes(String(skill.track))) throw new Error('Invalid skill track.');
       result.skills[id] = { ...skill, status: skill.status as import('./types').SkillStatus, updatedAt };
     }
   }

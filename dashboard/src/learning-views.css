@@ -14,3 +14,8 @@
 .skill-skip-button { display:block; margin:12px 0; padding:8px 12px; min-height:38px; border:1px solid #526256; border-radius:5px; color:#a5b5a9; font-size:12px; }
 .skill-skip-button:hover,.skill-skip-button.active { border-color:#a4b5a7; color:#dde5df; background:#29382d; }
 @media(max-width:600px) { .skill-skip-button { min-height:44px; font-size:13px; } }
+
+.retained-skills { margin:18px 0; }
+.retained-skills h3 { margin-bottom:10px; }
+.retained-skills > button { display:flex; width:100%; justify-content:space-between; gap:12px; border-bottom:1px solid var(--line); padding:10px 0; text-align:left; }
+.retained-skills small { margin-left:auto; color:var(--muted); font-size:10px; }

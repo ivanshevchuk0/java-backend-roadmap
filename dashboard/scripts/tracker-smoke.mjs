@@ -3,7 +3,7 @@ import {chromium} from 'playwright';
 import {mkdir,readFile} from 'node:fs/promises';
 const base='http://127.0.0.1:5173',output=`/tmp/tracker-qa-${Date.now()}`;await mkdir(output);
 const read=async()=>await(await fetch(`${base}/api/progress`)).json(), original=(await read()).progress;
-const maps=['tasks','skills','deadlines','weeklyPlans','milestones','courseNotes','reviews','goals','resources','units','activities'];
+const maps=['tasks','skills','deadlines','weeklyPlans','milestones','courseNotes','reviews','goals','resources','units','activities','projects','sessions','routines'];
 async function patch(changes){for(let i=0;i<8;i++){const current=await read(),response=await fetch(`${base}/api/progress`,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({baseRevision:current.revision,changes})});if(response.ok)return;assert.equal(response.status,409);}throw Error('CAS retries exceeded');}
 async function restore(){
  const current=(await read()).progress,clear={currentWeek:original?.currentWeek??1,startDate:original?.startDate??''};
@@ -15,7 +15,7 @@ async function restore(){
 }
 async function until(check,label){for(let i=0;i<120;i++){if(await check())return;await new Promise(resolve=>setTimeout(resolve,100));}throw Error(label);}
 const state=async()=>(await read()).progress, synced=page=>page.locator('.sync-state.synced').waitFor({timeout:20000});
-async function nav(page,name){if(await page.getByRole('button',{name:'Open navigation',exact:true}).isVisible())await page.getByRole('button',{name:'Open navigation',exact:true}).click();await page.getByRole('navigation',{name:'Learning navigation'}).getByRole('button',{name,exact:true}).click();}
+async function nav(page,name){if(name==='Weekly plan'){await page.locator('.week-chip').click();return;}name=({'Courses & Resources':'Courses','Skill roadmap':'Roadmaps','Activity':'Progress'})[name]??name;if(await page.getByRole('button',{name:'Open navigation',exact:true}).isVisible())await page.getByRole('button',{name:'Open navigation',exact:true}).click();await page.getByRole('navigation',{name:'Learning navigation'}).getByRole('button',{name,exact:true}).click();}
 async function resource(page,title){await nav(page,'Courses & Resources');await page.locator('.library-resource-card').filter({hasText:title}).first().click();}
 async function item(page,title){const d=page.getByRole('dialog');await d.getByLabel('Item title',{exact:true}).fill(title);await d.getByRole('button',{name:'Add item',exact:true}).click();await synced(page);}
 const browser=await chromium.launch({headless:true}),contexts=[],errors=[];

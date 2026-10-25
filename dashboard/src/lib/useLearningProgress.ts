@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { createProgress, emptyTask, parseProgress, serializeProgress, STORAGE_KEY } from './progress';
 import { applyChanges, legacyChanges, MAP_KEYS, queueChanges, resolveChanges, type PendingChanges } from './progress-sync';
 import { withCompletionEvents } from './learning';
-import type { AssignmentDeadline, Progress, TaskProgress, SkillStatus } from './types';
+import type { AssignmentDeadline, Progress, TaskProgress, SkillStatus, SkillProgress } from './types';
 
 const PENDING_KEY = `${STORAGE_KEY}:pending-v2`;
 const MIGRATED_KEY = `${STORAGE_KEY}:cloud-migrated-v2`;
@@ -151,7 +151,7 @@ export function useLearningProgress() {
     queueTimer.current = setTimeout(() => void flushRef.current(), 250);
   }, [display]);
   const updateProgress = useCallback((updater: (p: Progress) => Progress) => edit(updater), [edit]);
-  const setTopicStatus = useCallback((id: string, status: SkillStatus) => updateProgress(p => ({ ...p, skills: { ...p.skills, [id]: { ...p.skills?.[id], status, updatedAt: new Date().toISOString() } } })), [updateProgress]);
+  const setTopicStatus = useCallback((id: string, status: SkillStatus, metadata?: Pick<SkillProgress, 'label' | 'track'>) => updateProgress(p => ({ ...p, skills: { ...p.skills, [id]: { ...p.skills?.[id], ...metadata, status, updatedAt: new Date().toISOString() } } })), [updateProgress]);
   const setCurrentWeek = useCallback((currentWeek: number) => { if (Number.isInteger(currentWeek) && currentWeek >= 1 && currentWeek <= 12) updateProgress(p => ({ ...p, currentWeek })); }, [updateProgress]);
   const updateTask = useCallback((id: string, patch: Partial<TaskProgress>) => edit(p => ({ ...p, tasks: { ...p.tasks, [id]: { ...emptyTask, ...p.tasks[id], ...patch } } }), { [`tasks.${id}`]: patch }), [edit]);
   const setDeadline = useCallback((id: string, deadline: Omit<AssignmentDeadline, 'updatedAt'>) => updateProgress(p => ({ ...p, deadlines: { ...p.deadlines, [id]: { ...p.deadlines?.[id], ...deadline, updatedAt: new Date().toISOString() } } })), [updateProgress]);

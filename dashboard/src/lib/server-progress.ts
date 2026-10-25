@@ -1,4 +1,5 @@
-import { optionalSkillIds } from '../data/skill-catalog';
+import { isReferenceSkillId } from './reference-roadmaps';
+import { allTopics } from '../data/skill-catalog';
 import { LEARNING_MAPS, validateLearningMap } from './learning';
 import { parseProgress, serializeProgress } from './progress';
 import type { Progress } from './types';
@@ -9,6 +10,7 @@ export type ProgressDocument = Record<string, unknown>;
 export type ProgressPatch = { baseRevision: number; changes: Record<string, unknown> };
 const maps = new Set(['tasks', 'skills', 'deadlines', 'weeklyPlans', 'milestones', 'courseNotes', 'reviews', ...LEARNING_MAPS]);
 const forbidden = new Set(['__proto__', 'constructor', 'prototype']);
+const knownSkillIds = new Set(allTopics.map(topic => topic.id));
 const coreRoots = new Set(['currentWeek', 'startDate', 'updatedAt', 'tasks', 'skills', 'deadlines', 'weeklyPlans', 'milestones', 'courseNotes', 'reviews', ...LEARNING_MAPS, '_legacy']);
 
 function fail(): never { throw new Error('Invalid progress update.'); }
@@ -66,9 +68,11 @@ function entryValue(group: string, id: string, value: unknown) {
       break;
     case 'skills':
       choice(entry.status, ['not-started', 'in-progress', 'completed', 'skipped']);
-      if (entry.status === 'skipped' && !optionalSkillIds.has(id)) return fail();
+      if (entry.status === 'skipped' && !knownSkillIds.has(id) && !isReferenceSkillId(id)) return fail();
       timestamp(entry.updatedAt);
       if (entry.notes !== undefined) text(entry.notes);
+      if (entry.label !== undefined) text(entry.label, 300);
+      if (entry.track !== undefined) choice(entry.track, ['backend', 'data', 'agh']);
       break;
     case 'deadlines':
       text(entry.label, 200); date(entry.date); boolean(entry.done); timestamp(entry.updatedAt);

@@ -16,7 +16,7 @@ const essentialId = () => {
   expect(value).toBeTruthy(); return value;
 };
 
-describe('optional skill skipping without a storage migration', () => {
+describe('known skill skipping without a storage migration', () => {
   it('roundtrips skipped optional skills with notes and unknown metadata', () => {
     const id = optionalId();
     const p = { ...createProgress(), skills: { [id]: { status: 'skipped' as const, updatedAt: now, notes: 'Later, after AGH exams', future: { retained: ['yes'] } } }, legacyRoot: { retained: true } };
@@ -26,10 +26,14 @@ describe('optional skill skipping without a storage migration', () => {
     expect(() => assertProgressLoadable(saved)).not.toThrow();
     expect(saved.skills).toEqual(p.skills);
   });
-  it('rejects skipped essential and unknown skills on import and API writes', () => {
-    for (const id of [essentialId(), 'unknown-future-skill']) {
+  it('allows skipped essential skills but rejects unknown skipped skills', () => {
+    const known = essentialId();
+    const entry = { status: 'skipped' as const, updatedAt: now, notes: 'Personal learning choice' };
+    expect(() => parseProgress(serializeProgress({ ...createProgress(), skills: { [known]: entry } }))).not.toThrow();
+    expect(() => validateProgressPatch({ baseRevision: 0, changes: { [`skills.${known}`]: entry } })).not.toThrow();
+    for (const id of ['unknown-future-skill']) {
       const value = { status: 'skipped', updatedAt: now, notes: '' };
-      expect(() => parseProgress(serializeProgress({ ...createProgress(), skills: { [id]: value } } as unknown as ReturnType<typeof createProgress>))).toThrow('optional');
+      expect(() => parseProgress(serializeProgress({ ...createProgress(), skills: { [id]: value } } as unknown as ReturnType<typeof createProgress>))).toThrow('known');
       expect(() => validateProgressPatch({ baseRevision: 0, changes: { [`skills.${id}`]: value } })).toThrow();
     }
   });

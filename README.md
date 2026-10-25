@@ -8,13 +8,14 @@ Your existing private website is the learning homepage. It shows your saved week
 
 ## Every day
 
-1. Open **Today**: check AGH deadlines and this week’s 3–5 learning outcomes.
-2. Resume a course in **Courses & Resources**, or open a skill’s materials and exercise in **Skill roadmap**.
-3. Mark the lesson you finished, save your next lesson/chapter and notes, then continue whenever you have time. **Activity → Log learning** records a takeaway; time is optional.
+1. Open **Today**: check AGH deadlines, then add a few study activities or use a recurring routine. Set planned minutes; actual time is optional.
+2. Open **Roadmaps** for a skill’s guide, resources, exercise and mastery criteria, or resume a lesson in **Courses**. **Projects** contains practical briefs for the same evolving Java backend.
+3. Check an activity when finished. Course lessons, projects and skill mastery each keep their own status. Record actual time only if you want to.
+4. Use **Progress** for weekly/monthly study history. The week button opens your 12-week plan, where unfinished objectives can move without copying records.
 
-**Weekly plan** lets you edit outcomes, move them to another week or postpone them without copying records. The original 190 exercises and their evidence remain under **Optional practice & original task history**. Course progress is independent of weekly goals; no daily quota is enforced.
+Weekly planning stays at 3–5 broad outcomes; the original 190 exercises and their evidence remain under **Optional practice & original task history**. The daily planner supports editing, skipping, moving and recurring activities without imposing a quota. Its chart shows completion by activity count; planned and recorded time remain separate.
 
-The roadmap.sh-inspired diagrams retain their current design. Choose **Java Developer** for the expanded, individually trackable Java hierarchy, or **Backend** for the retained backend path. Data Science and AGH keep their separate maps. Each Java topic has its own materials, practice, mastery criteria, notes and Not started / Learning / Done state. Optional branches can be skipped without counting as mastery. Shared topics reuse the same progress record across maps.
+**Java Developer** and **Backend** load their complete official reference graphs privately, including groups and connections. **Full Roadmap** and **My Learning Path** contain the same nodes; personal mode highlights Java/Spring Boot/PostgreSQL priorities. Data Science and AGH retain separate maps. Skills support Not started / Learning / Done / Skipped; skipping never counts as mastery. Shared concepts reuse existing progress records, while unmatched original topics remain in Progress and the weekly plan.
 
 All website progress saves privately across devices. Watch the sync indicator before switching devices; Export / Import provides a portable backup.
 

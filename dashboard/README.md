@@ -4,12 +4,16 @@ The existing private Learning OS website, redesigned around connected skills usi
 
 ## Daily use
 
-- **Today** is the homepage: real AGH deadlines, current-week outcomes, an eligible next skill, active resources, and recent progress.
-- **Weekly plan** defaults to four broad outcomes per week. Edit, reschedule, carry forward, archive or postpone the same goal record. Deeper original exercises and checkpoint/review history remain in closed disclosures. There is no required daily schedule.
-- **Skill roadmap** retains the curated visual maps and light/dark appearance. Open a skill for purpose, concepts, prerequisites, selected resources, practical exercises, mastery criteria and personal notes. Choose Java Developer for the expanded Java hierarchy; Backend retains the previous backend diagram. Search includes visible labels and key concepts, and the section menu jumps directly to a topic group.
-- **Courses & Resources** is independent of the weekly plan. Add courses, videos, playlists, documentation, articles, books, projects or roadmap links. Record only the modules/lessons/chapters you use, save a resume link and notes, and explicitly set whole-resource status.
-- **Activity** records a takeaway with optional minutes and shows weekly/monthly summaries. Explicit skill/exercise/resource/lesson/milestone completions add history entries. Loading or importing old progress never invents events.
-- **Export / Import** keeps the same portable v1 backup envelope and now includes goals, resources, units, activities and skill notes. Invalid imports leave stored data intact.
+- **Today**: check real AGH deadlines, plan a few activities, then study. Each activity can link a skill, Coursera/YouTube resource, project or AGH subject. Enter 30/60/90 minutes or a custom plan; actual minutes remain optional. Check completion, skip, edit, move or delete/restore an activity in place.
+- **Recurring activities**: choose daily, weekdays or selected days, with an optional end date. One rule generates visible dates without storing hundreds of blank tasks. Completing, editing, skipping or moving an occurrence saves only that occurrence; moving retains its identity and suppresses the original date. Edit or pause a rule in the closed recurring section.
+- **Roadmaps**: Java Developer and Backend load complete reference skill trees. Full Roadmap and My Learning Path retain identical source nodes and connections; personal mode highlights your priorities. Search, pan, zoom, fit, section jumps, themes and detailed skill panels remain available. Data Science/AGH retain their separate maps. Guides load on demand; personal notes and four-state mastery save independently.
+- **Courses**: add/edit courses, YouTube links/playlists, docs, books and other materials. Record your own modules/lessons, notes and resume links. No external learning progress is assumed or fetched automatically.
+- **Projects**: choose the primary evolving StudyTask backend first. Nine original project briefs cover CLI, Backend API, Database and Full-Stack, with level filters, objectives, criteria, linked skills and your repository/notes. Alternatives replace optional practice, not extra required weekly hours.
+- **Progress**: weekly/monthly history includes explicit completions, manual learning logs and recorded planner activity. Completed sessions or sessions with actual time appear once, derived from their existing record. The original skill list remains accessible, including unmatched older topics.
+- **Week button**: open the existing 12-week schedule and 3–5 broad outcomes. Edit, reschedule, carry forward or postpone the same goal; original practice, evidence, checkpoints and reviews remain in closed sections.
+- **Export / Import**: the same portable v1 backup includes every optional map, notes and preserved legacy fields. Invalid imports leave stored data intact; imports merge without generating historical completion events.
+
+Daily and weekly completion equals completed activities divided by non-skipped activities (zero active activities means 0%). Skips remain visible and reduce planned workload; they do not count as completion. The seven-day chart shows this activity-count percentage, with separate planned/actual figures. Actual totals use only entered values, including partial or skipped work, never estimated duration. No timer, quota, external scheduler or notification service is required. Weekly/monthly planner statistics include all scheduled days in the selected period; the journal shows recorded work through today.
 
 The learning structure keeps the original 60/20/20 guide and 20-hour default capacity; AGH assignments/exams override it. Course lessons, goal outcomes and skill mastery represent different decisions and never mark one another complete. Blue diagram lines remain curated reading order; actual prerequisites govern recommendations. Maven/JUnit start in Week 1 and Spring Boot remains available around Week 2.
 
@@ -17,7 +21,7 @@ The learning structure keeps the original 60/20/20 guide and 20-hour default cap
 
 The previous weekly view exposed 190 fine-grained tasks, while courses had only notes. The new view exposes four high-level outcomes per week, with the same original practice underneath. All existing task IDs, completion, minutes, evidence, notes, milestone history and references remain intact; no prior mastery or enrollment is inferred.
 
-One existing private progress document remains the source of truth. Four optional maps extend it: `goals`, `resources`, `units`, `activities`; notes extend existing skill records. The 48 goal templates and seven catalog resources are static defaults, not duplicated persisted blank records. Only user edits create overlays, using stable IDs. Rescheduling changes a goal’s week, preserving its identity and notes.
+One existing private progress document remains the source of truth. Optional maps extend it: `goals`, `resources`, `units`, `activities`, `projects`, `sessions`, `routines`; notes extend existing skill records. The 48 goal templates and seven catalog resources are static defaults, not duplicated persisted blank records. Only user edits create overlays, using stable IDs. Rescheduling changes a goal’s week, preserving its identity and notes.
 
 Resource notes use `resources[id].notes`, falling back to old `courseNotes[id]` until that resource is edited. The former course-note editor is no longer exposed as a second editable copy. Archived resources and module trees remain recoverable. Module folders do not count as lessons; parent progress is derived from active leaf lessons, and whole-course status remains explicit. No Coursera/YouTube progress is fetched automatically and no course/module catalog is fabricated.
 
@@ -25,13 +29,21 @@ Activity is an event history, not another completion tracker. Summaries count re
 
 ## Progress and privacy
 
-### Phase 1: Java map migration and rollback
+### Full reference roadmap: audit, migration and rollback
 
-Before rollout, export progress from the current private site. The Java expansion is additive: retain every existing skill/task/course/goal ID, all notes and completion, the v1 backup envelope, the same browser key and the same D1 document. Reused Java skills read their existing `skills[id]` record. New `java-*` skills have no stored row until explicitly edited. No parent or child completion is inferred; resource lessons and activity remain independent. The diagram is static content, not a new daily-task schedule. No database schema migration or bulk progress rewrite is needed.
+The original curated Java map had 86 tracked skills and Backend had 22. This was not just a label-count gap: Java omitted nested classes, object lifecycle, initializer blocks, modules, Stack/Deque, functional/network/date/regex APIs, alternative frameworks, logging and testing tools. Backend omitted most alternative languages/data stores, authentication, caching, distributed systems, resilience, real-time protocols, observability and optional AI branches.
 
-Optional Java skills may store `skipped`; this is separate from mastery and never satisfies a prerequisite. Existing three-state values remain unchanged. To roll back the interface, redeploy the saved version before this release (version 4), keeping an export from both before and after the upgrade. The old parser does not understand `skipped`: first export the upgraded data, then use the current API to reset only records whose status is `skipped` to `not-started` (preserving their notes and other fields), and remove links to new `java-*` IDs from new resource/goal/activity records if the old validator cannot resolve them. Keep the full export for re-upgrading; do not delete it or overwrite whole documents. If a complete state rollback is intended instead, explicitly restore the pre-upgrade export using a controlled restore that clears records absent from that snapshot; the normal Import operation merges records and is not a destructive reset. Never run a destructive restore as part of deployment.
+The replacement reads each complete official graph privately at runtime. The source snapshot checked on 24 October 2026 contains Java **125 diagram nodes / 88 skills / 29 edges / 7 section containers**, and Backend **225 nodes / 155 skills / 60 edges / 7 containers**. Topic, subtopic, section, title, label, paragraph, button, legend and horizontal/vertical line elements are all retained, with source IDs, dimensions, coordinates, handles and relationships. These counts describe that snapshot, not a promise that upstream never changes. The footer exposes the fetched revision and check date. Full Roadmap and My Learning Path use the same entire graph; the latter changes emphasis only. Existing Data Science/AGH maps and the 12-week study budget are retained.
 
-Validate this release against an old backup, explicit new skill notes/status/skip, refresh/reopening, concurrent device edits and offline recovery. Check that unchanged historical records are byte-for-byte equivalent and that geometry is independent of progress. Only local isolated test data is mutated by browser checks; production verification is read-only.
+**Reuse boundary:** [the upstream license](https://github.com/nilbuild/developer-roadmap/blob/master/license) allows personal use while restricting redistribution/publication. This owner-private viewer fetches source diagrams and individual topic guides only when used. Official graph JSON, guide text and reference screenshots are not bundled in Git, static assets, deployment archives or the progress database. Temporary browser caches are for personal offline use. Original renderer code, aliases and practice prompts remain in source; topic guides are attributed and link to their official originals. Do not make this Site or its reference proxy public, redistribute its caches, or claim this is an open-licensed copy. Upstream access or format changes can temporarily prevent a fresh load; a cached graph is clearly identified, and saved progress remains independent.
+
+Before rollout, export progress from the current private site and retain the existing saved Site version **5**. There is **no bulk rewrite or database-schema migration**. The same D1 document, browser key and v1 backup envelope remain authoritative. Exact semantic matches reuse existing skill IDs; unmatched reference skills use `ref-java-<source-id>` / `ref-backend-<source-id>` and have no stored entry until edited. Duplicate source labels and obsolete upstream IDs never merge distinct nodes within a map. Unmatched original skills, task checkboxes, goals, notes and milestones remain available through the weekly plan/history. A parent's completion is never copied to its children, and course or session completion never sets mastery.
+
+Personal features use optional `projects`, `sessions` and `routines` maps in that same document, with sparse stable records. Existing records are not replaced; adding these fields requires validation, field-level sync, import/export and recovery tests before deployment. New exploration topics are not automatically added to weekly objectives or deadlines.
+
+**Rollback plan:** export again before rollback. Redeploy saved version 5 to restore the prior UI while retaining the new export and D1 state. That prior validator cannot edit `ref-*` links or the new project/session/routine maps, so an older interface must remain read-only until a compatibility patch accepts those optional fields, or the current interface must explicitly remove only those new links/maps after preserving the upgraded export. Do not silently delete these records or bulk-normalize mastery. For a complete state rollback, a controlled restore may replace the document with the pre-upgrade snapshot only after an explicit destructive-restore request; ordinary Import intentionally merges supplied records and does not clear history. The new viewer can be redeployed later without replaying completion events.
+
+Verification mutates only an isolated local progress document, restores its snapshot afterward, and compares untouched legacy records. Production checks are read-only. Test source geometry and full/personal equality, topic guides, all status values, notes, JSON roundtrips, separate-browser sync, concurrent fields, offline refresh/reconnect, mobile navigation and retained course/task history.
 
 The original `learning-os:java-backend:v1` localStorage key and version-1 export envelope remain supported. Existing task IDs, checkboxes, minutes, evidence, course notes, capacity plans, reviews and milestone evidence are retained. Original browser data is backed up under `learning-os:java-backend:v1:before-skill-tree`; the UI offers that exact backup. Unknown safe legacy metadata is preserved.
 
@@ -57,7 +69,13 @@ src/App.tsx                   Existing navigation and integration
 src/components/LearningViews.tsx Homepage, broad goals and activity journal
 src/components/ResourceLibrary.tsx Independent resources, units and bookmarks
 src/lib/learning.ts           Derived defaults, validation and event history
-src/components/SkillTree.tsx  Interactive React Flow canvas
+src/components/ReferenceMap.tsx Complete runtime graph renderer
+src/lib/server-reference-roadmaps.ts Allowlisted private reference proxy
+src/lib/reference-learning.ts Original exercises and legacy-ID compatibility
+src/components/DailyPlanner.tsx Sparse planner/routines and weekly chart
+src/lib/study-planner.ts       Calendar-safe recurrence and derived statistics
+src/components/Projects.tsx   Original project catalogue and personal progress
+src/components/SkillTree.tsx  Retained Data Science/AGH React Flow canvas
 src/components/TopicPanel.tsx Materials, criteria, tasks and deadlines
 src/lib/useLearningProgress.ts Browser migration, cache, offline queue and sync
 src/lib/progress-sync.ts      Field-level rebase and legacy preservation
@@ -92,13 +110,20 @@ With that preview running, in a second terminal:
 
 ```bash
 node scripts/api-smoke.mjs http://127.0.0.1:5173
-npm run test:browser
+npm run test:reference
 npm run test:diagram
 npm run test:tracker
-npm run test:java-map
+npm run test:planner
 ```
 
-The browser regression requires Playwright Chromium (`npx playwright install chromium` once). It uses isolated profiles and only permits loopback URLs. It verifies legacy migration, refresh/reopening, independent devices, concurrent fields, offline reload/reconnect, export/invalid import, AGH priority, search/expansion, zoom/pan and mobile panels. It restores its local database snapshot afterward. The separate read-only diagram check verifies central alignment, grouped rows, connector routing, collapse/search, independent tracks, light/dark preference and mobile readability. The tracker browser check exercises actual course/lesson progress, high-level goal moves, notes, activity summaries, backups, two browsers, concurrent edits and offline recovery. It also restores its local snapshot. The Java map check additionally verifies individually tracked subskills, independent mastery, optional skip, node positions, connector routing, section navigation, offline notes and mobile panels. Never run mutation smoke tests against personal production progress.
+The browser checks use installed Playwright Chromium (`npx playwright install chromium` once). Run mutation suites sequentially against a disposable loopback preview; each snapshots and restores that local progress document. Never run them against personal production progress.
+
+- `test:reference` compares every runtime Java/Backend node ID, dimension and source position, all edges, full/personal equality and topic guides. It checks independent notes/mastery/skip, retained records, refresh, separate browsers, concurrent fields, offline recovery and mobile panels. Earlier `test:browser` / `test:java-map` commands are aliases for this current graph check.
+- `test:diagram` is read-only: complete source graph geometry/controls and retained Data Science/AGH diagrams, theme, section navigation and responsive layouts.
+- `test:tracker` exercises original course/module/lesson notes, bookmarks, archive/restore, weekly goal moves, legacy imports and concurrent/offline resource updates.
+- `test:planner` covers linked activities, separate actual time, skip/completion percentages, sparse recurring rules, rescheduling without duplicate occurrences, pause/delete/restore, project status, history, export/import, cross-device/offline sync and 320/390px layouts.
+
+Unit tests use invented reference fixtures, never redistributed upstream diagrams. The model tests also cover calendar arithmetic across DST/year/month boundaries, bounded recurrence ranges, API validation and unchanged legacy records. Browser artifacts and private backups belong outside Git.
 
 ## Publishing
 

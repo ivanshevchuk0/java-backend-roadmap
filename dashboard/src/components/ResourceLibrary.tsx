@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type RefObject } from 'react';
 import { Archive, ArrowRight, ArrowUpRight, BookOpen, Check, ChevronDown, CirclePlay, FileText, Filter, FolderOpen, Link2, ListChecks, Pencil, Plus, Search, Undo2, X } from 'lucide-react';
-import { allTopics as topics } from '../data/skill-catalog';
+import { useTopicCatalog } from '../lib/TopicCatalogContext';
 import { getResources, getUnits, resourceCompletion } from '../lib/learning';
 import { roadmap } from '../lib/roadmap';
 import type { LearningResource, Progress, ResourceKind, ResourceStatus, ResourceUnit, TopicStatus, TrackId } from '../lib/types';
@@ -115,6 +115,7 @@ export function ResourceLibrary({ progress, disabled = false, onChange, initialR
 }
 
 function ResourceDetail({ resource, progress, disabled, onPatch, onEdit, onUnit, onUnitPatch, onSkill, detailRef, onBack }: { detailRef: RefObject<HTMLElement | null>; onBack: () => void; resource: LearningResource; progress: Progress; disabled: boolean; onPatch: (patch: Partial<LearningResource>) => void; onEdit: () => void; onUnit: (unit?: ResourceUnit, kind?: ResourceUnit['kind'], parentId?: string) => void; onUnitPatch: (unit: ResourceUnit, patch: Partial<ResourceUnit>) => void; onSkill: (id: string) => void }) {
+  const {topics}=useTopicCatalog();
   const units = getUnits(progress, resource.id);
   const count = resourceCompletion(progress, resource.id);
   const [notes, setNotes] = useState(resource.notes);
@@ -156,6 +157,7 @@ function ResourceDetail({ resource, progress, disabled, onPatch, onEdit, onUnit,
 }
 
 function ResourceForm({ resource, disabled, onClose, onSave }: { resource?: LearningResource; disabled: boolean; onClose: () => void; onSave: (resource: LearningResource) => void }) {
+  const {topics}=useTopicCatalog();
   const [title, setTitle] = useState(resource?.title ?? '');
   const [provider, setProvider] = useState(resource?.provider ?? '');
   const [kind, setKind] = useState<ResourceKind>(resource?.kind ?? 'course');

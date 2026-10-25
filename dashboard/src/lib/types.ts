@@ -50,9 +50,12 @@ export interface TaskProgress {
 export interface WeeklyPlan { hours: number; aghHours: number }
 export type TopicStatus = 'not-started' | 'in-progress' | 'completed';
 export type SkillStatus = TopicStatus | 'skipped';
-export interface SkillProgress { status: SkillStatus; updatedAt: string; notes?: string }
+export interface SkillProgress { status: SkillStatus; updatedAt: string; notes?: string; label?: string; track?: TrackId }
 export interface AssignmentDeadline { label: string; date: string; done: boolean; updatedAt: string }
 export interface Progress {
+  projects?: Record<string, ProjectProgress>;
+  sessions?: Record<string, StudySession>;
+  routines?: Record<string, StudyRoutine>;
   goals?: Record<string, WeeklyGoal>;
   resources?: Record<string, LearningResource>;
   units?: Record<string, ResourceUnit>;
@@ -90,5 +93,23 @@ export interface LearningActivity {
   id: string; date: string; kind: 'study' | 'skill' | 'exercise' | 'course' | 'project' | 'lesson';
   title: string; track: TrackId; minutes: number | null; notes: string;
   skillId: string; resourceId: string; taskId: string; milestoneId: string;
-  automatic: boolean; updatedAt: string;
+  automatic: boolean; updatedAt: string; projectId?: string; sessionId?: string; sessionStatus?: StudySession['status'];
+}
+
+export interface ProjectProgress {
+  id: string; title: string; track: TrackId; status: TopicStatus;
+  repositoryUrl: string; notes: string; updatedAt: string; archived: boolean;
+}
+export interface StudySession {
+  id: string; title: string; track: TrackId; date: string; status: 'planned' | 'completed' | 'skipped';
+  plannedMinutes: number; actualMinutes: number | null; skillId: string; resourceId: string;
+  projectId?: string; routineId?: string; occurrenceDate?: string;
+  notes: string; updatedAt: string; archived: boolean;
+}
+
+/** A recurrence rule; occurrences remain virtual until the user edits them. */
+export interface StudyRoutine {
+  id: string; title: string; track: TrackId; startDate: string; endDate: string;
+  weekdays: number[]; plannedMinutes: number; skillId: string; resourceId: string; projectId: string;
+  notes: string; updatedAt: string; archived: boolean;
 }

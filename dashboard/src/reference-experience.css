@@ -1,0 +1,14 @@
+.reference-view-toolbar {display:flex;align-items:center;justify-content:space-between;gap:15px;margin:0 0 14px;color:var(--diagram-muted);font-size:11px;line-height:1.7}
+.reference-view-toolbar>div {display:flex;gap:3px;border:1px solid var(--diagram-border);border-radius:5px;padding:3px;flex-shrink:0}
+.reference-view-toolbar button {min-height:35px;padding:6px 12px;border-radius:3px;color:var(--diagram-muted);font-size:12px}
+.reference-view-toolbar button[aria-pressed=true] {background:var(--diagram-focus);color:var(--diagram-next)}
+.reference-loading {min-height:500px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;color:var(--diagram-muted);font-size:14px}
+.reference-loading a {color:var(--diagram-next)}
+.reference-provenance {display:flex;flex-wrap:wrap;align-items:center;gap:6px 18px;padding:12px 2px;color:var(--diagram-muted);font-size:10px;line-height:1.7}
+.reference-provenance a,.reference-provenance button {color:var(--diagram-next)}
+.reference-provenance button {margin-left:auto}
+.reference-guide .fine-print a {text-decoration:underline;text-underline-offset:3px}
+.reference-guide-explanation p,.reference-guide details>p {font-size:13px;line-height:1.85;color:#b1c4b7;margin:12px 0;white-space:pre-line}
+.reference-guide .resource-list {margin-top:16px}.reference-guide-error {font-size:12px;line-height:1.8;color:#e5c589}.reference-guide-error button {margin-top:8px}
+.reference-link-resources {margin-top:17px}.skill-epam-label {display:inline-block;margin:10px 0 0 10px;border:1px solid #8e8858;border-radius:3px;color:#ddd4a4;font-size:10px;padding:4px 6px}
+@media(max-width:600px){.reference-view-toolbar{align-items:flex-start;flex-direction:column;gap:8px}.reference-view-toolbar>div{width:100%}.reference-view-toolbar button{flex:1;min-height:44px;font-size:12px}.reference-view-toolbar>span{font-size:11px}.reference-provenance{font-size:10px;gap:7px 10px}.reference-provenance button{min-height:36px}.reference-guide-explanation p,.reference-guide details>p{font-size:14px}}
