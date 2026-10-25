@@ -6,7 +6,7 @@ import type {Progress} from '../lib/types';
 export function parseGuide(markdown:string) {
   const text=markdown.replace(/```[\s\S]*?```/g,'').replace(/!\[[^\]]*\]\([^)]*\)/g,'');
   const links=[...text.matchAll(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g)].flatMap(match=>{
-    try{const url=new URL(match[2]);return url.username||url.password?[]:[{title:match[1].replace(/`/g,''),url:url.href,video:/youtube\.com|youtu\.be|vimeo\.com/i.test(url.hostname)}];}catch{return[];}
+    try{const url=new URL(match[2]),label=match[1].replace(/`/g,''),video=/^@video@/i.test(label)||/youtube\.com|youtu\.be|vimeo\.com/i.test(url.hostname),title=label.replace(/^(?:@(official|article|video|course|opensource|book|feed|podcast|github|tool|reference)@)+/i,'').trim();return url.username||url.password?[]:[{title:title||url.hostname,url:url.href,video}];}catch{return[];}
   });
   const paragraphs=text.replace(/\[([^\]]+)\]\([^)]*\)/g,'$1').replace(/^#{1,6}\s+.*$/gm,'').replace(/^\s*[-*>]\s*/gm,'').replace(/[`*_]/g,'').split(/\n\s*\n/).map(part=>part.trim()).filter(part=>part&&!/^visit the following resources/i.test(part));
   return{paragraphs,links:[...new Map(links.map(link=>[link.url,link])).values()]};
