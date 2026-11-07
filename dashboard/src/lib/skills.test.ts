@@ -5,8 +5,8 @@ import { allTasks, roadmap } from './roadmap';
 import { createProgress, parseProgress, serializeProgress } from './progress';
 import type { Roadmap } from './types';
 
-// The restored existing Site commit is the migration baseline, not a second task catalog.
-const original: Roadmap = JSON.parse(execFileSync('git', ['show', 'HEAD:src/data/roadmap.json'], { encoding: 'utf8' }));
+// Compare against the committed catalog in both standalone and dashboard/ checkouts.
+const original: Roadmap = JSON.parse(execFileSync('git', ['show', 'HEAD:./src/data/roadmap.json'], { encoding: 'utf8' }));
 const originalTasks = original.weeks.flatMap(week => week.tasks);
 
 describe('skill-tree curriculum preservation', () => {
