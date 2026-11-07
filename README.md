@@ -1,8 +1,35 @@
-# Java Backend Learning
+# Java Backend Learning Dashboard
 
-[**Open my interactive skill roadmap →**](https://java-backend-learning-os.modestduck2.chatgpt.site)
+A React and TypeScript study planner paired with a 12-week Java/backend learning plan. It connects skills, resources, and daily activities, with offline edits, revision-based progress synchronization, and JSON backups.
 
-Your existing private website is the learning homepage. It shows your saved week, next eligible skill, and progress across **Java & Backend (60%) · IBM Data Science (20%) · AGH (20%)**.
+[**Study plan**](ROADMAP.md#all-weeks) · [**Application source**](dashboard/) · [**Local setup and verification**](dashboard/README.md#development-and-verification)
+
+The hosted tracker is **owner-private**, not a public demo. This repository shares its source and study materials. The application is written in TypeScript; Java/backend projects in the curriculum are learning objectives, not completed implementations.
+
+## Inspect the implementation
+
+- **Interface:** React and TypeScript views for skills, courses, projects, and daily planning.
+- **Persistence:** a Cloudflare D1 / Drizzle progress API, browser cache, and a pending-edit queue.
+- **Progress continuity:** field-level conflict rebasing, legacy record preservation, and JSON import/export.
+- **Verification:** Vitest model/API tests and local Playwright smoke scripts.
+
+The hosted progress API stores a single owner's state and relies on platform access control. Keep that deployment private; a public or multi-user deployment would require explicit identity checks and isolated storage.
+
+With Node.js 22.13+ and npm installed, run these checks from the repository root:
+
+```bash
+cd dashboard
+npm ci
+npm run typecheck
+npm test
+npm run build
+```
+
+These commands install, test, and build locally; they do not deploy the application or access saved personal progress. Follow the [developer notes](dashboard/README.md#development-and-verification) for local D1 setup and browser smoke tests. Use only disposable local state for mutation tests.
+
+## Learning workflow
+
+The dashboard shows a saved week, next eligible skill, and progress across **Java & Backend (60%) · IBM Data Science (20%) · AGH (20%)**.
 
 **AGH assignments and real deadlines come first.** Default capacity is 20 hours/week; reserve university time before splitting the remaining time Java:IBM about 3:1.
 
